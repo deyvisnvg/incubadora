@@ -32,19 +32,6 @@ switch (modulo.value) {
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <ul class="dropdown-menu animated fadeInRight w" style="width:375px">
-                                <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
-                                    <div>
-                                        <a ui-sref="app.dashboard-v1"
-                                            onclick="cargar_contenido('main-content','Verificar_documento/vista_verificardocumento_listar.php');">
-                                            <h4><strong>Documentos</strong> </h4>
-                                        </a>
-                                    </div>
-                                </li>
-                                <div id="id_contenido"></div>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown">
                                 <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
                                     <img src="../img/admin.png" alt="">
@@ -140,7 +127,7 @@ switch (modulo.value) {
                                                     <a href="#"><span class="margen"> Nuevo Sensor</span></a>
                                                 </li>
                                                 <li ui-sref-active="active">
-                                                    <a href="#"><span class="margen"> Tipo de Sensor</span></a>
+                                                    <a href="/sensores/tipoSensor"><span class="margen"> Tipo de Sensor</span></a>
                                                 </li>
                                             </ul>
                                         </li>

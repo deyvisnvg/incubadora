@@ -3,21 +3,21 @@
 const db = require('./lib/db');
 const setupUsuarioModel = require('./models/usuario');
 const setupPersonaModel = require('./models/persona');
-// const setupProductoModel = require('./models/producto');
 const setupIncubadoraModel = require('./models/incubadora');
+const setupTipoSensorModel = require('./models/tipo_sensor');
 
 const setupUsuario = require('./lib/usuario');
 const setupPersona = require('./lib/persona');
-// const setupProducto = require('./lib/producto');
 const setupIncubadora = require('./lib/incubadora');
+const setupTipoSensor = require('./lib/tipo_sensor');
 
 module.exports = async config => {
 
     const sequelize = db(config);
     const UsuarioModel = setupUsuarioModel(config);
     const PersonaModel = setupPersonaModel(config);
-    // const ProductoModel = setupProductoModel(config);
     const IncubadoraModel = setupIncubadoraModel(config);
+    const TipoSensorModel = setupTipoSensorModel(config);
 
     PersonaModel.belongsTo(UsuarioModel, { foreignKey: 'id_usuario', sourceKey: 'id_usuario' }) // El modelo de Usuario 'pertenece a' una persona
 
@@ -34,12 +34,13 @@ module.exports = async config => {
 
     const Usuario = setupUsuario(UsuarioModel, PersonaModel);
     const Persona = setupPersona(PersonaModel, UsuarioModel);
-    // const Producto = setupProducto(ProductoModel);
     const Incubadora = setupIncubadora(IncubadoraModel);
+    const TipoSensor = setupTipoSensor(TipoSensorModel);
 
     return {
         Usuario,
         Persona,
-        Incubadora
+        Incubadora,
+        TipoSensor
     }
 }

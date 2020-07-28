@@ -9,26 +9,40 @@ const { configDb } = require('../../config')
 const db = require('../../database');
 const { handleFatalError } = require('../../error')
 
-let services, Incubadora;
+let services, TipoSensor;
 
 router.use('*', async (req, res, next) => { // (*) cada vez que se haga una petición a todas las rutas // OJO: Actualmente express no soporta midlewares o rutas async await y esto lo solucionamos con express-asyncify me permite darle soporte async await a mi midlewares y rutas de express
     if (!services) { // Si los servicios no han sido obtenidos
         console.log('Connecting to database')
 
         services = await db(configDb).catch(err => handleFatalError(err)); // Aqui obtengo los servicios de mi BD
-        Incubadora = services.Incubadora
+        TipoSensor = services.TipoSensor
     }
     next() // Yo necesito siempre llamar a la function de next() para que el midleware continúe la ejecución del request y llegue a las demas rutas
 })
 
-router.get('/', secure.checkOwn, (req, res) => {
+// router.get('/', secure.checkOwn, (req, res) => {
+//     const user = req.session.user;  // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
+//     req.session.success = "";
+//     req.session.message = "";
+
+//     Controller.listIncubadora(Incubadora)
+//         .then(data => {
+//             res.render('links/listIncubadora', { data, user });
+//         })
+//         .catch(err => {
+//             console.log('[Error!]: ', err);
+//         })
+// })
+
+router.get('/tipoSensor', secure.checkOwn, (req, res) => {
     const user = req.session.user;  // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
     req.session.success = "";
     req.session.message = "";
 
-    Controller.listIncubadora(Incubadora)
+    Controller.listTipoSensor(TipoSensor)
         .then(data => {
-            res.render('links/listIncubadora', { data, user });
+            res.render('links/listTipoSensor', { data, user });
         })
         .catch(err => {
             console.log('[Error!]: ', err);
