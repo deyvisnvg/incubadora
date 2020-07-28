@@ -1,0 +1,39 @@
+<section class="registro-perfil">
+    <form action="/perfil/update/{{perfil.id_persona}}" method="post" enctype="multipart/form-data">
+        <figure class="foto-perfil">
+            <input type="hidden" name="foto" value="{{perfil.foto}}">
+            <input type="file" name="image">
+        </figure>
+
+        <div class="name-perfil">
+            <p class="description">Nombres: <input type="text" name="nombres" value="{{ perfil.nombres }}" required pattern="[A-Za-z\s]{3,30}" title="Ingrese solo letras Mayúsculas y minúsculas"></p>
+            <p class="description">Apellidos: <input type="text" name="apellidos" value="{{ perfil.apellidos }}" required pattern="[A-Za-z\s]{3,30}" title="Ingrese solo letras Mayúsculas y minúsculas"></p>
+        </div>
+
+        <div class="datas">
+            <div class="data-perfil1">
+                <p class="description-perfil">Edad: </p>
+                <p><input type="text" name="edad" value="{{ perfil.edad }}" pattern="[0-9]+" maxlength="2" title="Ingrese solo números"></p>
+            </div>
+            <div class="data-perfil2">
+                <p class="description-perfil">E-mail: </p>
+                <p><input type="email" name="email" value="{{ perfil.email }}"></p>
+            </div>
+            <div class="data-perfil3">
+                <p class="description-perfil">Fecha de nacimiento: </p>
+                <p><input type="date" name="fecha_nacimiento" value="{{ perfil.fecha_nacimiento }}"></p>
+            </div>
+            <div class="boton-perfil">
+                <p class="boton"><button type="submit">Modificar</button></p>
+            </div>
+
+            {{!-- {{#if message }}
+            <div class="messageError">{{ message }}</div>
+            {{/if}}
+
+            {{#if success }}
+            <div class="messageSuccess">{{ success }}</div>
+            {{/if}} --}}
+        </div>
+    </form>
+</section>

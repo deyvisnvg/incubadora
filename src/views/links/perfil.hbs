@@ -1,0 +1,27 @@
+<section class="registro-perfil">
+    <figure class="foto-perfil">
+        <img src="{{ perfil.foto }}" alt="">
+    </figure>
+
+    <div class="name-perfil">
+        <p class="description-perfil">{{ perfil.nombres }} {{ perfil.apellidos }}</p>
+        <p class="boton"><a href="/perfil/edit/{{ perfil.id_persona }}">Editar Perfil</a></p>
+    </div>
+
+    <div class="datas">
+        <form action="/perfil" method="post">
+            <div class="data-perfil1">
+                <p class="description-perfil">Edad: </p>
+                <p><input type="text" name="edad" value="{{ perfil.edad }} años" readonly></p>
+            </div>
+            <div class="data-perfil2">
+                <p class="description-perfil">E-mail: </p>
+                <p><input type="text" name="email" value="{{ perfil.email }}" readonly></p>
+            </div>
+            <div class="data-perfil3">
+                <p class="description-perfil">Fecha de nacimiento: </p>
+                <p><input type="date" name="fecha_nacimiento" value="{{ perfil.fecha_nacimiento }}" readonly></p>
+            </div>
+        </form>
+    </div>
+</section>

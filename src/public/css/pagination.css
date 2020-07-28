@@ -1,0 +1,163 @@
+/*=====================================*/
+/* Estilos de la Búsqueda y Paginación */
+/*=====================================*/
+
+/* .dataTables_length {
+    position: relative;
+    float: left;
+    margin: 20px 0;
+    display: none;
+} */
+
+/* .dataTables_length select {
+    border: 1px solid rgb(11, 0, 160);
+    border-radius: 2px;
+    margin: 0 6px;
+} */
+/* 
+.dataTables_filter {
+    position: relative;
+    float: right;
+    margin: 20px 0;
+}
+
+.dataTables_filter input {
+    border: 1px solid rgb(11, 0, 160);
+    border-radius: 4px;
+    margin-left: 10px;
+    width: 16vw;
+    height: 26px;
+    padding: 10px;
+}
+
+.dataTables_info {
+    position: relative;
+    float: left;
+    display: none;
+}
+
+.dataTables_paginate {
+    position: relative;
+    float: right;
+}
+
+.dataTables_paginate a {
+    padding: 5px;
+    border: 1px solid #9c9c9e;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+.dataTables_paginate span a {
+    padding: 5px 10px;
+    border: 1px solid #9c9c9e;
+    border-radius: 4px;
+} */
+
+/*=====================================*/
+
+/*=====================================*/
+/* Estilos de la Búsqueda y Paginación */
+/*=====================================*/
+
+.dataTables_length {
+    position: relative;
+    float: left;
+    margin: 5px auto 18px;
+}
+
+/* .dataTables_length select {
+    border: 1px solid rgb(11, 0, 160);
+    border-radius: 2px;
+    margin: 0 6px;
+} */
+
+.dataTables_filter {
+    position: relative;
+    float: right;
+    margin: 5px auto 18px;
+}
+
+.dataTables_filter input {
+    border: 1px solid rgb(11, 0, 160);
+    border-radius: 4px;
+    margin-left: 10px;
+    width: 190px;
+    height: 26px;
+    padding: 10px;
+}
+
+.dataTables_info {
+    position: relative;
+    float: left;
+    padding: 30px 0;
+}
+
+.dataTables_paginate {
+    position: relative;
+    float: right;
+    padding: 30px 0;
+}
+
+.dataTables_paginate a {
+    padding: 5px;
+    border: 1px solid #9c9c9e;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+.dataTables_paginate span a {
+    padding: 5px 10px;
+    border: 1px solid #9c9c9e;
+    border-radius: 4px;
+}
+
+select {
+    border-radius: 5px;
+    background: white;
+}
+
+/*=====================================*/
+
+
+@media screen and (max-width: 1023px){
+
+}
+
+@media screen and (max-width: 767px){
+    .dataTables_filter input {
+        border: 1px solid rgb(11, 0, 160);
+        border-radius: 4px;
+        margin-left: 10px;
+        width: 170px;
+        height: 26px;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 540px){
+    .dataTables_filter input {
+        width: 120px;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .dataTables_filter input {
+        width: 110px;
+        padding: 5px;
+    }
+
+}
+
+@media screen and (max-width: 351px){
+
+    .dataTables_filter input {
+        width: 85px;
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 320px){
+
+
+}

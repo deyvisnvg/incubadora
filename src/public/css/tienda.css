@@ -1,0 +1,541 @@
+    /* font-family: 'Source Sans Pro', sans-serif; */
+    /*font-family: 'PT Sans', sans-serif;*/
+    /* font-family: 'Bai Jamjuree', sans-serif; */
+    /* font-family: 'Baloo', cursive; */
+    /* font-family: 'Patua One', cursive; */
+    /* font-family: 'Bitter', serif; */
+    /* font-family: 'Fjalla One', sans-serif; */
+    /* font-family: 'Be Vietnam', sans-serif; */
+    /* font-family: 'Nanum Gothic', sans-serif; */
+    /* font-family: 'Ubuntu', sans-serif; */
+    /* font-family: 'Playball', cursive; */
+    /* font-family: 'Satisfy', cursive; */
+
+::-webkit-scrollbar{ /* Permiter poner transparente un scroll*/
+    width: 0px;
+}
+    
+::-webkit-scrollbar-track-piece{  /* Permiter poner transparente un scroll*/
+    background-color: transparent;
+}
+
+.title-container {
+    background: #e91e63;
+    color: white;
+    margin: 0;
+}
+
+.title-container .title-content {
+    display: flex;
+    width: 90vw;
+    margin: auto;
+}
+
+.title-content .title-tienda {
+    color: white;
+    padding: 40px 0;
+    margin-right: auto;
+    /* font-family: 'PT Sans', sans-serif; */
+
+}
+
+.title-content figure {
+    margin: 0;
+    height: 200px;
+}
+
+.title-content figure img {
+    width: 200px;
+    object-fit: cover;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.title-content .title-tienda h1 {
+    font-family: 'Playball', cursive;
+    margin: 0;
+    font-size: 60px;
+    letter-spacing: 10pt;
+}
+ 
+.title-content .title-tienda h2 {
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 17px;
+    letter-spacing: 4pt;
+}
+
+.container-tienda {
+    width: 95vw;
+    background: white;
+    padding: 5px 10px 80px;
+    border-radius: 5px;
+    margin: 5px auto;
+    /* box-shadow: right bottom opacidad-sombra grosor-sombra; */
+    /* box-shadow: 4px 4px 8px 0px #95afc0; */
+}
+
+
+.product {
+    width: 90vw;
+    font-size: 15px;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 30px auto 0;
+}
+
+.product .state {
+    position: relative;
+    float: left;
+    border-bottom: 6px solid #009688;
+    margin: 4px 0 19px;
+    border-radius: 5px;
+    padding: 0 10px 10px;
+}
+
+.product .row {
+    margin-top: 20px;
+}
+
+.product .data {
+    width: 260px;
+    font-weight: bold;
+    /* margin: 30px 0; */
+}
+
+.data tbody {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90vw;
+}
+
+.data tbody tr {
+    display: grid;
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 9vw;
+    margin-right: auto;
+}
+
+.data tbody tr td figure {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    height: 200px;
+    position: relative;
+}
+
+
+.data tbody tr td figure .iconzoom {
+    position: absolute;
+    z-index: 1;
+    width: 215px;
+    height: 208px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data tbody tr td figure .iconzoom:hover {
+    background: rgba(204, 212, 160, 0.1);
+    border-radius: 10px;
+}
+
+.data tbody tr td figure .iconzoom:hover .icon-zoom::before {
+    content: "\e9ce";
+}
+
+.icon-zoom:hover {
+    transition:all .5s ease-in-out;
+    -webkit-transform:scale(1.2);
+    transform:scale(1.2);
+}
+
+.data tbody tr td figure img {
+    position: absolute;
+    width: 215px;
+    object-fit: cover;
+    height: 208px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+
+.data tbody tr td .container-product .detalle-model figure {
+    height: 175px;
+    position: relative;
+    margin: auto;
+}
+
+.data tbody tr td .container-product .detalle-model figure img {
+    position: relative;
+    width: 160px;
+    object-fit: cover;
+    height: 175px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+
+/* .data tbody tr td .container-product .detalle-model figure img:hover {
+    transition:all .5s ease-in-out;
+    -webkit-transform:scale(1.1);
+    transform:scale(1.1);
+} */
+
+.data tbody tr td .name {
+    margin: 5px 10px 10px 10px;
+    font-size: 31px;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.data tbody tr td .cesta {
+    text-align: center;
+    margin: 0 auto 10px;
+}
+
+.data tbody tr td .cesta input {
+    width: 220px;
+    border: 1px solid transparent;
+    background: #e91e63;
+    color: white;
+    margin: 0;
+    font-size: 14px;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 5px;
+}
+
+.data tbody tr td .cesta input:hover{
+    background: #cc1d58;
+}
+
+.container-product {
+    width: 100vw;
+    background: rgba(3, 5, 19, 0.5);
+    position: fixed;
+    top: -170vw;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+}
+
+.container-product.is-active{
+    top: 0;
+    bottom: 0;
+    transition: .3s;
+}
+
+.container-product .product-tienda {
+    background: rgba(3, 5, 19, 0.8);
+    color: white;
+    width: 100vw;
+    margin: auto;
+    padding: 3px 3px;
+}
+
+.product-tienda .iconzoom-two {
+    background: #fd0000;
+    float: right;
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-tienda .detalle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 27px 0;
+}
+
+.detalle .detalle-product {
+    width: 35vw;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 10px;
+    padding: 0 10px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.detalle .detalle-product .detalle-product-titulo p {
+    color: #F44336;
+    background: #eff9f6;
+    padding: 5px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.detalle .detalle-product .detalle-product-cuerpo {
+    display: flex;
+    justify-content: center;
+}
+
+.detalle .detalle-product-cuerpo .detalle-product-cabecera {
+    margin-right: 10px;
+}
+
+.detalle .detalle-product-cuerpo .detalle-product-data {
+    font-weight: 500;
+}
+
+.detalle .detalle-model {
+    width: 55vw;
+    margin: 10px;
+    padding: 0 10px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.detalle .detalle-model .detalle-model-titulo p {
+    color: #F44336;
+    background: #eff9f6;
+    padding: 5px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.detalle .detalle-model .detalle-model-img {
+    display: flex;
+    overflow-x: scroll;
+}
+
+/*=====================================*/
+
+
+@media screen and (max-width: 1023px){
+    .title-content .title-tienda h1 {
+        letter-spacing: 5pt;
+    }
+
+    .title-content .title-tienda h2 {
+        letter-spacing: 2pt;
+    }
+
+}
+
+@media screen and (max-width: 767px){
+    .title-content .title-tienda h1 {
+        font-size: 41px;
+        letter-spacing: 0pt;
+    }
+    
+    .title-content .title-tienda h2 {
+        font-size: 13px;
+        letter-spacing: 0pt;
+    }
+
+    .title-content figure {
+        height: 190px;
+    }
+
+    .title-content figure img {
+        width: 190px;
+    }
+
+    .data tbody tr {
+        margin-left: 2vw;
+    }
+
+    .data tbody tr td figure {
+        height: 195px;
+    }
+
+    .data tbody tr td figure .iconzoom {
+        width: 188px;
+        height: 200px;
+    }
+
+    .data tbody tr td figure img {
+        width: 188px;
+        height: 200px;
+    }
+
+    .data tbody tr td .name {
+        margin: 0 10px 20px 10px;
+        font-size: 26.5px;
+    }
+
+    .data tbody tr td .cesta input {
+        width: 190px;
+        font-size: 13.5px;
+    }
+
+    .product {
+        font-size: 14.5px;
+    }
+
+    .product .state {
+        padding: 0 5px 10px 10px;
+    }
+
+    .product-tienda .detalle {
+        font-size: 13.5px;
+    }
+
+    .detalle .detalle-product {
+        width: 52vw;
+        margin: 5px;
+        padding: 0 8px;
+    }
+
+    .detalle .detalle-model {
+        width: 37vw;
+        margin: 5px;
+        padding: 0 8px;
+    }
+
+    .data tbody tr td .container-product .detalle-model figure img {
+        width: 152px;
+    }
+
+}
+
+@media screen and (max-width: 480px){
+    .title-content .title-tienda h1 {
+        font-size: 26px;
+    }
+
+    .title-content .title-tienda h2 {
+        font-size: 11px;
+    }
+
+    .title-content figure {
+        height: 161px;
+    }
+
+    .title-content figure img {
+        width: 160px;
+    }
+
+    .product .state {
+        padding: 5px 0;
+    }
+
+    .data tbody tr {
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .data tbody tr td figure {
+        height: 160px;
+    }
+
+    .data tbody tr td figure .iconzoom {
+        width: 145px;
+        height: 160px;
+    }
+
+    .data tbody tr td figure img {
+        width: 145px;
+        height: 160px;
+    }
+
+    .data tbody tr td .name {
+        margin: 0 6px 10px 6px;
+        font-size: 21.5px;
+    }
+
+    .data tbody tr td .cesta input {
+        width: 145px;
+        font-size: 13px;
+        padding: 5px 4px;
+    }
+
+    .product {
+        font-size: 10.5px;
+    }
+
+    .product-tienda .detalle {
+        font-size: 12px;
+        margin: auto;
+        display: block;
+    }
+
+    .product-tienda .iconzoom-two {
+        width: 22px;
+        height: 22px;
+    }
+
+    .detalle .detalle-product {
+        width: 74vw;
+        margin: auto;
+    }
+
+    .detalle .detalle-model {
+        width: 83vw;
+        margin: 15px auto;
+        padding: 0 8px;
+    }
+  
+}
+
+@media screen and (max-width: 351px){
+    .title-content .title-tienda h1 {
+        font-size: 22px;
+    }
+
+    .title-content .title-tienda h2 {
+        font-size: 9px;
+    }
+
+    .product .state {
+        padding: 0 10px 10px;
+        font-size: 14px;
+        text-align: center;
+        float: initial;
+    }
+
+    .data tbody tr {
+        margin: 5px auto;
+    }
+
+    .data tbody tr td figure {
+        height: 195px;
+    }
+
+    .data tbody tr td figure .iconzoom {
+        width: 184px;
+        height: 195px;
+    }
+
+    .data tbody tr td figure img {
+        width: 184px;
+        height: 195px;
+    }
+
+    .data tbody tr td .cesta input {
+        width: 184px;
+        font-size: 13.5px;
+    }
+
+    .data tbody tr td .name {
+        margin: 0 10px 10px 10px;
+        font-size: 24px;
+    }
+    
+}
+
+@media screen and (max-width: 320px){
+    .title-content .title-tienda h1 {
+        font-size: 18.5px;
+    }
+
+    .title-content .title-tienda h2 {
+        font-size: 7.5px;
+    }
+
+    .data tbody tr td figure .iconzoom {
+        width: 182px;
+        height: 195px;
+    }
+
+    .data tbody tr td figure img {
+        width: 182px;
+        height: 195px;
+    }
+
+    
+}

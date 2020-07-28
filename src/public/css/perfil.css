@@ -1,0 +1,262 @@
+    /* font-family: 'Source Sans Pro', sans-serif; */
+    /*font-family: 'PT Sans', sans-serif;*/
+    /* font-family: 'Bai Jamjuree', sans-serif; */
+    /* font-family: 'Baloo', cursive; */
+    /* font-family: 'Patua One', cursive; */
+    /* font-family: 'Bitter', serif; */
+    /* font-family: 'Fjalla One', sans-serif; */
+
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    
+    .registro-perfil {
+        width: 500px;
+        background: white;
+        padding: 5px 10px 5px;
+        border-radius: 15px;
+        font-family: 'Bai Jamjuree', sans-serif;
+        margin: 50px auto;
+        /* box-shadow: right bottom opacidad-sombra grosor-sombra; */
+        box-shadow: 4px 4px 8px 0px #95afc0;
+    }
+
+    .registro-perfil .foto-perfil {
+        width: 120px;
+        height: 120px;
+        border: 1px solid #03a9f4;
+        border-radius: 60px;
+        margin: 20px auto 2px;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .foto-perfil img {
+        width: 121px;
+        height: 121px;
+        object-fit: cover;
+    }
+    
+    .name-perfil .description-perfil{
+        width: 290px;
+        color: #073e30;
+        font-size: 17.5px;
+        margin: 0;
+    }
+
+    .name-perfil .boton{
+        font-size: 15px;
+        margin: 0;
+    }
+    
+    .datas {
+        font-size: 15px;
+        margin: 40px 50px 15px 61px;
+    }
+
+    .datas .description-perfil {
+        width: 170px;
+        color: #073e30;;
+    }
+    
+    .datas p input {
+        color: #263238;
+        border-radius: 4px;
+        border: 1px solid #90a4ae;
+        padding: 6px;
+        width: 135px;
+        background: white;
+    }
+    
+    .boton a {
+        border-radius: 20px;
+        border: 1px solid #1b5e20;
+        color: #1b5e20;
+        padding: 8px 12px;
+        text-decoration: none;
+    }
+    
+    .boton a:hover {
+        background: #e8f5e9;
+    }
+    
+    .datas p select {
+        border-radius: 4px;
+        border: transparent;
+        padding: 6px;
+        width: 160px;
+    }
+    
+    .datas p {
+        margin: 2px 10px 15px;
+        padding: 1px 4px;
+    }
+    
+    .registro-perfil .name-perfil {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+        border-radius: 6px;
+        border-bottom: 2px solid rgb(1, 161, 1);
+        color: rgb(2, 29, 148);
+        padding: 20px 2px 24px;
+    }
+    .datas .data-perfil1 {
+        display: flex;
+    }
+    .datas .data-perfil2 {
+        display: flex;
+    }
+    .datas .data-perfil3 {
+        display: flex;
+        align-items: center;
+    }
+
+
+/* === Estilos del formulario Editar Perfil === */
+
+    .foto-perfil input {
+        margin: auto;
+    }
+
+    .name-perfil input {
+        color: #263238;
+        border-radius: 4px;
+        border: 1px solid #90a4ae;
+        padding: 6px;
+        width: 130px;
+    }
+
+    .name-perfil .description {
+        margin: 0;
+        font-size: 15px;
+    }
+
+    .datas .boton-perfil {
+        margin: 18px 0 22px;
+    }
+
+    .datas .boton-perfil .boton {
+        margin: auto;
+        text-align: center;
+    }
+
+    .boton-perfil .boton button {
+        border-radius: 4px;
+        border: transparent;
+        background: rgb(2, 119, 2);
+        color: white;
+        padding: 10px;
+        width: 100px;
+    }
+
+    .boton-perfil .boton button:hover {
+        background: rgb(1, 161, 1);
+    }
+
+/* ==================================================================== */
+    
+    @media screen and (max-width: 1024px){
+    
+    
+    }
+    
+    @media screen and (max-width: 767px){
+        .registro-perfil {
+            width: 450px;
+            margin: 50px auto;
+        }
+
+        .registro-perfil .name-perfil {
+            padding: 18px 2px 20px;
+        }
+
+        .name-perfil .description-perfil{
+            width: 280px;
+            font-size: 17px;
+        }
+
+        .name-perfil .boton{
+            font-size: 14px;
+        }
+    
+        .datas {
+            font-size: 14px;
+            margin: 35px 40px 15px 48px;
+        }
+        
+        .datas p {
+            margin: 2px 2px 12px;
+        }
+
+        .datas p input {
+            padding: 5px;
+        }
+
+        /* === Estilos del formulario Editar Perfil === */
+        .name-perfil input {
+            padding: 5px;
+        }
+
+        .name-perfil .description {
+            font-size: 14px;
+        }
+        /* ============================================= */
+    }
+    
+    @media screen and (max-width: 480px){
+        .registro-perfil {
+            width: 320px;
+            margin: 30px auto;
+        }
+
+        .registro-perfil .name-perfil {
+            padding: 12px 2px 16px;
+        }
+
+        .name-perfil .description-perfil{
+            width: 150px;
+            font-size: 15.5px;
+        }
+
+        .name-perfil .boton{
+            font-size: 13px;
+        }
+
+        .boton a {
+            padding: 6px 10px;
+        }
+        
+        .datas {
+            font-size: 13px;
+            margin: 30px 6px 15px 10px;
+        }
+        
+        .datas p {
+            margin: 2px 2px 12px;
+        }
+
+        .datas p input {
+            padding: 4px;
+            width: 130px;
+        }
+    
+        .datas p select {
+            width: 138px;
+        }
+
+        /* === Estilos del formulario Editar Perfil === */
+        .name-perfil input {
+            padding: 4px;
+        }
+        /* ============================================= */
+    
+    }
+    
+    @media screen and (max-width: 320px){
+    
+    
+    }

@@ -1,0 +1,456 @@
+    /* font-family: 'Source Sans Pro', sans-serif; */
+    /*font-family: 'PT Sans', sans-serif;*/
+    /* font-family: 'Bai Jamjuree', sans-serif; */
+    /* font-family: 'Baloo', cursive; */
+    /* font-family: 'Patua One', cursive; */
+    /* font-family: 'Bitter', serif; */
+    /* font-family: 'Fjalla One', sans-serif; */
+    /* font-family: 'Be Vietnam', sans-serif; */
+    /* font-family: 'Nanum Gothic', sans-serif; */
+    /* font-family: 'Ubuntu', sans-serif; */
+
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    
+    .registro-data {
+        width: 500px;
+        background: white;
+        padding: 5px 10px 5px;
+        border-radius: 15px;
+        font-size: 15px;
+        font-family: 'Bai Jamjuree', sans-serif;
+        margin: 50px auto;
+        /* box-shadow: right bottom opacidad-sombra grosor-sombra; */
+        box-shadow: 4px 4px 8px 0px #95afc0;
+    }
+    
+    .registro-data .data {
+        margin: 40px 50px 15px 61px;
+    }
+    
+    .data p input {
+        border-radius: 4px;
+        border: 1px solid #090861c9;;
+        padding: 6px;
+        background: white;
+        width: 206px;
+    }
+
+    .data p textarea {
+        border: 1px solid #090861c9;
+        border-radius: 5px;
+        padding: 6px;
+    }
+    
+    .data p input[type="checkbox"] {
+        width: auto;
+    }
+    
+    .data .boton button {
+        border-radius: 4px;
+        border: transparent;
+        background: rgb(2, 119, 2);
+        color: white;
+        padding: 10px;
+        width: 100px;
+    }
+    
+    .data .boton button:hover {
+        background: rgb(1, 161, 1);
+    }
+    
+    .data p select {
+        border-radius: 4px;
+        border: transparent;
+        padding: 6px;
+        width: 160px;
+    }
+    
+    .registro-data .state {
+        text-align: center;
+        margin: 6px 0px 10px;
+        padding: 10px 25px 10px;
+        border-radius: 6px;
+        border-bottom: 2px solid rgb(1, 161, 1);
+        color: rgb(2, 29, 148);
+    }
+    
+    .registro-data .description {
+        width: 170px;
+        color: #073e30;;
+    }
+    
+    .registro-data p {
+        margin: 2px 10px 15px;
+        padding: 1px 4px;
+    }
+    
+    
+    .registro-data .data-valor1 {
+        display: flex;
+        align-items: center;
+    }
+    .registro-data .data-valor2 {
+        display: flex;
+        align-items: center;
+    }
+    .registro-data .data-valor3 {
+        display: flex;
+        align-items: center;
+    }
+    .registro-data .data-valor4 {
+        display: flex;
+        align-items: center;
+    }
+    
+    .data-boton .boton {
+        text-align: center;
+        margin: 25px auto;
+    }
+    
+    /* =============================================
+        NUEVOS .... Estilos de Lista de Usuarios
+    ================================================*/
+    .list-data {
+        width: 78vw;
+        background: white;
+        padding: 5px 10px 50px;
+        border-radius: 5px;
+        font-size: 15px;
+        font-family: 'Bai Jamjuree', sans-serif;
+        margin: 15px auto;
+        box-shadow: 4px 4px 8px 0px #95afc0;
+    }
+    
+    .list-data .state {
+        text-align: center;
+        margin: 6px 0px 10px;
+        padding: 10px 25px 10px;
+        border-bottom: 2px solid rgb(167, 167, 167);
+        color: rgb(1, 42, 51);
+        font-size: 15px;
+    }
+    
+    .list-data .addBoton {
+        margin: 22px 0 28px 50px;
+        /* display: flex;
+        justify-content: space-between;
+        width: 56vw;
+        margin-top: 28px;
+        margin-left: 30px; */
+        /*position: relative;
+        top: 32px; */
+    }
+    
+    .list-data .addBoton .boton {
+        padding: 10px 0;
+        /* margin: 0;
+        position: relative;
+        z-index: 1; */
+    }
+
+    .list-data .addBoton .boton a {
+        background: green;
+        border-radius: 5px;
+        color: white;
+    }
+    
+    .list-data .data-table-pagination {
+        width: 75vw;
+        margin: 0 auto 40px;
+        color: #073e30;
+        position: relative;
+        bottom: 34px;
+        position: inherit;
+    }
+    
+    .data-table-pagination .data-table {
+        width: 75vw;
+        margin: auto;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    
+    /* thead */
+    .data-table thead {
+        background: #35524d;
+        color: white;
+    }
+    
+    .data-table thead tr th .description-name {
+        text-align: left;
+        padding: 0 12px;
+    }
+    
+    .data-table thead tr th p {
+        margin: 6px auto;
+    }
+
+    .data-table thead tr th .description {
+        display: flex;
+        justify-content: center;
+    }
+    
+    /* tbody */
+    .data-table tbody tr td .description-valor {
+        padding-left: 12px;
+    }
+    
+    /* .data-table tbody tr td .description {
+        display: flex;
+        justify-content: center;
+    } */
+    
+    .data-table tbody tr td {
+        padding: 0;
+        /* border-bottom: 1px solid rgb(215, 215, 215); */
+    }
+    
+    .data-table tbody tr td p {
+        margin: auto;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    .data-table tbody tr td .description{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .data-table tbody tr td input {
+        border: 1px solid transparent;
+        text-align: end;
+        padding: 0;
+        /* width: 140px; */
+        background: white;
+        color: black;
+        height: 25px;
+    }
+    
+    .data-table tbody tr td .description img {
+        width: 26px;
+    }
+    
+    
+    /* ====================================
+        Estilos de Lista de Dispositivos
+    =======================================*/
+    
+    .data-table tbody tr td p #task {
+        width: 80px;
+        text-align: center;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        padding: 5px;
+    } 
+    
+    @media screen and (max-width: 1023px){
+        .list-data {
+            /* width: 80vw; */
+            font-size: 14px;
+        }
+    
+        /* .list-data .addBoton {
+            margin-top: 22px;
+            margin-left: 24px;
+        } */
+    
+    }
+    
+    @media screen and (max-width: 767px){
+        .registro-data {
+            width: 450px;
+            font-size: 14px;
+        }
+    
+        .registro-data p {
+            margin: 2px 2px 12px;
+        }
+    
+        .registro-data .data {
+            margin: 35px 40px 15px 48px;
+        }
+    
+        .data p input {
+            padding: 5px;
+        }
+    
+        .data-boton .boton {
+            margin: 23px auto;
+        }
+    
+        .list-data .addBoton {
+            margin-top: 16px;
+            margin-left: 12px;
+        }
+    
+        /* ====================================
+            Estilos de Lista de Usuarios
+        =======================================*/
+        .list-data {
+            width: 80vw;
+            font-size: 12.5px;
+            padding: 5px 10px 45px;
+            margin: 40px auto;
+        }
+    
+        .list-data .addBoton .boton {
+            padding: 15px 12px 0px;
+        }
+    
+        .list-data .data-table-pagination {
+            width: 74vw;
+            margin: 30px auto 30px;
+            bottom: 54px;
+        }
+    
+        .data-table-pagination .data-table {
+            width: 74vw;
+        }
+    
+    
+        /* ====================================
+            Estilos de Lista de Dispositivos
+        =======================================*/
+        .data-table tbody tr td p #task {
+            width: 70px;
+            padding: 4px 3px;
+            font-size: 12.5px;
+        }
+    
+    }
+    
+    @media screen and (max-width: 480px){
+        .registro-data {
+            width: 320px;
+            margin: 30px auto;
+            font-size: 13px;
+        }
+    
+        .registro-data p {
+            margin: 2px 2px 12px;
+        }
+    
+        .registro-data .data {
+            margin: 30px 6px 15px 10px;
+        }
+    
+        .data p input {
+            padding: 4px;
+            width: 130px;
+        }
+
+        .data p textarea {
+            width: 160px;
+        }
+    
+        .data p select {
+            width: 138px;
+        }
+    
+        .data-boton .boton {
+            margin: 20px auto;
+        }
+
+    
+        /* =======================================================
+            Estilos de Lista de Usuarios y Dispositivos con Table
+        ==========================================================*/
+        .list-data {
+            width: 90vw;
+            font-size: 10.5px;
+            margin: 30px auto;
+            padding: 5px 10px 55px;
+        }
+    
+        .list-data .addBoton {
+            margin-left: 14px;
+        }
+    
+        .list-data .addBoton .boton {
+            padding: 10px 3px 0px;
+        }
+    
+        .list-data .addBoton img {
+            position: relative;
+            top: 4px;
+            width: 17px;
+        }
+    
+        .list-data p {
+            padding: 3px 0 3px;
+        }
+    
+        .list-data .state {
+            font-size: 13px;
+        }
+    
+        .list-data .data-table-pagination {
+            width: 86vw;
+            margin-bottom: 12px;
+        }
+    
+        .data-table-pagination .data-table {
+            width: 86vw;
+        }
+        
+        .data-table thead tr th .description-name {
+            padding: 0 5px;
+        }
+    
+        .data-table tbody tr td p {
+            height: 50px;
+        }
+    
+        .data-table tbody tr td .description-valor {
+            padding-left: 5px;
+        }
+    
+        .data-table tbody tr td .description img {
+            width: 23px;
+        }
+    
+        .data-table tbody tr td input {
+            font-size: 10.5px;
+        }
+    
+        /* ======================================================
+            Estilos de Lista de Dispositivos - Estado del ganado
+        =========================================================*/
+        .data-table tbody tr td p #task {
+            width: 55px;
+            font-size: 10px;
+            padding: 3px;
+        }
+    
+    }
+    
+    @media screen and (max-width: 351px){
+        .list-data .addBoton {
+            margin-left: 8px;
+        }
+    
+        .list-data .data-table-pagination {
+            margin-bottom: 8px;
+        }
+    
+        .data-table tbody tr td .description-valor {
+            padding-left: 3px;
+        }
+    
+        /* .data-table tbody tr td p {
+            height: 39px;
+        } */
+    
+    }
+    
+    @media screen and (max-width: 320px){
+        .data-table tbody tr td p #task {
+            width: 60px;
+            font-size: 9.5px;
+            padding: 2px;
+        }
+    
+    }

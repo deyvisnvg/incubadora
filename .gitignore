@@ -1,0 +1,16 @@
+# Dependency directories
+node_modules/
+
+# Pruebas
+pruebas.js
+
+# # imagenes
+# src/public/img/
+
+# # Fotos
+# src/public/photos/
+
+npm-debug.log
+
+# package-lock
+package-lock.json

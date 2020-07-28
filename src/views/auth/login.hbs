@@ -1,0 +1,17 @@
+<div class="login">
+    <div class="containerLogin">
+        <form method="POST" action="/login" class="login-form">
+            <h2 hidden>Login Form</h2>
+            <div class="illustration"><i class="icon-users"></i></div>
+            <div class="form-group"><input type="text" name="user" placeholder="Usuario" autofocus="autofocus" required>
+            </div>
+            <div class="form-group"><input type="password" name="password" placeholder="Password" required></div>
+            <div class="form-group"><button type="submit">Iniciar</button></div>
+            <div><a href="#">Incubadora</a></div>
+            {{#if message }}
+            <div class="messageError">{{ message }}</div>
+            {{/if}}
+        </form>
+        {{!-- <div class="register">No tiene una cuenta? <a href="#">Regístrate</a></div> --}}
+    </div>
+</div>
