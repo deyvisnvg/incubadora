@@ -1,0 +1,53 @@
+<section class="list-data">
+    <div class="state">MONITOREO DE INCUBACIÓN</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+    <div class="list-cuerpo">
+        {{!-- <div class="addBoton">
+            <p class="boton">
+                <a href="/usuario/add">
+                    <strong> <i class="icon-plus"></i> Sensor</strong>
+                </a>
+            </p>
+        </div> --}}
+
+        <br><br>
+
+        <div class="data-table-pagination">
+
+            Temperatura: 
+
+            <br><br>
+
+            Humedad: 
+            {{!-- <table id="example1" class="data-table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th><p class="description">Tipo de Sensor</p></th>
+                        <th><p class="description">Simbolo</p></th>
+                        <th><p class="description">Estado</p></th>
+                        <th><p class="description">Editar</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                    <tr>
+                        <td><p class="description">{{tipo_sensor}}</p></td>
+                        <td><p class="description">{{simbolo}}</p></td>
+                        <td><div class="description stated">{{estado}}<div hidden>{{ estado }}</div></div></td>
+                        <td>
+                            <p class="description"><a href="/usuario/edit/{{id_persona}} {{id_usuario}}"><img
+                            src="/img/editar.png" alt="icon de Editar"></a></p>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table> --}}
+        </div>
+    </div>
+</section>

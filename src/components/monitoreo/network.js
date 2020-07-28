@@ -24,10 +24,23 @@ router.use('*', async (req, res, next) => { // (*) cada vez que se haga una peti
 
 
 router.get('/', secure.checkOwn, (req, res) => {
-    const user = req.session.user;
+    const user = req.session.user; // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
+    req.session.success = "";
+    req.session.message = "";
 
-    res.render('links/bienvenida', { user });
-    
+    console.log(req)
+    console.log(req.params)
+
+    res.render('links/monitoreo', { user });
+
+    // Controller.listIncubadora(Incubadora)
+    //     .then(data => {
+    //         res.render('links/listIncubadora', { data, user });
+    //     })
+    //     .catch(err => {
+    //         console.log('[Error!]: ', err);
+    //     })
+
 })
 
 module.exports = router;
