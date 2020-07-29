@@ -11,10 +11,10 @@ module.exports = {
     },
 
     configDb: {
-        database: process.env.DB_NAME || 'incubadora', // Vamos a pasar valores como si fueran variables de entorno por defecto
-        username: process.env.DB_USER || 'root',
-        password: process.env.DB_PASS || 'neyser',
-        host: process.env.DB_HOST || 'localhost',
+        database: process.env.DB_NAME || 'admin_incubadora', // Vamos a pasar valores como si fueran variables de entorno por defecto
+        username: process.env.DB_USER || 'admin_incubadora',
+        password: process.env.DB_PASS || 'nethack',
+        host: process.env.DB_HOST || 'proyectogpsmqtt.ml',
         pool: {
             max: 5,
             min: 0,
