@@ -29,7 +29,7 @@ router.get('/monitor/:data', (req, res) => {
     req.session.message = "";
     const { data } = req.params;
 
-    console.log(vs1)
+    console.log(data)
 
     res.render('links/monitoreo', { user });
 
