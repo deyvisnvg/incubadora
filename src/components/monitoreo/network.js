@@ -23,7 +23,7 @@ router.use('*', async (req, res, next) => { // (*) cada vez que se haga una peti
 })
 
 
-router.get('/monitor/:vs1', secure.checkOwn, (req, res) => {
+router.get('/monitor/:vs1', (req, res) => {
     const user = req.session.user; // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
     req.session.success = "";
     req.session.message = "";
