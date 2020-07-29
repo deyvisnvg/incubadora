@@ -23,11 +23,11 @@ router.use('*', async (req, res, next) => { // (*) cada vez que se haga una peti
 })
 
 
-router.get('/monitor/:vs1', (req, res) => {
+router.get('/monitor/:data', (req, res) => {
     const user = req.session.user; // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
     req.session.success = "";
     req.session.message = "";
-    const { vs1 } = req.params;
+    const { data } = req.params;
 
     console.log(vs1)
 
