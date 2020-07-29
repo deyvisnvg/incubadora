@@ -13,7 +13,7 @@ router.post('/', (req, res, next) => {
     Controller.login(user, password)
     .then(token => {
         req.session.authorization = token;
-        res.redirect('/monitoreo');
+        res.redirect('/monitoreo/0&0');
     })
     .catch(err => {
         const message = err;

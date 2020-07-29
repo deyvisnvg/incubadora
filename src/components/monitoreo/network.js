@@ -23,23 +23,27 @@ router.use('*', async (req, res, next) => { // (*) cada vez que se haga una peti
 })
 
 
-router.get('/monitor/:data', (req, res) => {
+router.get('/:data', secure.checkOwn, (req, res) => {
     const user = req.session.user; // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
     req.session.success = "";
     req.session.message = "";
     const { data } = req.params;
+    let m = data.split('&')
 
-    console.log(data)
+    let datos = {
+        temperatura: m[0],
+        humedad: m[1]
+    }
 
-    res.render('links/monitoreo', { user });
+    console.log(datos)
 
-    // Controller.listIncubadora(Incubadora)
-    //     .then(data => {
-    //         res.render('links/listIncubadora', { data, user });
-    //     })
-    //     .catch(err => {
-    //         console.log('[Error!]: ', err);
-    //     })
+    Controller.dataMonitoreo(datos)
+    .then(data => {
+        res.render('links/monitoreo', { user });
+    })
+    .catch(err => {
+        console.log('[Error!]: ', err);
+    })
 
 })
 
