@@ -32,7 +32,7 @@ router.use('*/:data', (req, res, next) => {
     if (data) {
         dataSensor = data;
     } else {
-        dataSensor = "0&0";
+        dataSensor = "0&0&0&0";
     }
 
     let m = dataSensor.split('&')
@@ -41,7 +41,9 @@ router.use('*/:data', (req, res, next) => {
         temperatura1: m[0],
         humedad1: m[1],
         temperatura2: m[2],
-        humedad2: m[3]
+        humedad2: m[3],
+        proTemp: m[4],
+        proHum: m[5]
     }
 
     console.log(datos)
