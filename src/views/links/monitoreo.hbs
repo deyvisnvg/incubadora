@@ -1,11 +1,11 @@
 <section class="list-data">
     <div class="state">MONITOREO DE INCUBACIÓN</div>
     {{#if message }}
-        <div class="messageError">{{ message }}</div>
+    <div class="messageError">{{ message }}</div>
     {{/if}}
 
     {{#if success }}
-        <div class="messageSuccess">{{ success }}</div>
+    <div class="messageSuccess">{{ success }}</div>
     {{/if}}
     <div class="list-cuerpo">
         {{!-- <div class="addBoton">
@@ -20,11 +20,24 @@
 
         <div class="data-table-pagination">
 
-            Temperatura: <div id="temperatura"></div>
+            Temperatura: <div id="temperatura1"></div>
+            <br>
+            Humedad: <div id="humedad1"></div>
+            <br><br>
+
+            Temperatura 2: <div id="temperatura2"></div>
+            <br>
+            Humedad 2: <div id="humedad2"></div>
 
             <br><br>
 
-            Humedad: <div id="humedad"></div>
+            Promedio de Temperatura: <div id="proTemperatura"></div>
+
+            <br><br>
+
+            Promedio de Humedad: <div id="proHumedad"></div>
+
+
             {{!-- <table id="example1" class="data-table table-hover table-bordered">
                 <thead>
                     <tr>

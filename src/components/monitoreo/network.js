@@ -38,8 +38,10 @@ router.use('*/:data', (req, res, next) => {
     let m = dataSensor.split('&')
 
     let datos = {
-        temperatura: m[0],
-        humedad: m[1]
+        temperatura1: m[0],
+        humedad1: m[1],
+        temperatura2: m[2],
+        humedad2: m[3]
     }
 
     console.log(datos)
