@@ -18,6 +18,9 @@ socketio.on("sensores", datos => {
     temp2 = parseInt(datos.temperatura2);
     hum2 = parseInt(datos.humedad2);
 
+    proTemp = (temp1 + temp2) / 2;
+    proHum = (hum1 + hum2) / 2;
+
     //----------------------------------------------------------------//
 
     temperatura1.innerHTML = temp1;
@@ -25,6 +28,7 @@ socketio.on("sensores", datos => {
     temperatura2.innerHTML = temp2;
     humedad2.innerHTML = hum2;
 
-    proTemperatura = (temp1 + temp2) / 2;
-    proHumedad = (hum1 + hum2) / 2;
+    proTemperatura.innerHTML = proTemp;
+    proHumedad.innerHTML = proHum;
+    
 })
