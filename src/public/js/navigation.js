@@ -176,7 +176,7 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/monitoreo/0&0"><span>Monitoreo</span></a>
+                                            <a href="/monitoreo"><span>Monitoreo</span></a>
                                         </li>
                                     </ul>
                                 </li>

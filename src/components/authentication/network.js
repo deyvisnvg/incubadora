@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+const secure = require('../../auth');
 const Controller = require('./controller');
 const { isNotLoggedIn } = require('../../lib/auth');
 
@@ -13,7 +14,7 @@ router.post('/', (req, res, next) => {
     Controller.login(user, password)
     .then(token => {
         req.session.authorization = token;
-        res.redirect('/monitoreo/0&0');
+        res.redirect('/monitoreo');
     })
     .catch(err => {
         const message = err;

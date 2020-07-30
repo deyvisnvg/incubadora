@@ -9,8 +9,6 @@ module.exports = {
 
             socket.io.emit("sensores", datos)
 
-
-
             resolve();
         })
     },

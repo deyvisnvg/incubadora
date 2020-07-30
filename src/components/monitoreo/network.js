@@ -9,7 +9,10 @@ const { configDb } = require('../../config')
 const db = require('../../database');
 const { handleFatalError } = require('../../error')
 
+const { socket } = require('../../socket');
+
 let services, Usuario, Producto;
+let dataSensor;
 
 router.use('*', async (req, res, next) => { // (*) cada vez que se haga una petición a todas las rutas // OJO: Actualmente express no soporta midlewares o rutas async await y esto lo solucionamos con express-asyncify me permite darle soporte async await a mi midlewares y rutas de express
     if (!services) { // Si los servicios no han sido obtenidos
@@ -17,18 +20,22 @@ router.use('*', async (req, res, next) => { // (*) cada vez que se haga una peti
 
         services = await db(configDb).catch(err => handleFatalError(err)); // Aqui obtengo los servicios de mi BD
         Producto = services.Producto
-        Usuario = services.Usuario
     }
+
     next() // Yo necesito siempre llamar a la function de next() para que el midleware continúe la ejecución del request y llegue a las demas rutas
 })
 
+router.use('*/:data', (req, res, next) => {
 
-router.get('/:data', (req, res) => {
-    const user = req.session.user; // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
-    req.session.success = "";
-    req.session.message = "";
     const { data } = req.params;
-    let m = data.split('&')
+
+    if (data) {
+        dataSensor = data;
+    } else {
+        dataSensor = "0&0";
+    }
+
+    let m = dataSensor.split('&')
 
     let datos = {
         temperatura: m[0],
@@ -37,14 +44,25 @@ router.get('/:data', (req, res) => {
 
     console.log(datos)
 
-    Controller.dataMonitoreo(datos)
-    .then(data => {
-        res.render('links/monitoreo', { user });
-    })
-    .catch(err => {
-        console.log('[Error!]: ', err);
-    })
+    socket.io.emit("sensores", datos)
 
+    next()
+})
+
+router.get('/', secure.checkOwn, (req, res) => {
+    const user = req.session.user; // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
+    req.session.success = "";
+    req.session.message = "";
+
+
+    res.render('links/monitoreo', { user });
+
+    // Controller.dataMonitoreo(datos)
+    //     .then(data => {
+    //     })
+    //     .catch(err => {
+    //         console.log('[Error!]: ', err);
+    //     })
 })
 
 module.exports = router;
