@@ -29,13 +29,13 @@ router.use('*/:data', (req, res, next) => {
 
     const { data } = req.params;
 
-    if (data) {
-        dataSensor = data;
-    } else {
-        dataSensor = "0&0&0&0";
-    }
+    // if (data) {
+    //     dataSensor = data;
+    // } else {
+    //     dataSensor = "0&0&0&0&0&0";
+    // }
 
-    let m = dataSensor.split('&')
+    let m = data.split('&')
 
     let datos = {
         temperatura1: m[0],
@@ -45,6 +45,14 @@ router.use('*/:data', (req, res, next) => {
         proTemp: m[4],
         proHum: m[5]
     }
+
+    // for (let i in datos) {
+    //     if(datos[i] == 12) {
+    //         datos[i] = 0
+    //     }
+    // }
+
+    // console.log(datos)
 
     console.log(datos)
 

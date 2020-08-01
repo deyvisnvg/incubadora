@@ -7,8 +7,84 @@
     {{#if success }}
     <div class="messageSuccess">{{ success }}</div>
     {{/if}}
-    <div class="list-cuerpo">
-        {{!-- <div class="addBoton">
+
+    <div class="contenedor-incubacion">
+        <div class="incubacion">
+            <div class="incubacion-name">
+                <figure>
+                    <img src="/img/logo_incubacion.png" alt="" width="60">
+                </figure>
+                <div>
+                    <h3>Incubadora</h3>
+                    <h4>Modulo 1</h4>
+                </div>
+                <div class="iconzoom"> <i class="icon-podcast"></i></div>
+            </div>
+            <div class="incubacion-body">
+                <div class="incubacion-datos">
+                    <div>
+                        <p>Cantidad de huevos:</p>
+                        <p>Día de incubación:</p>
+                        <p>Fecha de Salida:</p>
+                    </div>
+                    <div>
+                        <p>data 1</p>
+                        <p>data 2</p>
+                        <p>data 3</p>
+                    </div>
+                </div>
+                <div class="incubacion-dataSensor">
+                    <div class="dataSensor">
+                        <div class="dataSensor-name"><i class="icon-feed"></i> Temperatura: </div>
+                        <div id="proTemperatura"></div>
+                    </div>
+                    <div class="dataSensor">
+                        <div class="dataSensor-name"><i class="icon-feed"></i> Humedad: </div>
+                        <div id="proHumedad"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="incubacion-grafica">
+                Gráfica
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-sensorRealTime">
+        <div class="sensorRealTime">
+            <div class="iconzoom-two" id="bottomzoom-two">
+                <i class="icon-cross"></i>
+            </div>
+            <div class="sensor-name">
+                <p>SENSORES EN TIEMPO REAL</p>
+            </div>
+            <div class="sensor-data">
+                <div>Temperatura 1:</div>
+                <div id="temperatura1"></div>
+            </div>
+            <div class="sensor-data">
+                <div>Humedad 1:</div>
+                <div id="humedad1"></div>
+            </div>
+            <div class="sensor-data two">
+                <div>Temperatura 2:</div>
+                <div id="temperatura2"></div>
+            </div>
+            <div class="sensor-data two">
+                <div>Humedad 2:</div>
+                <div id="humedad2"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    {{!-- <div class="addBoton">
             <p class="boton">
                 <a href="/usuario/add">
                     <strong> <i class="icon-plus"></i> Sensor</strong>
@@ -16,29 +92,14 @@
             </p>
         </div> --}}
 
-        <br><br>
+    {{!-- <br><br> --}}
 
-        <div class="data-table-pagination">
-
-            Temperatura: <div id="temperatura1"></div>
-            <br>
-            Humedad: <div id="humedad1"></div>
-            <br><br>
-
-            Temperatura 2: <div id="temperatura2"></div>
-            <br>
-            Humedad 2: <div id="humedad2"></div>
-
-            <br><br>
-
-            Promedio de Temperatura: <div id="proTemperatura"></div>
-
-            <br><br>
-
-            Promedio de Humedad: <div id="proHumedad"></div>
+    {{!-- <div class="data-table-pagination"> --}}
 
 
-            {{!-- <table id="example1" class="data-table table-hover table-bordered">
+
+
+    {{!-- <table id="example1" class="data-table table-hover table-bordered">
                 <thead>
                     <tr>
                         <th><p class="description">Tipo de Sensor</p></th>
@@ -61,6 +122,6 @@
                     {{/each}}
                 </tbody>
             </table> --}}
-        </div>
-    </div>
+    {{!-- </div> --}}
+
 </section>

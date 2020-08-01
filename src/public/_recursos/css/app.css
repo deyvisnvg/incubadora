@@ -2921,6 +2921,8 @@ fieldset[disabled] .i-checks input + i:before {
 .bg-dark {
   color: #a6a8b1;
   background-color: #3a3f51;
+  position: relative;
+  z-index: 2;
 }
 
 .bg-dark.lt,
