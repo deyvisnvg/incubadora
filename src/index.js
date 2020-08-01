@@ -9,7 +9,7 @@ const cookieSession =  require('cookie-session');
 
 const routerApi = require('./network/routes');
 const socket = require('./socket');
-const upload = require('./upload');
+// const upload = require('./upload');
 
 //Inicializamos
 const app = express();
@@ -50,7 +50,7 @@ app.use(cookieSession({
 // });
 
 // Midlewares Upload de imagenes
-app.use(upload);
+// app.use(upload);
 
 // Global variables
 app.use((req, res, next) => {

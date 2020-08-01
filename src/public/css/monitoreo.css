@@ -1,0 +1,156 @@
+h2,h3,h4 {
+    margin: 0;
+}
+
+.contenedor-incubacion {
+    border: 1px solid #d2d0d0;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: 40px auto 10px;
+    box-shadow: 4px 4px 8px 0px #95afc0;
+    font-family: 'Bai Jamjuree', sans-serif;
+}
+
+.incubacion {
+    padding: 10px 20px 40px;
+}
+
+.incubacion-name {
+    display: flex;
+    justify-content: center;
+    background-color: #fac23c;
+    color: #262831;
+    border-radius: 5px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.iconzoom {
+    position: absolute;
+    right: 20px;
+    color: #0265ad;
+    font-size: 18px;
+    top: 22px;
+}
+
+.iconzoom:hover {
+    color: #348ccc;
+}
+
+.incubacion-body {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.incubacion-datos {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    width: 300px;
+    padding: 0 6px;
+}
+
+.incubacion-dataSensor {
+    width: 400px;
+    color: white;
+    margin: 20px 0 20px;
+    padding: 5px 10px 0;
+}
+
+.incubacion-dataSensor .dataSensor {
+    display: flex;
+    background-color: #28a745;
+    justify-content: space-between;
+    padding: 6.5px 22px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.dataSensor .dataSensor-name {
+    display: flex;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.dataSensor .dataSensor-name i {
+    padding-right: 20px;
+}
+
+/* .incubacion-dataSensor  .dataSensor-humedad {
+    display: flex;
+    background-color: green;
+    width: 270px;
+    justify-content: center;
+    padding: 4px;
+} */
+
+
+.incubacion-grafica {
+    border: 1px solid gray;
+    text-align: center;
+    height: 150px;
+    margin-top: 30px;
+}
+
+
+.container-sensorRealTime {
+    width: 77vw;
+    background: rgba(3, 5, 19, 0.5);
+    position: fixed;
+    top: -300px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-sensorRealTime.is-active{
+    top: 0;
+    bottom: 0;
+    transition: .3s;
+}
+
+.container-sensorRealTime .sensorRealTime {
+    background: #3c3b3b;
+    color: white;
+    width: 300px;
+    padding: 15px 25px 25px;
+}
+
+.container-sensorRealTime .iconzoom-two {
+    background: #fd0000;
+    float: right;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-sensorRealTime .iconzoom-two i {
+    font-size: 11px;
+}
+
+
+.container-sensorRealTime .sensor-name {
+    text-align: center;
+    margin: 40px auto 30px;
+    border-bottom: 1px solid #dad7e8;
+    border-radius: 7px;
+}
+
+.sensorRealTime .sensor-data {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #00BCD4;
+    border-radius: 2px;
+    padding: 10px 10px;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.sensorRealTime .sensor-data.two {
+    justify-content: space-between;
+    border: 1px solid #88d034;
+}

@@ -9,11 +9,14 @@ var proHumedad = document.getElementById('proHumedad');
 
 const socketio = io();
 
+
 var estado = 0;
+var estado_data = 0;
 
 socketio.on("sensores", datos => {
     console.log(datos)
-    estado = 1
+
+    estado_data = estado_data + 1;
 
     temp1 = parseInt(datos.temperatura1);
     hum1 = parseInt(datos.humedad1);
@@ -31,11 +34,12 @@ socketio.on("sensores", datos => {
 
     proTemperatura.innerHTML = proTemp;
     proHumedad.innerHTML = proHum;
-    
+
 })
 
-setTimeout(() => {
-    if (estado === 0) {
+
+setInterval(() => {
+    if (estado === estado_data) {
         temperatura1.innerHTML = 0;
         humedad1.innerHTML = 0;
         temperatura2.innerHTML = 0;
@@ -44,4 +48,34 @@ setTimeout(() => {
         proTemperatura.innerHTML = 0;
         proHumedad.innerHTML = 0;
     }
-}, 1500);
+
+    estado = estado_data;
+
+}, 5000);
+
+
+$(function () {
+    $('.iconzoom').click(() => {
+
+        console.log('bien')
+        var menu = document.querySelector('.container-sensorRealTime')
+
+        if (menu.classList.contains('is-active')) {
+            menu.classList.remove('is-active');
+        } else {
+            menu.classList.add('is-active');
+        }
+    })
+})
+
+$(function () {
+    $('.iconzoom-two').click(() => { // Cuando haya un evento de Click en tal índice me imprimirá solo el texto del 'div' en ese índice.
+
+        var menu = document.querySelector('.container-sensorRealTime')
+
+        if (menu.classList.contains('is-active')) {
+            menu.classList.remove('is-active');
+        }
+
+    });
+})
