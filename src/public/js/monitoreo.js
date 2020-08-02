@@ -1,37 +1,48 @@
-var temperatura1 = document.getElementById('temperatura1');
-var humedad1 = document.getElementById('humedad1');
-
-var temperatura2 = document.getElementById('temperatura2');
-var humedad2 = document.getElementById('humedad2');
+var temperatura = document.getElementById('temperatura');
+var humedad = document.getElementById('humedad');
 
 var proTemperatura = document.getElementById('proTemperatura');
 var proHumedad = document.getElementById('proHumedad');
 
 const socketio = io();
-
-
 var estado = 0;
 var estado_data = 0;
 
 socketio.on("sensores", datos => {
-    console.log(datos)
-
     estado_data = estado_data + 1;
 
-    temp1 = parseInt(datos.temperatura1);
-    hum1 = parseInt(datos.humedad1);
-    temp2 = parseInt(datos.temperatura2);
-    hum2 = parseInt(datos.humedad2);
-    proTemp = datos.proTemp;
-    proHum = datos.proHum;
+    sensorTemp = datos.sensorTemp
+    sensorHumed = datos.sensorHumed
+    promedios = datos.promedios
+
+    proTemp = promedios[0].proTemp;
+    proHum = promedios[0].proHum;
 
     //----------------------------------------------------------------//
 
-    temperatura1.innerHTML = temp1;
-    humedad1.innerHTML = hum1;
-    temperatura2.innerHTML = temp2;
-    humedad2.innerHTML = hum2;
+    let contenedorTemp = sensorTemp.map(temperatura => {
+        let data = `
+        <div class="data-one temperatura">
+            <div> ${temperatura.nombre_sensor}: </div>
+            <div class="valor"> ${temperatura.valor} </div>
+        </div>`
 
+        return data;
+    })
+
+    let contenedorHum = sensorHumed.map(humedad => {
+        let data = `
+        <div class="data-one humedad">
+            <div> ${humedad.nombre_sensor}: </div>
+            <div class="valor"> ${humedad.valor} </div>
+        </div>`
+
+        return data;
+    })
+
+
+    temperatura.innerHTML = contenedorTemp.join("");
+    humedad.innerHTML = contenedorHum.join("");
     proTemperatura.innerHTML = proTemp;
     proHumedad.innerHTML = proHum;
 
@@ -40,10 +51,15 @@ socketio.on("sensores", datos => {
 
 setInterval(() => {
     if (estado === estado_data) {
-        temperatura1.innerHTML = 0;
-        humedad1.innerHTML = 0;
-        temperatura2.innerHTML = 0;
-        humedad2.innerHTML = 0;
+        temperatura.innerHTML = `
+            <div class="data-one temperatura">
+                <div> Sensor Desconectado </div>
+            </div>`;
+
+        humedad.innerHTML = `
+            <div class="data-one humedad">
+                <div> Sensor Desconectado </div>
+            </div>`;
 
         proTemperatura.innerHTML = 0;
         proHumedad.innerHTML = 0;

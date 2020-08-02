@@ -113,7 +113,7 @@ h2,h3,h4 {
 .container-sensorRealTime .sensorRealTime {
     background: #3c3b3b;
     color: white;
-    width: 300px;
+    width: 450px;
     padding: 15px 25px 25px;
 }
 
@@ -143,14 +143,35 @@ h2,h3,h4 {
 .sensorRealTime .sensor-data {
     display: flex;
     justify-content: space-between;
-    border: 1px solid #00BCD4;
+}
+
+.sensorRealTime .sensor-subname {
+    display: flex;
+    justify-content: space-around;
+}
+
+.sensorRealTime .sensor-subname .name-one{
+    margin-bottom: 25px;
+    border-bottom: 1px solid #dad7e8;
+}
+
+.sensor-data .data-one {
+    display: flex;
+    justify-content: space-between;
     border-radius: 2px;
     padding: 10px 10px;
     align-items: center;
     margin-bottom: 6px;
 }
 
-.sensorRealTime .sensor-data.two {
-    justify-content: space-between;
+.sensor-data .data-one.temperatura {
+    border: 1px solid #00BCD4;
+}
+
+.sensor-data .data-one.humedad {
     border: 1px solid #88d034;
+}
+
+.sensor-data .data-one .valor {
+    padding-left: 15px;
 }
