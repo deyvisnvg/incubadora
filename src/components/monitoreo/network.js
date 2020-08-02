@@ -38,7 +38,9 @@ router.get('/', secure.checkOwn, (req, res) => {
     req.session.success = "";
     req.session.message = "";
 
-    res.render('links/monitoreo', { user });
+    let fecha = new Date()
+
+    res.render('links/monitoreo', { fecha, user });
 
     // Controller.dataMonitoreo(datos)
     //     .then(data => {
