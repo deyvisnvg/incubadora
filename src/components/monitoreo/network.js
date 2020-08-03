@@ -39,27 +39,13 @@ router.get('/', secure.checkOwn, (req, res) => {
     req.session.success = "";
     req.session.message = "";
 
-    let fecha = new Date()
+    // var dateFormat = 'YYYY-DD-MM HH:mm:ss';
+    var dateFormat = 'YYYY-MM-DD HH:mm:ss';
+    var testDateUtc = moment.utc();
+    var localDate = testDateUtc.local();
 
-    var localDate = new Date();
-    var localMoment = moment();
-    var utcMoment = moment.utc();
-    var utcDate = new Date(utcMoment.format());
-
-    //These are all the same
-    console.log('localData unix = ' + localDate.valueOf());
-    console.log('localMoment unix = ' + localMoment.valueOf());
-    console.log('utcMoment unix = ' + utcMoment.valueOf());
-
-    //These formats are different
-    console.log('localDate = ' + localDate);
-    console.log('localMoment string = ' + localMoment.format());
-    console.log('utcMoment string = ' + utcMoment.format());
-    console.log('utcDate  = ' + utcDate);
-
-    //One to show conversion
-    console.log('localDate as UTC format = ' + moment.utc(localDate).format());
-    console.log('localDate as UTC unix = ' + moment.utc(localDate).valueOf());
+    let fecha = localDate.format(dateFormat);
+    console.log(localDate.format(dateFormat));
 
     res.render('links/monitoreo', { fecha, user });
 
