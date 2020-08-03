@@ -41,12 +41,12 @@ router.get('/', secure.checkOwn, (req, res) => {
 
     // var dateFormat = 'YYYY-DD-MM HH:mm:ss';
     var dateFormat = 'YYYY-MM-DD HH:mm:ss';
-    var testDateUtc = moment.utc();
-    var localDate = testDateUtc.local();
+    var testDateUtc = moment().utcOffset(-5, true);
+    // var localDate = testDateUtc.local();
 
-    // let fecha = localDate.format(dateFormat);
-    console.log(localDate.format(dateFormat));
-    fecha = new Date()
+    let fecha = testDateUtc.format(dateFormat);
+    console.log(testDateUtc.format(dateFormat));
+    // fecha = new Date()
 
     res.render('links/monitoreo', { fecha, user });
 
