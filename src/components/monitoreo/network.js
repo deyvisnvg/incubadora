@@ -44,8 +44,9 @@ router.get('/', secure.checkOwn, (req, res) => {
     var testDateUtc = moment.utc();
     var localDate = testDateUtc.local();
 
-    let fecha = localDate.format(dateFormat);
+    // let fecha = localDate.format(dateFormat);
     console.log(localDate.format(dateFormat));
+    fecha = new Date()
 
     res.render('links/monitoreo', { fecha, user });
 
