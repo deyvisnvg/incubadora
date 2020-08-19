@@ -9,32 +9,33 @@ const { configDb } = require('../../config')
 const db = require('../../database');
 const { handleFatalError } = require('../../error')
 
-let services, TipoSensor;
+let services, Usuario, Persona;
 
 router.use('*', async (req, res, next) => { // (*) cada vez que se haga una petición a todas las rutas // OJO: Actualmente express no soporta midlewares o rutas async await y esto lo solucionamos con express-asyncify me permite darle soporte async await a mi midlewares y rutas de express
     if (!services) { // Si los servicios no han sido obtenidos
         console.log('Connecting to database')
 
         services = await db(configDb).catch(err => handleFatalError(err)); // Aqui obtengo los servicios de mi BD
-        TipoSensor = services.TipoSensor
+        Persona = services.Persona
+        Usuario = services.Usuario
     }
     next() // Yo necesito siempre llamar a la function de next() para que el midleware continúe la ejecución del request y llegue a las demas rutas
 })
 
 router.get('/', secure.checkOwn, (req, res) => {
-    const user = req.session.user;  // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
+    const user = req.session.user;
     req.session.success = "";
     req.session.message = "";
 
-    res.render('links/listSensor', { user });
+    res.render('links/listPedido', { user });
 
-    // Controller.listIncubadora(Incubadora)
-    //     .then(data => {
-    //         res.render('links/listIncubadora', { data, user });
-    //     })
-    //     .catch(err => {
-    //         console.log('[Error!]: ', err);
-    //     })
+    // Controller.listUser(user.modulo, Persona)
+        // .then(data => {
+        //     res.render('links/listUser', { data, user });
+        // })
+        // .catch(err => {
+        //     console.log('[Error!]: ', err);
+        // })
 })
 
 router.get('/add', secure.checkOwn, (req, res) => {
@@ -42,32 +43,8 @@ router.get('/add', secure.checkOwn, (req, res) => {
     req.session.success = "";
     req.session.message = "";
 
-    res.render('links/addSensor', { user });
+    res.render('links/addPedido', { user });
 })
-
-
-router.get('/tipoSensor', secure.checkOwn, (req, res) => {
-    const user = req.session.user;  // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
-    req.session.success = "";
-    req.session.message = "";
-
-    Controller.listTipoSensor(TipoSensor)
-        .then(data => {
-            res.render('links/listTipoSensor', { data, user });
-        })
-        .catch(err => {
-            console.log('[Error!]: ', err);
-        })
-})
-
-router.get('/tipoSensor/add', secure.checkOwn, (req, res) => {
-    const user = req.session.user;
-    req.session.success = "";
-    req.session.message = "";
-
-    res.render('links/addTipoSensor', { user });
-})
-
 
 // router.get('/edit/:id', (req, res) => {
 //     const user = req.session.user;
@@ -112,20 +89,18 @@ router.get('/tipoSensor/add', secure.checkOwn, (req, res) => {
 //     req.session.success = "";
 //     req.session.message = "";
 
-//     res.render('links/addProducto', { user });
+//     res.render('links/addUser', { user });
 // })
 
 // router.post('/add', (req, res) => {
-//     console.log(req.body)
-//     console.log(req.files)
-//     Controller.addProducto(req.files, req.body, Producto)
+//     Controller.registroUser(req.body, Usuario)
 //         .then(() => {
-//             req.session.success = "Producto registrado con éxito!";
-//             res.redirect('/producto/add');
+//             req.session.success = "Usuario registrado con éxito!";
+//             res.redirect('/usuario/add');
 //         })
 //         .catch(err => {
 //             req.session.message = err;
-//             res.redirect('/producto/add');
+//             res.redirect('/usuario/add');
 //         })
 // })
 

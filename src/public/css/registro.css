@@ -15,25 +15,27 @@
     }
     
     .registro-data {
-        width: 500px;
+        width: 700px;
         background: white;
         padding: 5px 10px 5px;
-        border-radius: 15px;
+        border-radius: 5px;
         font-size: 15px;
         font-family: 'Bai Jamjuree', sans-serif;
         margin: 50px auto;
         /* box-shadow: right bottom opacidad-sombra grosor-sombra; */
-        box-shadow: 4px 4px 8px 0px #95afc0;
+        box-shadow: -1px 1px 5px 3px #95afc0;
     }
     
     .registro-data .data {
         margin: 40px 50px 15px 61px;
+        display: flex;
+        justify-content: center;
     }
     
     .data p input {
         border-radius: 4px;
         border: 1px solid #090861c9;;
-        padding: 6px;
+        padding: 3.5px 12px;
         background: white;
         width: 206px;
     }
@@ -63,17 +65,16 @@
     
     .data p select {
         border-radius: 4px;
-        border: transparent;
-        padding: 6px;
-        width: 160px;
+        border: 1px solid #090861c9;
+        padding: 3.5px 12px;
+        width: 205px
     }
     
     .registro-data .state {
         text-align: center;
         margin: 6px 0px 10px;
         padding: 10px 25px 10px;
-        border-radius: 6px;
-        border-bottom: 2px solid rgb(1, 161, 1);
+        border-bottom: 2px solid rgb(167, 167, 167);
         color: rgb(2, 29, 148);
     }
     
@@ -83,7 +84,7 @@
     }
     
     .registro-data p {
-        margin: 2px 10px 15px;
+        margin: 2px 10px 10px;
         padding: 1px 4px;
     }
     
@@ -121,7 +122,7 @@
         font-size: 15px;
         font-family: 'Bai Jamjuree', sans-serif;
         margin: 15px auto;
-        box-shadow: 4px 4px 8px 0px #95afc0;
+        box-shadow: -1px 1px 5px 2px #95afc0;
     }
     
     .list-data .state {
@@ -134,7 +135,7 @@
     }
     
     .list-data .addBoton {
-        margin: 22px 0 28px 50px;
+        margin: 22px 0 28px 10px;
         /* display: flex;
         justify-content: space-between;
         width: 56vw;
@@ -152,9 +153,14 @@
     }
 
     .list-data .addBoton .boton a {
-        background: green;
+        background: rgb(2, 131, 2);
+        border: 1px solid transparent;
         border-radius: 5px;
         color: white;
+    }
+
+    .list-data .addBoton .boton a:hover {
+        background: rgb(2, 148, 2);
     }
     
     .list-data .data-table-pagination {
@@ -347,7 +353,7 @@
         }
     
         .data p select {
-            width: 138px;
+            width: 130px;
         }
     
         .data-boton .boton {

@@ -11,7 +11,6 @@ switch (moduloUser.value) {
                     <option value="">Seleccione...</option>
                     <option value="SuperAdministrador">Super Administrador</option>
                     <option value="Administrador">Administrador</option>
-                    <option value="Empleado">Empleado</option>
                 </select>
             </p>
         `

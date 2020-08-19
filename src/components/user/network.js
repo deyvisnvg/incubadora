@@ -94,4 +94,28 @@ router.post('/add', (req, res) => {
         })
 })
 
+router.get('/representante', secure.checkOwn, (req, res) => {
+    const user = req.session.user;
+    req.session.success = "";
+    req.session.message = "";
+
+    res.render('links/listRepresentante', { user });
+
+    // Controller.listUser(user.modulo, Persona)
+        // .then(data => {
+        //     res.render('links/listUser', { data, user });
+        // })
+        // .catch(err => {
+        //     console.log('[Error!]: ', err);
+        // })
+})
+
+router.get('/representante/add', secure.checkOwn, (req, res) => {
+    const user = req.session.user;
+    req.session.success = "";
+    req.session.message = "";
+
+    res.render('links/addRepresentante', { user });
+})
+
 module.exports = router;

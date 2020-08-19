@@ -1,0 +1,37 @@
+<input type="hidden" name="modulo" id="moduloUser" value="{{user.modulo}}">
+
+<section class="registro-data">
+    <div class="state">REGISTRO DE TIPO DE SENSOR</div>
+    <div class="data">
+        <form action="/usuario/add" method="post">
+            <div class="data-valor1">
+                <p class="description">Tipo Sensor: </p>
+                <p><input type="text" name="tipo_sensor" value="" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Simbolo: </p>
+                <p><input type="text" name="simbolo" value="" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Limite: </p>
+                <p><input type="text" name="limite" value=""></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Ambiente: </p>
+                <p><input type="text" name="ambiente" value="" required></p>
+            </div>
+
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Registrar</button></p>
+            </div>
+
+            {{#if message }}
+            <div class="messageError">{{ message }}</div>
+            {{/if}}
+
+            {{#if success }}
+            <div class="messageSuccess">{{ success }}</div>
+            {{/if}}
+        </form>
+    </div>
+</section>

@@ -1,0 +1,52 @@
+<input type="hidden" name="modulo" id="moduloUser" value="{{user.modulo}}">
+
+<section class="registro-data">
+    <div class="state">REGISTRO DE EMPRESA</div>
+    <div class="data">
+        <form action="/usuario/add" method="post">
+            <div class="data-valor1">
+                <p class="description">Ruc Empresa: </p>
+                <p><input type="text" name="ruc_empresa" value="" required pattern="[0-9]+"
+                        title="Ingrese solo números sin espacios"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Empresa: </p>
+                <p><input type="text" name="empresa" value="" required pattern="[A-Za-z]+"
+                        title="Ingrese solo letras Mayúsculas y minúsculas"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Dirección: </p>
+                <p><input type="text" name="direccion" value="" required pattern="[A-Za-z0-9]+"
+                        title="Ingrese solo letras Mayúsculas, minúsculas y números"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">E-mail: </p>
+                <p><input type="email" name="email" value="" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Celular: </p>
+                <p><input type="text" name="celular" value="" required pattern="[0-9]+"
+                        title="Ingrese solo números sin espacios"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Telefono: </p>
+                <p><input type="text" name="telefono" value="" required pattern="[0-9]+"
+                        title="Ingrese solo números sin espacios"></p>
+            </div>
+
+            {{!-- Registrar tambien Fecha de Registro --}}
+
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Registrar</button></p>
+            </div>
+
+            {{#if message }}
+            <div class="messageError">{{ message }}</div>
+            {{/if}}
+
+            {{#if success }}
+            <div class="messageSuccess">{{ success }}</div>
+            {{/if}}
+        </form>
+    </div>
+</section>

@@ -1,0 +1,48 @@
+<section class="list-data">
+    <div class="state">REGISTRO DE INCIDENCIAS</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+    <div class="list-cuerpo">
+        <div class="addBoton">
+            <p class="boton">
+                <a href="/incubadora/incidencia/add">
+                    <strong> <i class="icon-plus"></i> Incidencia</strong>
+                </a>
+            </p>
+        </div>
+        <div class="data-table-pagination">
+            <table id="example1" class="data-table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th><p class="description-name">Incubadora</p></th>
+                        <th><p class="description">Cantidad Ingreso</p></th>
+                        <th><p class="description">Cantidad Nacidos</p></th>
+                        <th><p class="description">Cantidad Defectuosos</p></th>
+                        <th><p class="description">Fecha Registrada</p></th>
+                        <th><p class="description">Editar </p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{!-- {{#each data}} --}}
+                    <tr>
+                        <td><p class="description-valor">{{dni_persona}}</p></td>
+                        <td><p class="description">mi cantidad</p></td>
+                        <td><p class="description">mi fecha</p></td>
+                        <td><p class="description">mi hora</p></td>
+                        <td><p class="description">mi entrega</p></td>
+                        <td>
+                            <p class="description"><a href="/usuario/edit/{{id_persona}} {{id_usuario}}"><img
+                            src="/img/editar.png" alt="icon de Editar"></a></p>
+                        </td>
+                    </tr>
+                    {{!-- {{/each}} --}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -1,5 +1,5 @@
 <section class="list-data">
-    <div class="state">REGISTRO DE INCUBADORA</div>
+    <div class="state">REGISTRO DE INCUBACIÓN</div>
     {{#if message }}
         <div class="messageError">{{ message }}</div>
     {{/if}}
@@ -10,8 +10,8 @@
     <div class="list-cuerpo">
         <div class="addBoton">
             <p class="boton">
-                <a href="/incubadora/add">
-                    <strong> <i class="icon-plus"></i> Incubadora</strong>
+                <a href="/incubadora/incubacion/add">
+                    <strong> <i class="icon-plus"></i> Incubación</strong>
                 </a>
             </p>
         </div>
@@ -19,22 +19,30 @@
             <table id="example1" class="data-table table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th><p class="description">Nombre de Incubadora</p></th>
+                        <th><p class="description">Incubadora</p></th>
+                        <th><p class="description">Fecha Ingreso</p></th>
                         <th><p class="description">Estado</p></th>
+                        <th><p class="description">Piso Inicio</p></th>
+                        <th><p class="description">Piso Fin</p></th>
+                        <th><p class="description">Cantidad Ingreso</p></th>
                         <th><p class="description">Editar</p></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each data}}
+                    {{!-- {{#each data}} --}}
                     <tr>
-                        <td><p class="description">{{nombre_incubadora}}</p></td>
+                        <td><p class="description">nombre_incubadora</p></td>
+                        <td><p class="description">mi cargo</p></td>
                         <td><div class="description stated">{{estado}}<div hidden>{{ estado }}</div></div></td>
+                        <td><p class="description">mi cargo</p></td>
+                        <td><p class="description">mi empresa</p></td>
+                        <td><p class="description">120</p></td>
                         <td>
                             <p class="description"><a href="/usuario/edit/{{id_incubadora}}"><img
                             src="/img/editar.png" alt="icon de Editar"></a></p>
                         </td>
                     </tr>
-                    {{/each}}
+                    {{!-- {{/each}} --}}
                 </tbody>
             </table>
         </div>

@@ -35,6 +35,63 @@ router.get('/', secure.checkOwn, (req, res) => {
         })
 })
 
+router.get('/add', secure.checkOwn, (req, res) => {
+    const user = req.session.user;
+    req.session.success = "";
+    req.session.message = "";
+
+    res.render('links/addIncubadora', { user });
+})
+
+router.get('/incubacion', secure.checkOwn, (req, res) => {
+    const user = req.session.user;  // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
+    req.session.success = "";
+    req.session.message = "";
+
+    res.render('links/listIncubacion', { user });
+
+    // Controller.listIncubadora(Incubadora)
+    //     .then(data => {
+    //         res.render('links/listIncubadora', { data, user });
+    //     })
+    //     .catch(err => {
+    //         console.log('[Error!]: ', err);
+    //     })
+})
+
+router.get('/incubacion/add', secure.checkOwn, (req, res) => {
+    const user = req.session.user;
+    req.session.success = "";
+    req.session.message = "";
+
+    res.render('links/addIncubacion', { user });
+})
+
+router.get('/incidencia', secure.checkOwn, (req, res) => {
+    const user = req.session.user;  // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
+    req.session.success = "";
+    req.session.message = "";
+
+    res.render('links/listIncidencia', { user });
+
+    // Controller.listIncubadora(Incubadora)
+    //     .then(data => {
+    //         res.render('links/listIncubadora', { data, user });
+    //     })
+    //     .catch(err => {
+    //         console.log('[Error!]: ', err);
+    //     })
+})
+
+router.get('/incidencia/add', secure.checkOwn, (req, res) => {
+    const user = req.session.user;
+    req.session.success = "";
+    req.session.message = "";
+
+    res.render('links/addIncidencia', { user });
+})
+
+
 // router.get('/edit/:id', (req, res) => {
 //     const user = req.session.user;
 //     const { id } = req.params;
