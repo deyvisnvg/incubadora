@@ -4,7 +4,7 @@
 
 module.exports = {
     config: {
-        port: process.env.PORT || 4000,
+        port: process.env.PORT || 5000,
         host: process.env.PORT || 'http://localhost',
         filesRoute: process.env.FILES_ROUTE || '/photos',
         filesRouteImg: process.env.FILES_ROUTEIMG || '/img'
