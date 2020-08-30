@@ -6,7 +6,7 @@ const db = require('../lib/db');
 module.exports = function setupIncubadoraModel(config) {
     const sequelize = db(config);
 
-    return sequelize.define('tipo_sensores', {
+    return sequelize.define('tipo_sensor', {
         id_tipoSensor: {
             type: Sequelize.INTEGER,
             primaryKey: true
@@ -16,10 +16,6 @@ module.exports = function setupIncubadoraModel(config) {
             allowNull: false
         },
         simbolo: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        estado: {
             type: Sequelize.TEXT,
             allowNull: false
         },
@@ -33,6 +29,7 @@ module.exports = function setupIncubadoraModel(config) {
         }
     },
         {
-            timestamps: false // Esto es para que no tenga problemas con las fechas.
+            timestamps: false, // Esto es para que no tenga problemas con las fechas.
+            freezeTableName: true
         })
 }

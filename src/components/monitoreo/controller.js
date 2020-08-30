@@ -1,5 +1,7 @@
 const { socket } = require('../../socket');
 const { handleError } = require('../../error');
+const { dateFormatYMD } = require('../../dateFormatUtc');
+const incubadora = require('../../database/models/incubadora');
 
 module.exports = {
 
@@ -50,7 +52,7 @@ module.exports = {
             promedios.push(promedio);
 
             // =====================================================================================
-            
+
             console.log(temperatura)
             console.log(humedad)
             console.log(proTempHumed)
@@ -70,4 +72,34 @@ module.exports = {
             resolve();
         })
     },
+
+    dataMonitoreo: Incubacion => {
+        return new Promise(async (resolve, reject) => {
+            let message = {
+                mensaje: "No hay Incubaciones Activas!"
+            }
+            const incubacion = await Incubacion.findIncubacionByIncubadoraName().catch(err => handleError(err));
+
+            try {
+                let fecha_actual = new Date(dateFormatYMD()).getTime();
+
+                for (const i in incubacion) {
+                    let fecha_salida = new Date(incubacion[i].fecha_salida).getTime();
+                    let hora_restante = (fecha_salida - fecha_actual) / (1000 * 60 * 60 * 24);
+
+                    incubacion[i].dia_incubacion = hora_restante;
+                }
+
+                if (incubacion.length < 1) {
+                    incubacion.push(message)
+                    resolve(incubacion);
+                } else {
+                    resolve(incubacion);
+                }
+
+            } catch (error) {
+                reject('[Error!]: No se pudo obtener los datos para el registro incubacion');
+            }
+        })
+    }
 }

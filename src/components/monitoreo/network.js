@@ -12,7 +12,7 @@ const { handleFatalError } = require('../../error')
 
 const { socket } = require('../../socket');
 
-let services, Sensor;
+let services, Sensor, Incubacion;
 
 router.use('*', async (req, res, next) => { // (*) cada vez que se haga una petición a todas las rutas // OJO: Actualmente express no soporta midlewares o rutas async await y esto lo solucionamos con express-asyncify me permite darle soporte async await a mi midlewares y rutas de express
     if (!services) { // Si los servicios no han sido obtenidos
@@ -20,6 +20,7 @@ router.use('*', async (req, res, next) => { // (*) cada vez que se haga una peti
 
         services = await db(configDb).catch(err => handleFatalError(err)); // Aqui obtengo los servicios de mi BD
         Sensor = services.Sensor
+        Incubacion = services.Incubacion
     }
 
     next() // Yo necesito siempre llamar a la function de next() para que el midleware continúe la ejecución del request y llegue a las demas rutas
@@ -39,22 +40,14 @@ router.get('/', secure.checkOwn, (req, res) => {
     req.session.success = "";
     req.session.message = "";
 
-    // var dateFormat = 'YYYY-DD-MM HH:mm:ss';
-    var dateFormat = 'YYYY-MM-DD HH:mm:ss';
-    var testDateUtc = moment.utc();
-    var localDate = testDateUtc.local();
 
-    let fecha = localDate.format(dateFormat);
-    console.log(localDate.format(dateFormat));
-
-    res.render('links/monitoreo', { fecha, user });
-
-    // Controller.dataMonitoreo(datos)
-    //     .then(data => {
-    //     })
-    //     .catch(err => {
-    //         console.log('[Error!]: ', err);
-    //     })
+    Controller.dataMonitoreo(Incubacion)
+        .then(data => {
+            res.render('links/monitoreo', { data, user });
+        })
+        .catch(err => {
+            console.log('[Error!]: ', err);
+        })
 })
 
 module.exports = router;

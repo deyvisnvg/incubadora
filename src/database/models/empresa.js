@@ -3,31 +3,19 @@
 const Sequelize = require('sequelize');
 const db = require('../lib/db');
 
-module.exports = function setupPersonaModel(config) {
+module.exports = function setupEmpresaModel(config) {
     const sequelize = db(config);
 
-    return sequelize.define('personas', {
-        id_persona: {
-            type: Sequelize.TEXT,
+    return sequelize.define('empresa', {
+        id_empresa: {
+            type: Sequelize.INTEGER,
             primaryKey: true
         },
-        dni_persona: {
+        ruc_empresa: {
             type: Sequelize.TEXT,
             allowNull: false
         },
-        nombres: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        apellidos: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        fecha_nacimiento: {
-            type: Sequelize.DATE,
-            allowNull: false
-        },
-        genero: {
+        nombre_empresa: {
             type: Sequelize.TEXT,
             allowNull: false
         },
@@ -35,20 +23,25 @@ module.exports = function setupPersonaModel(config) {
             type: Sequelize.TEXT,
             allowNull: false
         },
-        celular: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
         email: {
             type: Sequelize.TEXT,
             allowNull: false
         },
-        id_usuario: {
-            type: Sequelize.TEXT
+        celular: {
+            type: Sequelize.TEXT,
+            allowNull: false
+        },
+        telefono: {
+            type: Sequelize.TEXT,
+            allowNull: false
+        },
+        fecha_registro: {
+            type: Sequelize.TEXT,
+            allowNull: false
         }
     },
-    {
-        timestamps: false, // Esto es para que no tenga problemas con las fechas.
-        freezeTableName: true
-    })
+        {
+            timestamps: false, // Esto es para que no tenga problemas con las fechas.
+            freezeTableName: true // De esta manera, Sequelize inferirá que el nombre de la tabla es igual al nombre del modelo, sin ninguna modificación.
+        })
 }

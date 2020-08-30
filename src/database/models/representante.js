@@ -6,23 +6,20 @@ const db = require('../lib/db');
 module.exports = function setupIncubadoraModel(config) {
     const sequelize = db(config);
 
-    return sequelize.define('sensores', {
-        id_sensor: {
+    return sequelize.define('representantes', {
+        id_representante: {
             type: Sequelize.INTEGER,
             primaryKey: true
         },
-        nombre_sensor: {
+        cargo: {
             type: Sequelize.TEXT,
             allowNull: false
         },
-        estado: {
+        id_persona: {
             type: Sequelize.TEXT,
             allowNull: false
         },
-        id_incubadora: {
-            type: Sequelize.INTEGER
-        },
-        id_tipoSensor: {
+        id_empresa: {
             type: Sequelize.INTEGER
         }
     },

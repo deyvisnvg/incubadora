@@ -3,40 +3,57 @@
 <section class="registro-data">
     <div class="state">REGISTRO DE PEDIDOS</div>
     <div class="data">
-        <form action="/usuario/add" method="post">
+        <form action="/pedido/add" method="post">
             <div class="data-valor1">
                 <p class="description">Identificador: </p>
-                <p><input type="text" name="identificador" value="Se genera automático" readonly></p>
+                <p>
+                    <input type="hidden" id="valor" value="pedido">
+                    <input type="text" name="identificador" id="idPedido" value="" readonly>
+                </p>
             </div>
             <div class="data-valor1">
                 <p class="description">Cantidad Pedido: </p>
-                <p><input type="text" name="cantidad_pedido" value="" required pattern="[0-9]+" title="Ingrese solo números"></p>
+                <p><input type="text" name="cantidad_pedido" value="" required pattern="[0-9]+"
+                        title="Ingrese solo números"></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Comentario: </p>
-                <p><textarea name="" id="" cols="22" rows="4"></textarea></p>
+                <p><textarea name="comentario" id="" cols="22" rows="4"></textarea></p>
             </div>
             <div class="data-valor1">
-                <p class="description">Fecha Pedido: </p>
-                <p><input type="date" name="fecha_pedido" value="" required></p>
+                <p class="description">Fecha Registrada: </p>
+                <p><input type="date" name="fecha_pedido" value="{{data.fecha_pedido}}" required></p>
             </div>
             <div class="data-valor1">
-                <p class="description">Hora Pedido: </p>
-                <p><input type="text" name="hora_pedido" value="" required></p>
+                <p class="description">Hora Registrada: </p>
+                <p><input type="time" name="hora_pedido" value="{{data.hora_pedido}}" required></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Fecha Entrega: </p>
                 <p><input type="date" name="fecha_entrega" value="" required></p>
             </div>
             <div class="data-valor1">
-                <p class="description">Representante Legal: </p>
+                <p class="description">Estado:</p>
                 <p>
                     <select name="estado" required>
                         <option value="">Seleccione...</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Finalizado">Finalizado</option>
                     </select>
                 </p>
             </div>
-            
+            <div class="data-valor1">
+                <p class="description">Representante Legal: </p>
+                <p>
+                    <select id="selectBuscador" name="representante" required>
+                        <option value="">Seleccione...</option>
+                        {{#each data.representante}}
+                        <option value="{{'persona.id_persona'}}">{{'persona.nombres'}} {{'persona.apellidos'}}</option>
+                        {{/each}}
+                    </select>
+                </p>
+            </div>
+
             <div class="data-boton">
                 <p class="boton"><button type="submit">Registrar</button></p>
             </div>

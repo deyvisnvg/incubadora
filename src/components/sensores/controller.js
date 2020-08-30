@@ -2,6 +2,74 @@ const { handleError } = require('../../error');
 
 module.exports = {
 
+    addSensor: (body, Sensor) => {
+        return new Promise(async (resolve, reject) => {
+
+            const newSensor = {
+                nombre_sensor: body.nombre_sensor,
+                estado: body.estado,
+                id_incubadora: body.incubadora,
+                id_tipoSensor: body.tipo_sensor,
+            }
+
+            console.log(newSensor);
+
+            await Sensor.addSensor(newSensor).catch(handleError);
+            resolve();
+
+        })
+    },
+
+    listSensor: (Sensor) => { //Continuar
+        return new Promise(async (resolve, reject) => {
+            const sensor = await Sensor.findSensorAll().catch(err => handleError(err));
+
+            console.log(sensor);
+            resolve(sensor);
+        })
+    },
+
+    listIncubadoraTipoSensor: (Incubadora, TipoSensor) => {
+        return new Promise(async (resolve, reject) => {
+            const incubadora = await Incubadora.findIncubadoraAllOn().catch(err => handleError(err));
+            const tipoSensor = await TipoSensor.findtipoSensorAll().catch(err => handleError(err));
+
+            let data = {};
+
+            let dataTipoSensor = tipoSensor.map(m => {
+                let dataTipoSensor = {
+                    id_tipoSensor: m.id_tipoSensor,
+                    tipo_sensor: m.tipo_sensor,
+                }
+                return dataTipoSensor;
+            })
+
+            data.dataIncubadora = incubadora;
+            data.dataTipoSensor = dataTipoSensor;
+
+            console.log(data);
+            resolve(data);
+        })
+    },
+
+    addTipoSensor: function (body, TipoSensor) {
+        return new Promise(async (resolve, reject) => {
+
+            const newTipoSensor = {
+                tipo_sensor: body.tipo_sensor,
+                simbolo: body.simbolo,
+                limite: body.limite,
+                ambiente: body.ambiente,
+            }
+
+            console.log(newTipoSensor);
+
+            await TipoSensor.addtipoSensor(newTipoSensor).catch(handleError);
+            resolve();
+
+        })
+    },
+
     listTipoSensor: TipoSensor => {
         return new Promise(async (resolve, reject) => {
             const tipoSensor = await TipoSensor.findtipoSensorAll().catch(err => handleError(err));
@@ -11,13 +79,13 @@ module.exports = {
                     id_tipoSensor: m.id_tipoSensor,
                     tipo_sensor: m.tipo_sensor,
                     simbolo: m.simbolo,
-                    estado: m.estado,
                     limite: m.limite,
                     ambiente: m.ambiente
                 }
                 return dataTipoSensor;
             })
 
+            console.log(data);
             resolve(data);
         })
     },
@@ -85,37 +153,5 @@ module.exports = {
     //     })
     // },
 
-    // addProducto: function (files, body, Producto) {
-    //     return new Promise(async (resolve, reject) => {
-    //         let ruteFoto, ruteFoto_alternativa;
 
-    //         // console.log(files.length)
-
-    //         if (files.length < 2) {
-    //             ruteFoto = config.filesRouteImg + '/' + files[0].originalname;
-    //             ruteFoto_alternativa = config.filesRouteImg + '/' + 'sin_imagen.jpg';
-    //         } else {
-    //             ruteFoto = config.filesRouteImg + '/' + files[0].originalname;
-    //             ruteFoto_alternativa = config.filesRouteImg + '/' + files[1].originalname;
-    //         }
-
-    //         const newProducto = {
-    //             name: body.name,
-    //             descripcion: body.descripcion,
-    //             marca: body.marca,
-    //             precio: body.precio,
-    //             precio_envio: body.precio_envio,
-    //             foto: ruteFoto,
-    //             foto_alternativa: ruteFoto_alternativa,
-    //             codigo: body.codigo,
-    //             fecha: new Date()
-    //         }
-
-    //         console.log(newProducto)
-
-    //         await Producto.addProducto(newProducto).catch(handleError);
-    //         resolve();
-
-    //     })
-    // }
 }

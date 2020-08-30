@@ -3,22 +3,39 @@
 <section class="registro-data">
     <div class="state">REGISTRO DE REPRESENTANTE LEGAL</div>
     <div class="data">
-        <form action="/usuario/add" method="post">
+        <form action="/usuario/representante/add" method="post">
+            <div class="data-valor4">
+                <p class="description">Empresa:</p>
+                <p>
+                    <select id="selectBuscador" name="id_empresa" required>
+                        <option value="" style="background: #9c9c9c; color: rgb(238, 245, 143)">Seleccione...</option>
+                        {{#each data}}
+                        <option value="{{ id_empresa }}">{{ nombre_empresa }}</option>
+                        {{/each}}
+                    </select>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Cargo: </p>
+                <p><input type="text" name="cargo" value="" required pattern="[A-Z a-z]+"
+                        title="Ingrese solo letras Mayúsculas y minúsculas"></p>
+            </div>
             <div class="data-valor1">
                 <p class="description">Nombres: </p>
-                <p><input type="text" name="nombre" value="" required pattern="[A-Za-z]+"
+                <p><input type="text" name="nombre" value="" required pattern="[A-Z a-z]+"
                         title="Ingrese solo letras Mayúsculas y minúsculas"></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Apellidos: </p>
-                <p><input type="text" name="apellido" value="" required pattern="[A-Za-z]+"
+                <p><input type="text" name="apellido" value="" required pattern="[A-Z a-z]+"
                         title="Ingrese solo letras Mayúsculas y minúsculas"></p>
             </div>
             <div class="data-valor1">
                 <p class="description">DNI: </p>
                 <p><input type="text" name="dni" value="" required pattern="[0-9]+"
-                        title="Ingrese solo números sin espacios"></p>
+                        maxlength="8" title="Ingrese solo números sin espacios"></p>
             </div>
+            <div><hr></div>
             <div class="data-valor1">
                 <p class="description">Usuario: </p>
                 <p><input type="text" name="usuario" value="" required pattern="[A-Za-z0-9]+"

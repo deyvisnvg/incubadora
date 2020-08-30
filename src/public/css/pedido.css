@@ -1,0 +1,31 @@
+.list-cuerpo-pedido {
+    padding: 20px;
+}
+
+.data-representante {
+    display: flex;
+}
+
+.data-representante .n1 {
+    display: flex;
+    width: 40%;
+    margin: 0 10px;
+}
+
+.data-representante .n1 .n1-title {
+    color: black;
+}
+
+.data-representante .n2 .n2-title {
+    color: black;
+}
+
+.data-representante .n2 {
+    display: flex;
+    width: 60%;
+    margin: 0 10px;
+}
+
+.data-representante .space{
+    margin-left: 20px;
+}

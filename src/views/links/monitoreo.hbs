@@ -8,6 +8,9 @@
     <div class="messageSuccess">{{ success }}</div>
     {{/if}}
 
+
+    {{#each data}}
+    <div class="message">{{mensaje}}</div>
     <div class="contenedor-incubacion">
         <div class="incubacion">
             <div class="incubacion-name">
@@ -16,7 +19,7 @@
                 </figure>
                 <div>
                     <h3>Incubadora</h3>
-                    <h4>Modulo 1</h4>
+                    <h4>{{'incubadora.nombre_incubadora'}}</h4>
                 </div>
                 <div class="iconzoom"> <i class="icon-podcast"></i></div>
             </div>
@@ -28,9 +31,9 @@
                         <p>Fecha de Salida: {{ fecha }}</p>
                     </div>
                     <div>
-                        <p>data 1</p>
-                        <p>data 2</p>
-                        <p>data 3</p>
+                        <p>{{cantidad_ingreso}}</p>
+                        <p>{{dia_incubacion}}</p>
+                        <p>{{fecha_salida}}</p>
                     </div>
                 </div>
                 <div class="incubacion-dataSensor">
@@ -49,6 +52,7 @@
             </div>
         </div>
     </div>
+    {{/each}}
 
 
     <div class="container-sensorRealTime">

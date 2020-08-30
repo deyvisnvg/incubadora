@@ -22,21 +22,19 @@
                         <th><p class="description">Dni</p></th>
                         <th><p class="description-name">Nombres y Apellidos</p></th>
                         <th><p class="description">Cargo</p></th>
-                        <th><p class="description">Empresa Ruc</p></th>
+                        <th><p class="description">Empresa</p></th>
                         <th><p class="description">Contacto</p></th>
-                        <th><p class="description">Nivel de Acceso</p></th>
                         <th><p class="description">Editar </p></th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each data}}
                     <tr>
-                        <td><p class="description">{{dni_persona}}</p></td>
-                        <td><p class="description-valor">{{nombres}} {{apellidos}}</p></td>
-                        <td><p class="description">mi cargo</p></td>
-                        <td><p class="description">mi empresa</p></td>
-                        <td><p class="description">mi contacto</p></td>
-                        <td><p class="description">{{'usuario.modulo'}}</p></td>
+                        <td><p class="description">{{'persona.dni_persona'}}</p></td>
+                        <td><p class="description-valor">{{'persona.nombres'}} {{'persona.apellidos'}}</p></td>
+                        <td><p class="description">{{'persona.representante.cargo'}}</p></td>
+                        <td><p class="description">{{'persona.representante.empresa.nombre_empresa'}}</p></td>
+                        <td><p class="description">{{'persona.celular'}}</p></td>
                         <td>
                             <p class="description"><a href="/usuario/edit/{{id_persona}} {{id_usuario}}"><img
                             src="/img/editar.png" alt="icon de Editar"></a></p>

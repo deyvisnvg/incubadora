@@ -9,17 +9,21 @@ const { configDb } = require('../../config')
 const db = require('../../database');
 const { handleFatalError } = require('../../error')
 
-let services, Incubadora;
+let services, Incubacion, Incubadora, Pedido;
 
 router.use('*', async (req, res, next) => { // (*) cada vez que se haga una petición a todas las rutas // OJO: Actualmente express no soporta midlewares o rutas async await y esto lo solucionamos con express-asyncify me permite darle soporte async await a mi midlewares y rutas de express
     if (!services) { // Si los servicios no han sido obtenidos
         console.log('Connecting to database')
 
         services = await db(configDb).catch(err => handleFatalError(err)); // Aqui obtengo los servicios de mi BD
-        Incubadora = services.Incubadora
+        Incubacion = services.Incubacion;
+        Incubadora = services.Incubadora;
+        Pedido = services.Pedido;
     }
     next() // Yo necesito siempre llamar a la function de next() para que el midleware continúe la ejecución del request y llegue a las demas rutas
 })
+
+//------------------------------ incubadora ------------------------------//
 
 router.get('/', secure.checkOwn, (req, res) => {
     const user = req.session.user;  // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
@@ -43,29 +47,79 @@ router.get('/add', secure.checkOwn, (req, res) => {
     res.render('links/addIncubadora', { user });
 })
 
+router.post('/add', (req, res) => {
+    Controller.addIncubadora(req.body, Incubadora)
+        .then(() => {
+            req.session.success = "Incubadora registrado con éxito!";
+            res.redirect('/incubadora/add');
+        })
+        .catch(err => {
+            req.session.message = err;
+            res.redirect('/incubadora/add');
+        })
+})
+
+//------------------------------ incubacion ------------------------------//
+
 router.get('/incubacion', secure.checkOwn, (req, res) => {
     const user = req.session.user;  // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
     req.session.success = "";
     req.session.message = "";
 
-    res.render('links/listIncubacion', { user });
-
-    // Controller.listIncubadora(Incubadora)
-    //     .then(data => {
-    //         res.render('links/listIncubadora', { data, user });
-    //     })
-    //     .catch(err => {
-    //         console.log('[Error!]: ', err);
-    //     })
+    Controller.listIncubacion(Incubacion)
+        .then(data => {
+            res.render('links/listIncubacion', { data, user });
+        })
+        .catch(err => {
+            console.log('[Error!]: ', err);
+        })
 })
 
-router.get('/incubacion/add', secure.checkOwn, (req, res) => {
+router.get('/incubacion/add', secure.checkOwn, (req, res) => { //Falta--
     const user = req.session.user;
     req.session.success = "";
     req.session.message = "";
 
-    res.render('links/addIncubacion', { user });
+    Controller.dataEnvioIncubacion(Incubadora, Pedido)
+        .then(data => {
+            res.render('links/addIncubacion', { data, user });
+        })
+        .catch(err => {
+            console.log('[Error!]: ', err);
+        })
 })
+
+router.post('/incubacion/add', (req, res) => {
+
+    Controller.addIncubacion(req.body, Incubacion)
+        .then(() => {
+            req.session.success = "Incubación registrado con éxito!";
+            res.redirect('/incubadora/incubacion/add');
+        })
+        .catch(err => {
+            req.session.message = err;
+            res.redirect('/incubadora/incubacion/add');
+        })
+})
+
+router.get('/incubacion/view/:id', (req, res) => {
+    const user = req.session.user;
+    const { id } = req.params;
+
+    console.log(id);
+
+    Controller.viewIncubacion(id, Incubacion, Pedido)
+        .then(data => {
+            let incubaciones = data.dataIncubacion;
+            let pedido = data.dataPedido;
+            res.render('links/viewIncubacion', { pedido, incubaciones, user });
+        })
+        .catch(err => {
+            console.log('[Error!]:', err.message);
+        })
+})
+
+//------------------------------ incidencia ------------------------------//
 
 router.get('/incidencia', secure.checkOwn, (req, res) => {
     const user = req.session.user;  // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
@@ -136,20 +190,6 @@ router.get('/incidencia/add', secure.checkOwn, (req, res) => {
 //     req.session.message = "";
 
 //     res.render('links/addProducto', { user });
-// })
-
-// router.post('/add', (req, res) => {
-//     console.log(req.body)
-//     console.log(req.files)
-//     Controller.addProducto(req.files, req.body, Producto)
-//         .then(() => {
-//             req.session.success = "Producto registrado con éxito!";
-//             res.redirect('/producto/add');
-//         })
-//         .catch(err => {
-//             req.session.message = err;
-//             res.redirect('/producto/add');
-//         })
 // })
 
 module.exports = router;

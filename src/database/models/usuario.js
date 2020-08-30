@@ -25,6 +25,7 @@ module.exports = function setupUsuarioModel(config) {
         }
     },
         {
-            timestamps: false // Esto es para que no tenga problemas con las fechas.
+            timestamps: false, // Esto es para que no tenga problemas con las fechas.
+            freezeTableName: true
         })
 }

@@ -19,28 +19,27 @@
             <table id="example1" class="data-table table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th><p class="description-name">Responsabe Pedido</p></th>
-                        <th><p class="description">Cantidad Pedido</p></th>
-                        <th><p class="description">Fecha de Pedido</p></th>
-                        <th><p class="description">Hora Pedido</p></th>
-                        <th><p class="description"></p>Fecha de Entrega</th>
+                        <th><p class="description">DNI</p></th>
+                        <th><p class="description-name">Representante Legal - Pedido</p></th>
+                        <th><p class="description">Nº Pedidos Registrados</p></th>
                         <th><p class="description">Editar </p></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{!-- {{#each data}} --}}
+                    {{#each data}}
                     <tr>
-                        <td><p class="description-valor">{{dni_persona}}</p></td>
-                        <td><p class="description">mi cantidad</p></td>
-                        <td><p class="description">mi fecha</p></td>
-                        <td><p class="description">mi hora</p></td>
-                        <td><p class="description">mi entrega</p></td>
+                        <td><p class="description">{{'persona.dni_persona'}}</p></td>
+                        <td><p class="description-valor">{{'persona.nombres'}} {{'persona.apellidos'}}</p></td>
+                        <td><p class="description">{{n_pedidos}}</p></td>
                         <td>
-                            <p class="description"><a href="/usuario/edit/{{id_persona}} {{id_usuario}}"><img
-                            src="/img/editar.png" alt="icon de Editar"></a></p>
+                            <p class="description">
+                                <a href="/pedido/view/{{id_persona}}"> 
+                                    <i class="icon-file-text icono" title="Visualizar Pedidos"></i> 
+                                </a>
+                            </p>
                         </td>
                     </tr>
-                    {{!-- {{/each}} --}}
+                    {{/each}}
                 </tbody>
             </table>
         </div>

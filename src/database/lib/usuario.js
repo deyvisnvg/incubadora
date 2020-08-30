@@ -22,22 +22,8 @@ module.exports = (UsuarioModel, PersonaModel) => {
     })
   }
 
-  async function createUser(data) {
-
-    const user = await UsuarioModel.create(data);
-
-    if (user) {
-      let persona = {
-        nombres: data.usuario,
-        apellidos: "Completar",
-        edad: "0",
-        email: "completar@gmail.com",
-        fecha_nacimiento: new Date(),
-        foto: "/photos/avatar.jpeg",
-        id_usuario: data.id_usuario
-      }
-      return await PersonaModel.create(persona);
-    }
+  async function addUser(data) {
+    return await UsuarioModel.create(data);
   }
 
   async function updateUsuarioId(id_usuario, usuario) {
@@ -54,7 +40,7 @@ module.exports = (UsuarioModel, PersonaModel) => {
     findUsuarioAll,
     findUsuario,
     findUsuarioId,
-    createUser,
+    addUser,
     updateUsuarioId
   }
 }

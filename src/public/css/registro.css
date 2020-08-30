@@ -23,7 +23,7 @@
         font-family: 'Bai Jamjuree', sans-serif;
         margin: 50px auto;
         /* box-shadow: right bottom opacidad-sombra grosor-sombra; */
-        box-shadow: -1px 1px 5px 3px #95afc0;
+        box-shadow: -1px 1px 3px 1px #95afc0;
     }
     
     .registro-data .data {
@@ -115,7 +115,7 @@
         NUEVOS .... Estilos de Lista de Usuarios
     ================================================*/
     .list-data {
-        width: 78vw;
+        width: 80vw;
         background: white;
         padding: 5px 10px 50px;
         border-radius: 5px;
@@ -250,7 +250,23 @@
         border: 1px solid transparent;
         border-radius: 7px;
         padding: 5px;
-    } 
+    }
+/* 
+    .iconFlotante { // Revisar luego
+        background-color: rgba(0, 0, 0, .5);
+        border-radius: 5px;
+        color: #fff;
+        content: attr(title);
+        opacity: 1;
+        padding: 6px 12px;
+        position: absolute;
+        left: 110%;
+        top: 30px;
+        transition: all .25s ease;
+        visibility: visible;
+        white-space: nowrap;
+      } */
+
     
     @media screen and (max-width: 1023px){
         .list-data {

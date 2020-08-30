@@ -9,15 +9,14 @@ const { configDb } = require('../../config')
 const db = require('../../database');
 const { handleFatalError } = require('../../error')
 
-let services, Usuario, Persona;
+let services, Empresa;
 
 router.use('*', async (req, res, next) => { // (*) cada vez que se haga una petición a todas las rutas // OJO: Actualmente express no soporta midlewares o rutas async await y esto lo solucionamos con express-asyncify me permite darle soporte async await a mi midlewares y rutas de express
     if (!services) { // Si los servicios no han sido obtenidos
         console.log('Connecting to database')
 
         services = await db(configDb).catch(err => handleFatalError(err)); // Aqui obtengo los servicios de mi BD
-        Persona = services.Persona
-        Usuario = services.Usuario
+        Empresa = services.Empresa
     }
     next() // Yo necesito siempre llamar a la function de next() para que el midleware continúe la ejecución del request y llegue a las demas rutas
 })
@@ -27,17 +26,28 @@ router.get('/', secure.checkOwn, (req, res) => {
     req.session.success = "";
     req.session.message = "";
 
-    res.render('links/listEmpresa', { user });
-
-    // Controller.listUser(user.modulo, Persona)
-        // .then(data => {
-        //     res.render('links/listUser', { data, user });
-        // })
-        // .catch(err => {
-        //     console.log('[Error!]: ', err);
-        // })
+    Controller.listEmpresa(Empresa)
+        .then(data => {
+            res.render('links/listEmpresa', { data, user });
+        })
+        .catch(err => {
+            // console.log('[Error!]: ', err);
+            req.session.message = err;
+            res.redirect('/empresa');
+        })
 })
 
+router.post('/add', (req, res) => {
+    Controller.addEmpresa(req.body, Empresa)
+        .then(() => {
+            req.session.success = "Empresa registrado con éxito!";
+            res.redirect('/empresa/add');
+        })
+        .catch(err => {
+            req.session.message = err;
+            res.redirect('/empresa/add');
+        })
+})
 
 router.get('/add', secure.checkOwn, (req, res) => {
     const user = req.session.user;

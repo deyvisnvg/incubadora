@@ -4181,6 +4181,7 @@ a.text-#000000:hover {
 
 .b-t {
   border-top: 1px solid #dee5e7;
+  position: fixed;
 }
 
 .b-r {

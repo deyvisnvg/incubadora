@@ -6,44 +6,36 @@ const db = require('../lib/db');
 module.exports = function setupPersonaModel(config) {
     const sequelize = db(config);
 
-    return sequelize.define('personas', {
-        id_persona: {
+    return sequelize.define('pedidos', {
+        id_pedido: {
             type: Sequelize.TEXT,
             primaryKey: true
         },
-        dni_persona: {
+        cantidad: {
             type: Sequelize.TEXT,
             allowNull: false
         },
-        nombres: {
+        comentario: {
             type: Sequelize.TEXT,
             allowNull: false
         },
-        apellidos: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        fecha_nacimiento: {
+        fecha_pedido: {
             type: Sequelize.DATE,
             allowNull: false
         },
-        genero: {
+        hora_pedido: {
+            type: Sequelize.TIME,
+            allowNull: false
+        },
+        fecha_entrega: {
+            type: Sequelize.DATE,
+            allowNull: false
+        },
+        estado: {
             type: Sequelize.TEXT,
             allowNull: false
         },
-        direccion: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        celular: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        email: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        id_usuario: {
+        id_persona: {
             type: Sequelize.TEXT
         }
     },

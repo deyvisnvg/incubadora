@@ -1,4 +1,4 @@
-const disp1 = document.getElementById('idProducto');
+const valor = document.getElementById('valor');
 
 var id;
 
@@ -6,9 +6,13 @@ var id;
     id = + new Date() + Math.floor(Math.random() * 1000);
 })()
 
-disp1.value = "Product_" + id;
-
-console.log("Product_" + id);
+if (valor.value == "pedido") {
+    const pedido1 = document.getElementById('idPedido');
+    pedido1.value = "Ped_" + id;
+} else if (valor.value == "incubacion") {
+    const incubacion1 = document.getElementById('idIncubacion');
+    incubacion1.value = "Inc_" + id;
+}
 
 // JavaScript almacena las fechas como número de milisegundos desde 
 // el 1 de enero de 1970 a las 00:00:00 UTC (hora universal coordinada).

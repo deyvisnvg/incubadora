@@ -3,10 +3,10 @@
 <section class="registro-data">
     <div class="state">REGISTRO DE SENSORES</div>
     <div class="data">
-        <form action="/usuario/add" method="post">
+        <form action="/sensores/add" method="post">
             <div class="data-valor1">
                 <p class="description">Nombre de Sensor: </p>
-                <p><input type="text" name="nombre_sensor" value="" required pattern="[A-Za-z0-9]+"
+                <p><input type="text" name="nombre_sensor" value="" required pattern="[A-Za-z 0-9]+"
                         title="Ingrese solo letras Mayúsculas, minúsculas y números sin espacios"></p>
             </div>
             <div class="data-valor1">
@@ -22,16 +22,22 @@
             <div class="data-valor1">
                 <p class="description">Incubadora: </p>
                 <p>
-                    <select name="incubadora" required>
+                    <select id="selectBuscador" name="incubadora" required>
                         <option value="">Seleccione...</option>
+                        {{#each data.dataIncubadora}}
+                        <option value="{{id_incubadora}}">{{nombre_incubadora}}</option>
+                        {{/each}}
                     </select>
                 </p>
             </div>
             <div class="data-valor1">
                 <p class="description">Tipo Sensor: </p>
                 <p>
-                    <select name="tipo_sensor" required>
+                    <select id="selectBuscador2" name="tipo_sensor" required>
                         <option value="">Seleccione...</option>
+                        {{#each data.dataTipoSensor}}
+                        <option value="{{id_tipoSensor}}">{{tipo_sensor}}</option>
+                        {{/each}}
                     </select>
                 </p>
             </div>

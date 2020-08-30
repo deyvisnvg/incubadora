@@ -1,0 +1,82 @@
+<section class="list-data">
+    <div class="state">DETALLE DEL PEDIDO</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+    <div class="list-cuerpo-pedido">
+        <div>DETALLE DEL PEDIDO</div>
+        <hr>
+        <div class="data-representante">
+            {{#each pedido}}
+            <div class="n1">
+                <div class="n1-title">
+                    <p class="description">Pedido </p>
+                    <p class="description">Cantidad </p>
+                    <p class="description">Comentario </p>
+                    <p class="description">Estado </p>
+                </div>
+                <div class="space">
+                    <p>: {{id_pedido}}</p>
+                    <p>: {{cantidad}}</p>
+                    <p>: {{comentario}}</p>
+                    <p>: {{estado}}</p>
+                </div>
+            </div>
+            <div class="n2">
+                <div class="n2-title">
+                    <p class="description">Fecha Registrada </p>
+                    <p class="description">Hora Registrada </p>
+                    <p class="description">Fecha Entrega </p>
+                </div>
+                <div class="space">
+                    <p>: {{fecha_pedido}} </p>
+                    <p>: {{hora_pedido}}</p>
+                    <p>: {{fecha_entrega}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <br><br>
+        <div>LISTADO DE INCUBACIONES</div>
+        <hr>
+        <div class="data-table-pagination">
+            <table id="example1" class="data-table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th><p class="description">Identificador</p></th>
+                        <th><p class="description">Fecha Ingreso</p></th>
+                        <th><p class="description">Fecha Salida</p></th>
+                        <th><p class="description">Piso Inicio</p></th>
+                        <th><p class="description">Piso Fin</p></th>
+                        <th><p class="description">Cantidad Ingreso</p></th>
+                        <th><p class="description">Estado</p></th>
+                        <th><p class="description">Incubadora</p></th>
+                        <th><p class="description">Editar</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each incubaciones}}
+                    <tr>
+                        <td><p class="description">{{id_incubacion}}</p></td>
+                        <td><p class="description">{{fecha_ingreso}}</p></td>
+                        <td><p class="description">{{fecha_salida}}</p></td>
+                        <td><p class="description">{{piso_inicio}}</p></td>
+                        <td><p class="description">{{piso_fin}}</p></td>
+                        <td><p class="description">{{cantidad_ingreso}}</p></td>
+                        <td><div class="description stated">{{estado}}<div hidden>{{ estado }}</div></div></td>
+                        <td><p class="description">{{'incubadora.nombre_incubadora'}}</p></td>
+                        <td>
+                            <p class="description"><a href="/pedido/edit/{{id_pedido}}"><img
+                            src="/img/editar.png" alt="icon de Editar"></a></p>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

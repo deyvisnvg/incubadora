@@ -3,7 +3,7 @@
 <section class="registro-data">
     <div class="state">REGISTRO DE EMPRESA</div>
     <div class="data">
-        <form action="/usuario/add" method="post">
+        <form action="/empresa/add" method="post">
             <div class="data-valor1">
                 <p class="description">Ruc Empresa: </p>
                 <p><input type="text" name="ruc_empresa" value="" required pattern="[0-9]+"
@@ -11,7 +11,7 @@
             </div>
             <div class="data-valor1">
                 <p class="description">Empresa: </p>
-                <p><input type="text" name="empresa" value="" required pattern="[A-Za-z]+"
+                <p><input type="text" name="nombre_empresa" value="" required pattern="[A-Za-z]+"
                         title="Ingrese solo letras Mayúsculas y minúsculas"></p>
             </div>
             <div class="data-valor1">
@@ -26,12 +26,12 @@
             <div class="data-valor1">
                 <p class="description">Celular: </p>
                 <p><input type="text" name="celular" value="" required pattern="[0-9]+"
-                        title="Ingrese solo números sin espacios"></p>
+                        maxlength="9" title="Ingrese solo números sin espacios"></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Telefono: </p>
                 <p><input type="text" name="telefono" value="" required pattern="[0-9]+"
-                        title="Ingrese solo números sin espacios"></p>
+                        maxlength="6" title="Ingrese solo números sin espacios"></p>
             </div>
 
             {{!-- Registrar tambien Fecha de Registro --}}

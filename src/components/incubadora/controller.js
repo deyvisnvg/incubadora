@@ -1,8 +1,7 @@
 const nanoid = require('nanoid');
-const helpers = require('../../lib/helpers');
 
 const { handleError } = require('../../error');
-const { config } = require('../../config');
+const { dateFormatYMD, dateFormatHms, dateFormatYMD_add } = require('../../dateFormatUtc');
 
 module.exports = {
 
@@ -23,99 +22,102 @@ module.exports = {
         })
     },
 
-    editUser: function (id_persona, id_usuario, Usuario, Persona) {
+    addIncubadora: (body, Incubadora) => {
         return new Promise(async (resolve, reject) => {
-            if (!id_persona && !id_usuario) {
-                reject("Las id no se recibieron");
-                return false;
+            const incubadora = {
+                nombre_incubadora: body.nombre_incubadora,
+                estado: body.estado,
             }
 
+            await Incubadora.addIncubadora(incubadora).catch(err => handleError(err));
+            resolve();
+
+        })
+    },
+
+    //------------------------------ incubacion ------------------------------//
+    dataEnvioIncubacion: (Incubadora, Pedido) => {
+        return new Promise(async (resolve, reject) => {
+
+            let data = {};
+            const incubadora = await Incubadora.findIncubadoraAllOn().catch(err => handleError(err));
+            const pedido = await Pedido.findPedidoAllOn().catch(err => handleError(err));
+
             try {
-                const user = await Usuario.findUsuarioId(id_usuario);
-                const persona = await Persona.findPersonaId(id_persona);
-                let data = {
-                    usuario: user.toJSON(),
-                    persona
-                }
+                data.fecha_ingreso = dateFormatYMD();
+                data.fecha_salida = dateFormatYMD_add();
+                data.hora_ingreso = dateFormatHms();
+
+                data.dataIncubadora = incubadora;
+                data.dataPedido = pedido;
+
+                console.log(data);
                 resolve(data);
 
-            } catch (err) {
-                reject('[Error!]:', err);
+            } catch (error) {
+                reject('[Error!]: No se pudo obtener los datos para el registro incubacion');
             }
 
         })
     },
 
-    updateUser: function (ids, user, file, Usuario, Persona) {
+    addIncubacion: (body, Incubacion) => {
         return new Promise(async (resolve, reject) => {
-            let nameFoto;
 
-            if (typeof file !== 'undefined') {
-                nameFoto = config.filesRoute + '/' + file.originalname;
-            } else {
-                nameFoto = user.foto;
+            const newIncubacion = {
+                id_incubacion: body.identificador,
+                fecha_ingreso: body.fecha_ingreso,
+                fecha_salida: body.fecha_salida,
+                hora_ingreso: body.hora_ingreso,
+                estado: body.estado,
+                piso_inicio: body.piso_inicio,
+                piso_fin: body.piso_fin,
+                cantidad_ingreso: body.cantidad_ingreso,
+                id_pedido: body.id_pedido,
+                id_incubadora: body.incubadora
             }
 
-            console.log(user);
+            console.log(newIncubacion);
 
-            const dataPersona = {
-                nombres: user.nombres,
-                apellidos: user.apellidos,
-                edad: user.edad,
-                email: user.email,
-                fecha_nacimiento: user.fecha_nacimiento,
-                foto: nameFoto
-            }
+            await Incubacion.addIncubacion(newIncubacion).catch(err => handleError(err));
+            resolve();
 
-            const dataUser = {
-                usuario: user.usuario,
-                modulo: user.modulo,
-            }
+        })
+    },
 
-            if (typeof user.password !== 'undefined' && user.password) {
-                dataUser.password = await helpers.encryptPassword(user.password)
-            }
+    listIncubacion: Incubacion => {
+        return new Promise(async (resolve, reject) => {
+            let data = {};
+            const incubacion = await Incubacion.findIncubacionAll().catch(err => handleError(err));
 
             try {
-                await Persona.updatePersonaId(ids.id_persona, dataPersona);
-                await Usuario.updateUsuarioId(ids.id_usuario, dataUser);
-                resolve();
-            } catch (err) {
-                reject("Error! al modificar, Inténtelo nuevamente.");
+                data.dataIncubacion = incubacion;
+
+                console.log(data);
+                resolve(data);
+
+            } catch (error) {
+                reject('[Error!]: No se pudo obtener los datos para el registro incubacion');
             }
         })
     },
 
-    addProducto: function (files, body, Producto) {
+    viewIncubacion: (id_pedido, Incubacion, Pedido) => {
         return new Promise(async (resolve, reject) => {
-            let ruteFoto, ruteFoto_alternativa;
+            let data = {};
+            const incubacion = await Incubacion.findIncubacionByPedidoId(id_pedido).catch(err => handleError(err));
+            const pedido = await Pedido.findByPedidoId(id_pedido).catch(err => handleError(err));
 
-            // console.log(files.length)
+            try {
+                data.dataIncubacion = incubacion;
+                data.dataPedido = pedido;
 
-            if (files.length < 2) {
-                ruteFoto = config.filesRouteImg + '/' + files[0].originalname;
-                ruteFoto_alternativa = config.filesRouteImg + '/' + 'sin_imagen.jpg';
-            } else {
-                ruteFoto = config.filesRouteImg + '/' + files[0].originalname;
-                ruteFoto_alternativa = config.filesRouteImg + '/' + files[1].originalname;
+                console.log(data);
+                resolve(data);
+
+            } catch (error) {
+                reject('[Error!]: No se pudo obtener los datos para el registro');
             }
-
-            const newProducto = {
-                name: body.name,
-                descripcion: body.descripcion,
-                marca: body.marca,
-                precio: body.precio,
-                precio_envio: body.precio_envio,
-                foto: ruteFoto,
-                foto_alternativa: ruteFoto_alternativa,
-                codigo: body.codigo,
-                fecha: new Date()
-            }
-
-            console.log(newProducto)
-
-            await Producto.addProducto(newProducto).catch(handleError);
-            resolve();
 
         })
     }

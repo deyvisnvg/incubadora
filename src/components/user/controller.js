@@ -88,9 +88,9 @@ module.exports = {
         })
     },
 
-    registroUser: function (body, Usuario) {
+    registroUser: function (body, Usuario, Persona) {
         return new Promise(async (resolve, reject) => {
-            let id;
+            let id_usuario, userRetorno;
 
             if (body.password !== body.password2) {
                 reject("Las contraseñas no coinciden")
@@ -109,21 +109,104 @@ module.exports = {
 
             }
 
-            if (!body.id) {
-                id = nanoid();
+            if (!body.id_usuario) {
+                id_usuario = nanoid();
             }
 
             const newUser = {
-                id_usuario: id,
+                id_usuario,
                 usuario: body.usuario,
                 modulo: body.modulo,
                 password: await helpers.encryptPassword(body.password),
-                fecha: new Date()
             }
 
-            await Usuario.createUser(newUser).catch(handleError);
-            resolve();
+            const newPersona = {
+                id_usuario,
+                nombres: body.nombre,
+                apellidos: body.apellido,
+                dni_persona: body.dni,
+            }
 
+            if (!body.id_persona) {
+                newPersona.id_persona = nanoid();
+            }
+
+            userRetorno = await Usuario.addUser(newUser).catch(handleError);
+
+            if (userRetorno) {
+                await Persona.addUserPersona(newPersona).catch(handleError);
+                resolve();
+            }
+        })
+    },
+
+    listEmpresa: Empresa => {
+        return new Promise(async (resolve, reject) => {
+
+            const dataEmpresa = await Empresa.findEmpresaAll().catch(handleError);
+            resolve(dataEmpresa);
+        })
+    },
+
+    listRepresentante: Representante => {
+        return new Promise(async (resolve, reject) => {
+            const dataRepre = await Representante.findRepresentanteAll().catch(handleError);
+            console.log(dataRepre)
+            resolve(dataRepre);
+        })
+    },
+
+    addRepresentante: (body, Usuario, Representante) => {
+        return new Promise(async (resolve, reject) => {
+            let id_persona, id_usuario, id_representante, userRetorno;
+
+            if (body.password !== body.password2) {
+                reject("Las contraseñas no coinciden")
+                return false
+            }
+
+            const user = await Usuario.findUsuarioAll().catch(err => handleError(err));
+
+            for (let i in user) {
+                let nameUser = user[i].usuario;
+
+                if (nameUser == body.usuario) {
+                    reject("El usuario ya existe, ingrese otra!");
+                    return false;
+                }
+
+            }
+
+            if (!body.id_usuario) {
+                id_usuario = nanoid();
+            }
+
+            const newUser = {
+                id_usuario,
+                usuario: body.usuario,
+                modulo: body.modulo,
+                password: await helpers.encryptPassword(body.password),
+            }
+
+            const newData = {
+                id_usuario,
+                nombres: body.nombre,
+                apellidos: body.apellido,
+                dni_persona: body.dni,
+                cargo: body.cargo,
+                id_empresa: body.id_empresa
+            }
+
+            if (!body.id_persona) {
+                newData.id_persona = nanoid();
+            }
+
+            userRetorno = await Usuario.addUser(newUser).catch(handleError);
+
+            if (userRetorno) {
+                await Representante.addUserRepresentante(newData).catch(handleError);
+                resolve();
+            }
         })
     }
 }

@@ -3,26 +3,47 @@
 <section class="registro-data">
     <div class="state">REGISTRO DE INCUBACIÓN</div>
     <div class="data">
-        <form action="/usuario/add" method="post">
+        <form action="/incubadora/incubacion/add" method="post">
+            <div class="data-valor1">
+                <p class="description">Identificador: </p>
+                <p>
+                    <input type="hidden" id="valor" value="incubacion">
+                    <input type="text" name="identificador" id="idIncubacion" value="" readonly>
+                </p>
+            </div>
             <div class="data-valor1">
                 <p class="description">Incubadora:</p>
                 <p>
-                    <select name="estado" required>
+                    <select id="selectBuscador" name="incubadora" required>
                         <option value="">Seleccione...</option>
+                        {{#each data.dataIncubadora}}
+                        <option value="{{id_incubadora}}">{{nombre_incubadora}}</option>
+                        {{/each}}
+                    </select>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Pedido Correspondiente:</p>
+                <p>
+                    <select id="selectBuscador2" name="id_pedido" required>
+                        <option value="">Seleccione...</option>
+                        {{#each data.dataPedido}}
+                        <option value="{{id_pedido}}">{{id_pedido}}</option>
+                        {{/each}}
                     </select>
                 </p>
             </div>
             <div class="data-valor1">
                 <p class="description">Fecha Ingreso: </p>
-                <p><input type="date" name="fecha_ingreso" value="" required></p>
+                <p><input type="date" name="fecha_ingreso" value="{{data.fecha_ingreso}}" required></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Fecha Salida: </p>
-                <p><input type="date" name="fecha_salida" value="" required></p>
+                <p><input type="date" name="fecha_salida" value="{{data.fecha_salida}}" required></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Hora Ingreso </p>
-                <p><input type="text" name="hora_ingreso" value="" required></p>
+                <p><input type="time" name="hora_ingreso" value="{{data.hora_ingreso}}" required></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Estado:</p>
@@ -30,7 +51,7 @@
                     <select name="estado" required>
                         <option value="">Seleccione...</option>
                         <option value="Activo">Activo</option>
-                        <option value="Inactivo">Inactivo</option>
+                        <option value="Finalizado">Finalizado</option>
                     </select>
                 </p>
             </div>
@@ -41,28 +62,14 @@
             </div>
             <div class="data-valor1">
                 <p class="description">Piso Fin: </p>
-                <p><input type="text" name="piso_fin" value="" required pattern="[0-9]+"
-                        title="Ingrese solo números"></p>
+                <p><input type="text" name="piso_fin" value="" required pattern="[0-9]+" title="Ingrese solo números">
+                </p>
             </div>
             <div class="data-valor1">
                 <p class="description">Cantidad Ingreso: </p>
                 <p><input type="text" name="cantidad_ingreso" value="" required pattern="[0-9]+"
                         title="Ingrese solo números"></p>
             </div>
-            <div class="data-valor1">
-                <p class="description">Registrado Por: </p>
-                <p><input type="text" name="resgistrado_por" value="" readonly></p>
-            </div>
-            <div class="data-valor1">
-                <p class="description">Pedido Correspondiente:</p>
-                <p>
-                    <select name="estado" required>
-                        <option value="">Seleccione...</option>
-                    </select>
-                </p>
-            </div>
-
-            {{!-- Registrar tambien El usuario que registra la incubacion "id_Persona" --}}
 
             <div class="data-boton">
                 <p class="boton"><button type="submit">Registrar</button></p>

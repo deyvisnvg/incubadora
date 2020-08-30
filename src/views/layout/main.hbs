@@ -24,7 +24,9 @@
     <link rel="stylesheet" href="/_recursos/css/font.css" type="text/css" />
     <link rel="stylesheet" href="/_recursos/css/app.css" type="text/css" />
     <link rel="stylesheet" href="/_recursos/js/sweetalert.css">
-    <link href="/_recursos/css/customs.css" rel="stylesheet">
+    <link rel="stylesheet" href="/_recursos/css/customs.css">
+    <!-- Buscador Interno de Select -->
+    <link rel="stylesheet" href="/css/select2.min.css">
 
     <!-- Menú -->
     <link rel="stylesheet" href="/css/fonts.css">
@@ -37,11 +39,12 @@
     <link rel="stylesheet" href="/css/registro.css">
     <!-- Perfil -->
     <link rel="stylesheet" href="/css/perfil.css">
+    <!-- Pedido -->
+    <link rel="stylesheet" href="/css/pedido.css">
     <!-- messages -->
     <link rel="stylesheet" href="/css/message.css">
     <!-- pagination -->
     <link rel="stylesheet" href="/css/pagination.css">
-
 </head>
 
 
@@ -122,7 +125,7 @@
     <!-- eventos de Incubadora -->
     <script src="/js/listIncubadora.js"></script>
 
-    <!-- DataTables Paginación y busqueda Automático-->
+    <!-- DataTables Paginación y busqueda Automático -->
     <script>
         $(function () {
             $('#example1').DataTable()
@@ -130,6 +133,21 @@
     </script>
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/pagination.js"></script>
+
+    <!-- Buscador Interno de Select -->
+    <script src="/js/select2.min.js"></script>
+    <script>
+        $(function () {
+            $('#selectBuscador').select2();
+        })
+
+        $(function () {
+            $('#selectBuscador2').select2();
+        })
+    </script>
+
+    <!-- messageFlotante -->
+    <script src="/js/messageFlotante.js"></script>
 
 </body>
 

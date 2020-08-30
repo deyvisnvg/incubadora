@@ -1,0 +1,72 @@
+<section class="list-data">
+    <div class="state">DETALLE DEL PEDIDO</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+    <div class="list-cuerpo-pedido">
+        <div>REPRESENTANTE LEGAL</div>
+        <hr>
+        <div class="data-representante">
+            {{#each persona}}
+            <div class="n1">
+                <div class="n1-title">
+                    <p class="description">DNI </p>
+                    <p class="description">Cargo </p>
+                </div>
+                <div class="space">
+                    <p>: {{dni_persona}}</p>
+                    <p>: {{'representante.cargo'}}</p>
+                </div>
+            </div>
+            <div class="n2">
+                <div class="n2-title">
+                    <p class="description">Nombres y Apellidos </p>
+                    <p class="description">Empresa </p>
+                </div>
+                <div class="space">
+                    <p>: {{nombres}} {{apellidos}} </p>
+                    <p>: {{'representante.empresa.nombre_empresa'}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <br><br>
+        <div>LISTADO DE PEDIDOS</div>
+        <hr>
+        <div class="data-table-pagination">
+            <table id="example1" class="data-table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th><p class="description">Identificador</p></th>
+                        <th><p class="description">Cantidad Pedido</p></th>
+                        <th><p class="description">Fecha de Pedido</p></th>
+                        <th><p class="description">Hora Pedido</p></th>
+                        <th><p class="description">Fecha de Entrega</p></th>
+                        <th><p class="description">Estado</p></th>
+                        <th><p class="description">Editar </p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each pedido}}
+                    <tr>
+                        <td><p class="description">{{id_pedido}}</p></td>
+                        <td><p class="description">{{cantidad}}</p></td>
+                        <td><p class="description">{{fecha_pedido}}</p></td>
+                        <td><p class="description">{{hora_pedido}}</p></td>
+                        <td><p class="description">{{fecha_entrega}}</p></td>
+                        <td><div class="description stated">{{estado}}<div hidden>{{ estado }}</div></div></td>
+                        <td>
+                            <p class="description"><a href="/pedido/edit/{{id_pedido}}"><img
+                            src="/img/editar.png" alt="icon de Editar"></a></p>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

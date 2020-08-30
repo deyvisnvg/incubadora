@@ -6,7 +6,7 @@ const db = require('../lib/db');
 module.exports = function setupIncubadoraModel(config) {
     const sequelize = db(config);
 
-    return sequelize.define('incubadoras', {
+    return sequelize.define('incubadora', {
         id_incubadora: {
             type: Sequelize.INTEGER,
             primaryKey: true
@@ -21,6 +21,7 @@ module.exports = function setupIncubadoraModel(config) {
         }
     },
         {
-            timestamps: false // Esto es para que no tenga problemas con las fechas.
+            timestamps: false, // Esto es para que no tenga problemas con las fechas.
+            freezeTableName: true
         })
 }

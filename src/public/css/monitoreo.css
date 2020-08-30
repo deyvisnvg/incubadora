@@ -175,3 +175,10 @@ h2,h3,h4 {
 .sensor-data .data-one .valor {
     padding-left: 15px;
 }
+
+.message {
+    background: red;
+    color: white;
+    text-align: center;
+    margin: 20px 40px 0;
+}
