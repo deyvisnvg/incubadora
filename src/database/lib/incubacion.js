@@ -16,6 +16,9 @@ module.exports = (IncubacionModel, PedidoModel, IncubadoraModel) => {
 
         return await IncubacionModel.findAll({
             attributes: ['id_pedido', [sequelize.fn('count', sequelize.col('id_incubacion')), 'n_incubacion']],
+            where: {
+                estado: 'Activo'
+            },
             include: [{
                 attributes: ['id_pedido', 'cantidad', 'comentario', 'fecha_pedido', 'hora_pedido', 'fecha_entrega', 'estado'],
                 model: PedidoModel,

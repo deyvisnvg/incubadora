@@ -12,6 +12,9 @@ module.exports = (PedidoModel, PersonaModel, UsuarioModel) => {
 
         return await PedidoModel.findAll({
             attributes: ['id_persona', [sequelize.fn('count', sequelize.col('id_pedido')), 'n_pedidos']],
+            where: {
+                estado: 'Activo'
+            },
             include: [{
                 attributes: ['dni_persona', 'nombres', 'apellidos'],
                 model: PersonaModel,

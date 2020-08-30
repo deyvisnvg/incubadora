@@ -1,3 +1,11 @@
+::-webkit-scrollbar{ /* Permiter poner transparente un scroll*/
+    width: 0px;
+}
+
+::-webkit-scrollbar-track-piece{  /* Permiter poner transparente un scroll*/
+    background-color: transparent;
+}
+
 h2,h3,h4 {
     margin: 0;
 }
@@ -97,7 +105,7 @@ h2,h3,h4 {
     width: 77vw;
     background: rgba(3, 5, 19, 0.5);
     position: fixed;
-    top: -300px;
+    top: -900px;
     z-index: 1;
     display: flex;
     align-items: center;
@@ -115,6 +123,8 @@ h2,h3,h4 {
     color: white;
     width: 450px;
     padding: 15px 25px 25px;
+    overflow-y: scroll;
+    height: 520px;
 }
 
 .container-sensorRealTime .iconzoom-two {
