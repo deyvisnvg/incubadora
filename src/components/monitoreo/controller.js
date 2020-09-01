@@ -72,21 +72,10 @@ module.exports = {
 
             socket.io.emit("sensores", datos)
 
-            // function insertar() {
-            //     return new Promise(async (resolve, reject) => {
-            //         try {
-            //             // await DataSensor.addDataSensorTemp(sensorTemp).catch(err => handleError(err));
-            //             // await DataSensor.addDataSensorHum(sensorHumed).catch(err => handleError(err));
-            //         } catch (error) {
-            //             console.log("error al inserta data sensores");
-            //         }
-            //     })
-            // }
-
             setInterval(async () => {
                 await DataSensor.addDataSensorTemp(sensorTemp).catch(err => handleError(err));
                 await DataSensor.addDataSensorHum(sensorHumed).catch(err => handleError(err));
-            }, 50000);
+            }, 60000);
 
             resolve();
         })
