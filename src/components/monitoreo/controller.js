@@ -72,7 +72,7 @@ module.exports = {
 
             socket.io.emit("sensores", datos)
 
-            setInterval(async () => {
+            setTimeout(async () => {
                 await DataSensor.addDataSensorTemp(sensorTemp).catch(err => handleError(err));
                 await DataSensor.addDataSensorHum(sensorHumed).catch(err => handleError(err));
             }, 60000);
