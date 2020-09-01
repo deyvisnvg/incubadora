@@ -124,9 +124,6 @@ switch (modulo.value) {
                                             </a>
                                             <ul class="nav nav-sub dk" style="display: none;">
                                                 <li ui-sref-active="active">
-                                                    <a href="/sensores"><span class="margen"> Nuevo Sensor</span></a>
-                                                </li>
-                                                <li ui-sref-active="active">
                                                     <a href="/sensores/tipoSensor"><span class="margen"> Tipo de Sensor</span></a>
                                                 </li>
                                             </ul>
@@ -136,17 +133,14 @@ switch (modulo.value) {
                                         <li>
                                             <a href class="auto">
                                                 <i class="icon-bookmarks"></i>
-                                                <span class="font-bold" translate="aside.nav.Mantenimiento">Incubadora</span>
+                                                <span class="font-bold" translate="aside.nav.Mantenimiento">Configuración</span>
                                             </a>
                                             <ul class="nav nav-sub dk" style="display: none;">
                                                 <li ui-sref-active="active">
-                                                    <a href="/incubadora"><span class="margen"> Nueva Incubadora</span></a>
+                                                    <a href="/incubadora"><span class="margen"> Incubadora</span></a>
                                                 </li>
                                                 <li ui-sref-active="active">
-                                                    <a href="/incubadora/incubacion"><span class="margen"> Incubación</span></a>
-                                                </li>
-                                                <li ui-sref-active="active">
-                                                    <a href="/incubadora/incidencia"><span class="margen"> Incidencias</span></a>
+                                                    <a href="/sensores"><span class="margen"> Nuevo Sensor</span></a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -160,6 +154,9 @@ switch (modulo.value) {
                                             <ul class="nav nav-sub dk" style="display: none;">
                                                 <li ui-sref-active="active">
                                                     <a href="/pedido"><span class="margen"> Nuevo Pedido</span></a>
+                                                </li>
+                                                <li ui-sref-active="active">
+                                                    <a href="/incubadora/incubacion"><span class="margen"> Incubación</span></a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -189,6 +186,9 @@ switch (modulo.value) {
                                         <span class="font-bold" translate="aside.nav.Mantenimiento">GESTION DE REPORTES</span>
                                     </a>
                                     <ul class="nav nav-sub dk">
+                                        <li ui-sref-active="active">
+                                            <a href="/incubadora/incidencia"><span class="margen"> Incidencias</span></a>
+                                        </li>
                                         <li ui-sref-active="active">
                                             <a><span>Cantidad de Sensores</span></a>
                                         </li>
