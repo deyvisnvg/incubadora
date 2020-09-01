@@ -83,9 +83,9 @@ module.exports = {
 
     dataMonitoreo: Incubacion => {
         return new Promise(async (resolve, reject) => {
-            let message = {
-                mensaje: "No hay Incubaciones Activas!"
-            }
+            // let message = {
+            //     mensaje: "No hay Incubaciones Activas!"
+            // }
             const incubacion = await Incubacion.findIncubacionByIncubadoraName().catch(err => handleError(err));
 
             try {
@@ -98,12 +98,13 @@ module.exports = {
                     incubacion[i].dia_incubacion = hora_restante;
                 }
 
-                if (incubacion.length < 1) {
-                    incubacion.push(message)
-                    resolve(incubacion);
-                } else {
-                    resolve(incubacion);
-                }
+                // if (incubacion.length < 1) {
+                //     incubacion.push(message)
+                //     resolve(incubacion);
+                // } else {
+                //     resolve(incubacion);
+                // }
+                resolve(incubacion);
 
             } catch (error) {
                 reject('[Error!]: No se pudo obtener los datos para el registro incubacion');

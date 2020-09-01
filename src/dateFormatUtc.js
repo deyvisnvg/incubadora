@@ -33,4 +33,15 @@ formatDate.dateFormatYMD_add = () => {
     return fecha;
 }
 
+formatDate.dateFormatYMD_add2 = () => {
+    // var dateFormat = 'YYYY-MM-DD HH:mm:ss';
+    var dateFormat = 'YYYY-MM-DD';
+    var dateUtc = moment().utcOffset("-05:00");
+
+    let fecha = dateUtc.add(25, 'days');
+    fecha = fecha.format(dateFormat);
+
+    return fecha;
+}
+
 module.exports = formatDate;
