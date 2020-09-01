@@ -2940,6 +2940,10 @@ fieldset[disabled] .i-checks input + i:before {
   background-color: #2e3344;
 }
 
+.bg-dark .margensub {
+  margin-left: 26px;
+}
+
 .bg-dark.dker,
 .bg-dark .dker {
   background-color: #232735;

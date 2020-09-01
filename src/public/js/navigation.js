@@ -116,19 +116,7 @@ switch (modulo.value) {
                                             </ul>
                                         </li>
                                     </ul>
-                                    <ul class="nav nav-sub dk">
-                                        <li>
-                                            <a href class="auto">
-                                                <i class="icon-bookmarks"></i>
-                                                <span class="font-bold" translate="aside.nav.Mantenimiento">Sesores</span>
-                                            </a>
-                                            <ul class="nav nav-sub dk" style="display: none;">
-                                                <li ui-sref-active="active">
-                                                    <a href="/sensores/tipoSensor"><span class="margen"> Tipo de Sensor</span></a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    
                                     <ul class="nav nav-sub dk">
                                         <li>
                                             <a href class="auto">
@@ -139,9 +127,23 @@ switch (modulo.value) {
                                                 <li ui-sref-active="active">
                                                     <a href="/incubadora"><span class="margen"> Incubadora</span></a>
                                                 </li>
-                                                <li ui-sref-active="active">
-                                                    <a href="/sensores"><span class="margen"> Nuevo Sensor</span></a>
-                                                </li>
+                                                <ul class="nav nav-sub dk margensub">
+                                                    <li>
+                                                        <a href class="auto">
+                                                            <i class="icon-bookmarks"></i>
+                                                            <span class="font-bold" translate="aside.nav.Mantenimiento">Sesores</span>
+                                                        </a>
+                                                        <ul class="nav nav-sub dk" style="display: none;">
+                                                            <li ui-sref-active="active">
+                                                                <a href="/sensores"><span class="margen"> Nuevo Sensor</span></a>
+                                                            </li>
+                                                            <li ui-sref-active="active">
+                                                                <a href="/sensores/tipoSensor"><span class="margen"> Tipo de Sensor</span></a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+
                                             </ul>
                                         </li>
                                     </ul>
