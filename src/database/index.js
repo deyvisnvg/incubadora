@@ -10,6 +10,7 @@ const setupEmpresaModel = require('./models/empresa')
 const setupRepresentanteModel = require('./models/representante')
 const setupPedidoModel = require('./models/pedido')
 const setupIncubacionModel = require('./models/incubacion')
+const setupDataSensorModel = require('./models/data_sensor')
 
 const setupUsuario = require('./lib/usuario');
 const setupPersona = require('./lib/persona');
@@ -20,6 +21,7 @@ const setupEmpresa = require('./lib/empresa');
 const setupRepresentante = require('./lib/representante');
 const setupPedido = require('./lib/pedido');
 const setupIncubacion = require('./lib/incubacion');
+const setupDataSensor = require('./lib/data_sensor');
 
 module.exports = async config => {
 
@@ -33,6 +35,7 @@ module.exports = async config => {
     const RepresentanteModel = setupRepresentanteModel(config);
     const PedidoModel = setupPedidoModel(config);
     const IncubacionModel = setupIncubacionModel(config);
+    const DataSensorModel = setupDataSensorModel(config);
     
     //--------------------------- Persona ---------------------------//
     UsuarioModel.hasOne(PersonaModel, { foreignKey: 'id_usuario', sourceKey: 'id_usuario' }) // Un "Usuario" "Tiene un" "Persona"
@@ -75,6 +78,7 @@ module.exports = async config => {
     const Empresa = setupEmpresa(EmpresaModel);
     const Pedido = setupPedido(PedidoModel, PersonaModel, UsuarioModel);
     const Incubacion = setupIncubacion(IncubacionModel, PedidoModel, IncubadoraModel);
+    const DataSensor = setupDataSensor(DataSensorModel);
 
     return {
         Usuario,
@@ -85,6 +89,7 @@ module.exports = async config => {
         Sensor,
         Empresa,
         Pedido,
-        Incubacion
+        Incubacion,
+        DataSensor
     }
 }

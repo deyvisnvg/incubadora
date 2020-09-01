@@ -51,7 +51,7 @@ module.exports = {
                 data.dataIncubadora = incubadora;
                 data.dataPedido = pedido;
 
-                console.log(data);
+                // console.log(data);
                 resolve(data);
 
             } catch (error) {
@@ -77,7 +77,7 @@ module.exports = {
                 id_incubadora: body.incubadora
             }
 
-            console.log(newIncubacion);
+            // console.log(newIncubacion);
 
             await Incubacion.addIncubacion(newIncubacion).catch(err => handleError(err));
             resolve();
@@ -93,7 +93,7 @@ module.exports = {
             try {
                 data.dataIncubacion = incubacion;
 
-                console.log(data);
+                // console.log(data);
                 resolve(data);
 
             } catch (error) {
@@ -112,7 +112,7 @@ module.exports = {
                 data.dataIncubacion = incubacion;
                 data.dataPedido = pedido;
 
-                console.log(data);
+                // console.log(data);
                 resolve(data);
 
             } catch (error) {

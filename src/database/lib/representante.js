@@ -9,11 +9,11 @@ module.exports = (RepresentanteModel, PersonaModel, EmpresaModel, UsuarioModel) 
       dni_persona: data.dni_persona,
       nombres: data.nombres,
       apellidos: data.apellidos,
-      fecha_nacimiento: "2020-01-01",
-      genero: "",
-      direccion: "",
-      celular: "",
-      email: "",
+      fecha_nacimiento: data.fecha_nacimiento,
+      genero: data.genero,
+      direccion: data.direccion,
+      celular: data.celular,
+      email: data.email,
       id_usuario: data.id_usuario
     }
 

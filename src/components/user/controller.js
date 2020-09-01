@@ -58,7 +58,7 @@ module.exports = {
                 nameFoto = user.foto;
             }
 
-            console.log(user);
+            // console.log(user);
 
             const dataPersona = {
                 nombres: user.nombres,
@@ -151,60 +151,46 @@ module.exports = {
     listRepresentante: Representante => {
         return new Promise(async (resolve, reject) => {
             const dataRepre = await Representante.findRepresentanteAll().catch(handleError);
-            console.log(dataRepre)
+            // console.log(dataRepre)
             resolve(dataRepre);
         })
     },
 
     addRepresentante: (body, Usuario, Representante) => {
         return new Promise(async (resolve, reject) => {
-            let id_persona, id_usuario, id_representante, userRetorno;
-
-            if (body.password !== body.password2) {
-                reject("Las contraseñas no coinciden")
-                return false
-            }
+            let id_usuario, userRetorno;
 
             const user = await Usuario.findUsuarioAll().catch(err => handleError(err));
 
             for (let i in user) {
                 let nameUser = user[i].usuario;
 
-                if (nameUser == body.usuario) {
+                if (nameUser == body.dni_persona) {
                     reject("El usuario ya existe, ingrese otra!");
                     return false;
                 }
-
             }
 
             if (!body.id_usuario) {
                 id_usuario = nanoid();
+                body.id_usuario = id_usuario;
             }
 
             const newUser = {
                 id_usuario,
-                usuario: body.usuario,
+                usuario: body.dni_persona,
                 modulo: body.modulo,
-                password: await helpers.encryptPassword(body.password),
-            }
-
-            const newData = {
-                id_usuario,
-                nombres: body.nombre,
-                apellidos: body.apellido,
-                dni_persona: body.dni,
-                cargo: body.cargo,
-                id_empresa: body.id_empresa
+                password: await helpers.encryptPassword(body.dni_persona),
             }
 
             if (!body.id_persona) {
-                newData.id_persona = nanoid();
+                body.id_persona = nanoid();
             }
 
-            userRetorno = await Usuario.addUser(newUser).catch(handleError);
+            userRetorno = await Usuario.addUser(newUser).catch(err => handleError(err));
 
             if (userRetorno) {
-                await Representante.addUserRepresentante(newData).catch(handleError);
+                await Representante.addUserRepresentante(body).catch(err => handleError(err));
                 resolve();
             }
         })

@@ -12,7 +12,7 @@ module.exports = {
                 id_tipoSensor: body.tipo_sensor,
             }
 
-            console.log(newSensor);
+            // console.log(newSensor);
 
             await Sensor.addSensor(newSensor).catch(handleError);
             resolve();
@@ -24,7 +24,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             const sensor = await Sensor.findSensorAll().catch(err => handleError(err));
 
-            console.log(sensor);
+            // console.log(sensor);
             resolve(sensor);
         })
     },
@@ -47,7 +47,7 @@ module.exports = {
             data.dataIncubadora = incubadora;
             data.dataTipoSensor = dataTipoSensor;
 
-            console.log(data);
+            // console.log(data);
             resolve(data);
         })
     },
@@ -62,7 +62,7 @@ module.exports = {
                 ambiente: body.ambiente,
             }
 
-            console.log(newTipoSensor);
+            // console.log(newTipoSensor);
 
             await TipoSensor.addtipoSensor(newTipoSensor).catch(handleError);
             resolve();
@@ -85,7 +85,7 @@ module.exports = {
                 return dataTipoSensor;
             })
 
-            console.log(data);
+            // console.log(data);
             resolve(data);
         })
     },

@@ -1,11 +1,10 @@
 const { socket } = require('../../socket');
 const { handleError } = require('../../error');
-const { dateFormatYMD } = require('../../dateFormatUtc');
-const incubadora = require('../../database/models/incubadora');
+const { dateFormatYMD, dateFormatHms } = require('../../dateFormatUtc');
 
 module.exports = {
 
-    recivedDataSensor: (data, Sensor) => {
+    recivedDataSensor: (data, Sensor, DataSensor) => {
         return new Promise(async (resolve, reject) => {
 
             let sensorTemp = null;
@@ -43,10 +42,14 @@ module.exports = {
             // =====================================================================================
             for (const i in sensorTemp) {
                 sensorTemp[i].valor = temperatura[i]
+                sensorTemp[i].fecha = dateFormatYMD();
+                sensorTemp[i].hora = dateFormatHms();
             }
 
             for (const i in sensorHumed) {
                 sensorHumed[i].valor = humedad[i]
+                sensorHumed[i].fecha = dateFormatYMD();
+                sensorHumed[i].hora = dateFormatHms();
             }
 
             promedios.push(promedio);
@@ -68,6 +71,22 @@ module.exports = {
             console.log(datos)
 
             socket.io.emit("sensores", datos)
+
+            // function insertar() {
+            //     return new Promise(async (resolve, reject) => {
+            //         try {
+            //             // await DataSensor.addDataSensorTemp(sensorTemp).catch(err => handleError(err));
+            //             // await DataSensor.addDataSensorHum(sensorHumed).catch(err => handleError(err));
+            //         } catch (error) {
+            //             console.log("error al inserta data sensores");
+            //         }
+            //     })
+            // }
+
+            setInterval(async () => {
+                await DataSensor.addDataSensorTemp(sensorTemp).catch(err => handleError(err));
+                await DataSensor.addDataSensorHum(sensorHumed).catch(err => handleError(err));
+            }, 50000);
 
             resolve();
         })

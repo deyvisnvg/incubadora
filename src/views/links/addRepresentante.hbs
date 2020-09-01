@@ -21,34 +21,48 @@
                         title="Ingrese solo letras Mayúsculas y minúsculas"></p>
             </div>
             <div class="data-valor1">
+                <p class="description">DNI: </p>
+                <p><input type="text" name="dni_persona" value="" required pattern="[0-9]+" maxlength="8"
+                        title="Ingrese solo números sin espacios"></p>
+            </div>
+            <div class="data-valor1">
                 <p class="description">Nombres: </p>
-                <p><input type="text" name="nombre" value="" required pattern="[A-Z a-z]+"
+                <p><input type="text" name="nombres" value="" required pattern="[A-Z a-z]+"
                         title="Ingrese solo letras Mayúsculas y minúsculas"></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Apellidos: </p>
-                <p><input type="text" name="apellido" value="" required pattern="[A-Z a-z]+"
+                <p><input type="text" name="apellidos" value="" required pattern="[A-Z a-z]+"
                         title="Ingrese solo letras Mayúsculas y minúsculas"></p>
             </div>
             <div class="data-valor1">
-                <p class="description">DNI: </p>
-                <p><input type="text" name="dni" value="" required pattern="[0-9]+"
-                        maxlength="8" title="Ingrese solo números sin espacios"></p>
+                <p class="description">Fecha Nacimiento: </p>
+                <p><input type="date" name="fecha_nacimiento" value="{{data.fecha_ingreso}}" required></p>
             </div>
-            <div><hr></div>
             <div class="data-valor1">
-                <p class="description">Usuario: </p>
-                <p><input type="text" name="usuario" value="" required pattern="[A-Za-z0-9]+"
-                        title="Ingrese solo letras Mayúsculas, minúsculas y números sin espacios"></p>
+                <p class="description">Genero: </p>
+                <p>
+                    <select name="genero" required>
+                        <option value="">Seleccione...</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </p>
             </div>
-            <div class="data-valor2">
-                <p class="description">Contraseña: </p>
-                <p><input type="password" name="password" value="" required></p>
+             <div class="data-valor1">
+                <p class="description">Dirección: </p>
+                <p><input type="text" name="direccion" value="" required pattern="[A-Za-z 0-9]+" title="Ingrese solo letras Mayúsculas, minúsculas y números"></p>
             </div>
-            <div class="data-valor3">
-                <p class="description">Confirmar Contraseña: </p>
-                <p><input type="password" name="password2" value="" required></p>
+            <div class="data-valor1">
+                <p class="description">Celular: </p>
+                <p><input type="text" name="celular" value="" required pattern="[0-9]+"
+                        maxlength="9" title="Ingrese solo números sin espacios"></p>
             </div>
+            <div class="data-valor1">
+                <p class="description">E-mail: </p>
+                <p><input type="email" name="email" value="" required></p>
+            </div>
+
 
             <div class="data-valor4">
                 <p class="description">Tipo de usuario:</p>

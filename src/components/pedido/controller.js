@@ -38,7 +38,7 @@ module.exports = {
                 id_persona: body.representante
             }
 
-            console.log(newPedido);
+            // console.log(newPedido);
 
             await Pedido.addPedido(newPedido).catch(err => handleError(err));
             resolve();
@@ -50,7 +50,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             const dataPedido = await Pedido.findPedidoAll().catch(err => handleError(err));
 
-            console.log(dataPedido);
+            // console.log(dataPedido);
             resolve(dataPedido);
         })
     },
@@ -65,7 +65,7 @@ module.exports = {
                 data.dataPersona = persona;
                 data.dataPedido = pedido;
 
-                console.log(data);
+                // console.log(data);
                 resolve(data);
 
             } catch (error) {
