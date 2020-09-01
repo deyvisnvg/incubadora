@@ -116,7 +116,22 @@ switch (modulo.value) {
                                             </ul>
                                         </li>
                                     </ul>
-                                    
+                                    <ul class="nav nav-sub dk">
+                                        <li>
+                                            <a href class="auto">
+                                                <i class="icon-bookmarks"></i>
+                                                <span class="font-bold" translate="aside.nav.Mantenimiento">Pedidos</span>
+                                            </a>
+                                            <ul class="nav nav-sub dk" style="display: none;">
+                                                <li ui-sref-active="active">
+                                                    <a href="/pedido"><span class="margen"> Nuevo Pedido</span></a>
+                                                </li>
+                                                <li ui-sref-active="active">
+                                                    <a href="/incubadora/incubacion"><span class="margen"> Incubación</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>                                   
                                     <ul class="nav nav-sub dk">
                                         <li>
                                             <a href class="auto">
@@ -130,7 +145,7 @@ switch (modulo.value) {
                                                 <ul class="nav nav-sub dk margensub">
                                                     <li>
                                                         <a href class="auto">
-                                                            <i class="icon-bookmarks"></i>
+                                                            <i class="icon-radio-unchecked"></i>
                                                             <span class="font-bold" translate="aside.nav.Mantenimiento">Sesores</span>
                                                         </a>
                                                         <ul class="nav nav-sub dk" style="display: none;">
@@ -147,23 +162,6 @@ switch (modulo.value) {
                                             </ul>
                                         </li>
                                     </ul>
-                                    <ul class="nav nav-sub dk">
-                                        <li>
-                                            <a href class="auto">
-                                                <i class="icon-bookmarks"></i>
-                                                <span class="font-bold" translate="aside.nav.Mantenimiento">Pedidos</span>
-                                            </a>
-                                            <ul class="nav nav-sub dk" style="display: none;">
-                                                <li ui-sref-active="active">
-                                                    <a href="/pedido"><span class="margen"> Nuevo Pedido</span></a>
-                                                </li>
-                                                <li ui-sref-active="active">
-                                                    <a href="/incubadora/incubacion"><span class="margen"> Incubación</span></a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    
                                 </li>
                             </ul>
 
