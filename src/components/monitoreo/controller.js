@@ -1,6 +1,6 @@
 const { socket } = require('../../socket');
 const { handleError } = require('../../error');
-const { dateFormatYMD, dateFormatHms } = require('../../dateFormatUtc');
+const { dateFormatYMD, dateFormatHms, dateFormatDMY } = require('../../dateFormatUtc');
 
 module.exports = {
 
@@ -96,6 +96,8 @@ module.exports = {
                     let hora_restante = (fecha_salida - fecha_actual) / (1000 * 60 * 60 * 24);
 
                     incubacion[i].dia_incubacion = hora_restante;
+                    incubacion[i].fecha_ingreso = dateFormatDMY(incubacion[i].fecha_ingreso);
+                    incubacion[i].fecha_salida = dateFormatDMY(incubacion[i].fecha_salida);
                 }
 
                 // if (incubacion.length < 1) {
@@ -107,7 +109,7 @@ module.exports = {
                 resolve(incubacion);
 
             } catch (error) {
-                reject('[Error!]: No se pudo obtener los datos para el registro incubacion');
+                reject('[Error!]: No se pudo obtener los datos para el registro incubacion' + error);
             }
         })
     }

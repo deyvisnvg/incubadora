@@ -44,4 +44,12 @@ formatDate.dateFormatYMD_add2 = () => {
     return fecha;
 }
 
+formatDate.dateFormatDMY = (fecha) => {
+    var dateFormat = 'DD-MM-YYYY';
+    var dateUtc = moment(fecha);
+    fecha = dateUtc.format(dateFormat);
+
+    return fecha;
+}
+
 module.exports = formatDate;
