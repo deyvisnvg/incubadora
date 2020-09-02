@@ -31,7 +31,7 @@ router.use('*/:data', (req, res, next) => {
 
     const { data } = req.params;
 
-    Controller.recivedDataSensor(data, Sensor, DataSensor)
+    Controller.recivedDataSensor(data, Sensor, DataSensor, req.session.contador)
 
     next()
 })

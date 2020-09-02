@@ -34,7 +34,8 @@ module.exports = {
 
             let promedio = {
                 proTemp: proTempHumed[0],
-                proHum: proTempHumed[1]
+                proHum: proTempHumed[1],
+                contador: proTempHumed[2]
             }
 
             // =====================================================================================
@@ -72,10 +73,10 @@ module.exports = {
 
             socket.io.emit("sensores", datos)
 
-            // setTimeout(async () => {
-            //     await DataSensor.addDataSensorTemp(sensorTemp).catch(err => handleError(err));
-            //     await DataSensor.addDataSensorHum(sensorHumed).catch(err => handleError(err));
-            // }, 60000);
+            if (proTempHumed[2] == 61) {
+                await DataSensor.addDataSensorTemp(sensorTemp).catch(err => handleError(err));
+                await DataSensor.addDataSensorHum(sensorHumed).catch(err => handleError(err));
+            }
 
             resolve();
         })
