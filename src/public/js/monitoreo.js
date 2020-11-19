@@ -8,6 +8,7 @@ const socketio = io();
 var estado = 0;
 var estado_data = 0;
 
+//============= Evento que Muestra la Data de Sensores =============//
 socketio.on("sensores", datos => {
     estado_data = estado_data + 1;
 
@@ -23,8 +24,8 @@ socketio.on("sensores", datos => {
     let contenedorTemp = sensorTemp.map(temperatura => {
         let data = `
         <div class="data-one temperatura">
-            <div> ${temperatura.nombre_sensor}: </div>
-            <div class="valor"> ${temperatura.valor} </div>
+        <div> ${temperatura.nombre_sensor}: </div>
+        <div class="valor"> ${temperatura.valor} </div>
         </div>`
 
         return data;
@@ -40,7 +41,6 @@ socketio.on("sensores", datos => {
         return data;
     })
 
-
     temperatura.innerHTML = contenedorTemp.join("");
     humedad.innerHTML = contenedorHum.join("");
     proTemperatura.innerHTML = proTemp;
@@ -48,18 +48,18 @@ socketio.on("sensores", datos => {
 
 })
 
-
+//============= Valida si la Data es True =============//
 setInterval(() => {
     if (estado === estado_data) {
         temperatura.innerHTML = `
-            <div class="data-one temperatura">
-                <div> Sensor Desconectado </div>
-            </div>`;
+        <div class="data-one temperatura">
+        <div> Sensor Desconectado </div>
+        </div>`;
 
         humedad.innerHTML = `
-            <div class="data-one humedad">
-                <div> Sensor Desconectado </div>
-            </div>`;
+        <div class="data-one humedad">
+        <div> Sensor Desconectado </div>
+        </div>`;
 
         proTemperatura.innerHTML = 0;
         proHumedad.innerHTML = 0;
@@ -69,7 +69,7 @@ setInterval(() => {
 
 }, 5000);
 
-
+//============= Funcion Query que Permite Mostrar y Cerrar Ventana de Sensores =============//
 $(function () {
     $('.iconzoom').click(() => {
 

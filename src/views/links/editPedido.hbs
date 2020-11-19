@@ -1,0 +1,96 @@
+<section class="list-data">
+    <div class="state">EDITAR PEDIDO</div>
+    {{#if message }}
+    <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+    <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+    <div class="list-cuerpo-pedido">
+        <div>REPRESENTANTE LEGAL</div>
+        <hr>
+        <div class="data-representante">
+            {{#with data.representante}}
+            <div class="n1">
+                <div class="n1-title">
+                    <p class="description">DNI </p>
+                    <p class="description">Cargo </p>
+                </div>
+                <div class="space">
+                    <p>: {{persona.dni_persona}}</p>
+                    <p>: {{cargo}}</p>
+                </div>
+            </div>
+            <div class="n2">
+                <div class="n2-title">
+                    <p class="description">Nombres y Apellidos </p>
+                    <p class="description">Empresa </p>
+                </div>
+                <div class="space">
+                    <p>: {{persona.nombres}} {{persona.apellidos}} </p>
+                    <p>: {{nombre_empresa}}</p>
+                </div>
+            </div>
+            {{/with}}
+        </div>
+        <br><br>
+        <div>PEDIDO</div>
+        <hr>
+        <div class="data">
+            {{#with data.pedido}}
+            <form action="/pedido/update/{{id_pedido}}" method="post">
+                <div class="data-fila">
+                    <div>
+                        <p class="description">Identificador: </p>
+                        <p>
+                            <input type="hidden" id="valor" value="pedido">
+                            <input type="text" name="identificador" value="{{id_pedido}}" readonly>
+                        </p>
+                    </div>
+                    <div>
+                        <p class="description">Cantidad Pedido: </p>
+                        <p><input type="text" name="cantidad_pedido" value="{{cantidad}}" required pattern="[0-9]+"
+                                title="Ingrese solo números"></p>
+                    </div>
+                    <div>
+                        <p class="description">Hora Registrada: </p>
+                        <p><input type="time" name="hora_pedido" value="{{hora_pedido}}" required></p>
+                    </div>
+                </div>
+                <div class="data-fila">
+                    <div>
+                        <p class="description">Comentario: </p>
+                        <p><textarea name="comentario" id="" cols="23" rows="3">{{comentario}}</textarea></p>
+                    </div>
+                    <div>
+                        <p class="description">Fecha Registrada: </p>
+                        <p><input type="date" name="fecha_pedido" value="{{fecha_pedido}}" required></p>
+                    </div>
+                    <div>
+                        <p class="description">Fecha Entrega: </p>
+                        <p><input type="date" name="fecha_entrega" value="{{fecha_entrega}}" required></p>
+                    </div>
+                </div>
+                <div class="data-fila">
+                    <div>
+                        <p class="description">Estado:</p>
+                        <p>
+                            <select name="estado" required>
+                                <option value="{{estado}}" style="background: #9c9c9c; color: rgb(238, 245, 143)">
+                                    {{estado}}</option>
+                                <option value="Activo">Activo</option>
+                                <option value="Finalizado">Finalizado</option>
+                            </select>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="data-boton">
+                    <p class="boton"><button type="submit">Modificar</button></p>
+                </div>
+            </form>
+            {{/with}}
+        </div>
+    </div>
+</section>

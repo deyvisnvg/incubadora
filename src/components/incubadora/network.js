@@ -59,7 +59,35 @@ router.post('/add', (req, res) => {
         })
 })
 
-//------------------------------ incubacion ------------------------------//
+router.get('/edit/:id', (req, res) => {
+    const user = req.session.user;
+    const { id } = req.params;
+
+    Controller.editIncubadora(id, Incubadora)
+        .then(data => {
+            res.render('links/editIncubadora', { data, user });
+        })
+        .catch(err => {
+            console.log('[Error!]:', err.message);
+        })
+})
+
+router.post('/update/:id', (req, res) => {
+    const { id } = req.params;
+
+    Controller.updateIncubadora(id, req.body, Incubadora)
+        .then(() => {
+            req.session.success = "La Incubadora se ha modificado con exito";
+            res.redirect('/incubadora');
+        })
+        .catch(err => {
+            console.error('[Error!]:', err);
+            req.session.message = err;
+            res.redirect('/incubadora');
+        })
+})
+
+//------------------------------ incubación ------------------------------//
 
 router.get('/incubacion', secure.checkOwn, (req, res) => {
     const user = req.session.user;  // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
@@ -105,8 +133,8 @@ router.post('/incubacion/add', (req, res) => {
 router.get('/incubacion/view/:id', (req, res) => {
     const user = req.session.user;
     const { id } = req.params;
-
-    console.log(id);
+    req.session.success = "";
+    req.session.message = "";
 
     Controller.viewIncubacion(id, Incubacion, Pedido)
         .then(data => {
@@ -119,6 +147,39 @@ router.get('/incubacion/view/:id', (req, res) => {
         })
 })
 
+router.get('/incubacion/edit/:id', (req, res) => {
+    const user = req.session.user;
+    const { id } = req.params;
+
+    Controller.editIncubacion(id, Incubacion, Incubadora, Pedido)
+        .then(data => {
+            res.render('links/editIncubacion', { data, user });
+        })
+        .catch(err => {
+            console.log('[Error!]:', err.message);
+        })
+})
+
+router.post('/incubacion/update/:id', (req, res) => {
+    const { id } = req.params;
+    let dataId = id.split("&");
+
+    let ids = {
+        id_incubacion: dataId[0],
+        id_pedido: dataId[1]
+    }
+
+    Controller.updateIncubacion(ids.id_incubacion, req.body, Incubacion)
+        .then(() => {
+            req.session.success = "La incubación se ha modificado con exito";
+            res.redirect('/incubadora/incubacion/view/' + ids.id_pedido);
+        })
+        .catch(err => {
+            console.error('[Error!]:', err);
+            req.session.message = err;
+            res.redirect('/incubadora/incubacion/view/' + ids.id_pedido);
+        })
+})
 //------------------------------ incidencia ------------------------------//
 
 router.get('/incidencia', secure.checkOwn, (req, res) => {

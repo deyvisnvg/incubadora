@@ -26,6 +26,10 @@ module.exports = function setupIncubadoraModel(config) {
         ambiente: {
             type: Sequelize.DOUBLE,
             allowNull: false
+        },
+        estado: {
+            type: Sequelize.TEXT,
+            allowNull: false
         }
     },
         {

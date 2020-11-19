@@ -1,0 +1,29 @@
+<input type="hidden" name="modulo" id="moduloUser" value="{{user.modulo}}">
+
+<section class="registro-data">
+    <div class="state">EDITAR TIPO DE SENSOR</div>
+    <div class="data">
+        <form action="/sensores/tipoSensor/update/{{data.id_tipoSensor}}" method="post">
+            <div class="data-valor1">
+                <p class="description">Tipo Sensor: </p>
+                <p><input type="text" name="tipo_sensor" value="{{data.tipo_sensor}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Simbolo: </p>
+                <p><input type="text" name="simbolo" value="{{data.simbolo}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Limite: </p>
+                <p><input type="text" name="limite" value="{{data.limite}}"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Ambiente: </p>
+                <p><input type="text" name="ambiente" value="{{data.ambiente}}" required></p>
+            </div>
+
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Modificar</button></p>
+            </div>
+        </form>
+    </div>
+</section>

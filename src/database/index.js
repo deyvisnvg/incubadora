@@ -11,6 +11,7 @@ const setupRepresentanteModel = require('./models/representante')
 const setupPedidoModel = require('./models/pedido')
 const setupIncubacionModel = require('./models/incubacion')
 const setupDataSensorModel = require('./models/data_sensor')
+const setupRepresentanteEmpresaModel = require('./models/representante_empresa')
 
 const setupUsuario = require('./lib/usuario');
 const setupPersona = require('./lib/persona');
@@ -22,6 +23,7 @@ const setupRepresentante = require('./lib/representante');
 const setupPedido = require('./lib/pedido');
 const setupIncubacion = require('./lib/incubacion');
 const setupDataSensor = require('./lib/data_sensor');
+const setupRepresentanteEmpresa = require('./lib/representante_empresa');
 
 module.exports = async config => {
 
@@ -36,23 +38,35 @@ module.exports = async config => {
     const PedidoModel = setupPedidoModel(config);
     const IncubacionModel = setupIncubacionModel(config);
     const DataSensorModel = setupDataSensorModel(config);
+    const RepresentanteEmpresaModel = setupRepresentanteEmpresaModel(config);
     
     //--------------------------- Persona ---------------------------//
     UsuarioModel.hasOne(PersonaModel, { foreignKey: 'id_usuario', sourceKey: 'id_usuario' }) // Un "Usuario" "Tiene un" "Persona"
     PersonaModel.belongsTo(UsuarioModel, { foreignKey: 'id_usuario', sourceKey: 'id_usuario' }) // Una persona "Pertenece a " un "Usuario"
     
-    PersonaModel.hasMany(PedidoModel, { foreignKey: 'id_persona', sourceKey: 'id_persona' })
-    PedidoModel.belongsTo(PersonaModel, { foreignKey: 'id_persona', sourceKey: 'id_persona' })
-    
     //--------------------------- Representante ---------------------------//
-    PersonaModel.hasOne(RepresentanteModel, { foreignKey: 'id_persona', sourceKey: 'id_persona' })
-    RepresentanteModel.belongsTo(PersonaModel, { foreignKey: 'id_persona', sourceKey: 'id_persona' })
+    PersonaModel.hasOne(RepresentanteModel, { foreignKey: 'id_persona', sourceKey: 'dni_persona' })
+    RepresentanteModel.belongsTo(PersonaModel, { foreignKey: 'id_persona', sourceKey: 'dni_persona' })
 
-    EmpresaModel.hasMany(RepresentanteModel, { foreignKey: 'id_empresa', sourceKey: 'id_empresa' })
-    RepresentanteModel.belongsTo(EmpresaModel, { foreignKey: 'id_empresa', sourceKey: 'id_empresa' })
+    //--------------------------- Representante - Empresa ---------------------------//
+        // This creates a junction table `Representante_Empresa` with fields `idRepresentante` and `idEmpresa`, foreignKey: 'id_representante_empresa', sourceKey: 'id_representante', targetKey: 'ruc_empresa'
+    RepresentanteModel.belongsToMany(EmpresaModel, { through: RepresentanteEmpresaModel, foreignKey: 'id_representante', otherKey: 'id_empresa'});
+    EmpresaModel.belongsToMany(RepresentanteModel, { through: RepresentanteEmpresaModel, foreignKey: 'id_empresa', otherKey: 'id_representante'});
+    
+    RepresentanteModel.hasMany(RepresentanteEmpresaModel, { foreignKey: 'id_representante', sourceKey: 'id_representante' })
+    RepresentanteEmpresaModel.belongsTo(RepresentanteModel, { foreignKey: 'id_representante', sourceKey: 'id_representante' })
+
+    EmpresaModel.hasMany(RepresentanteEmpresaModel, { foreignKey: 'id_empresa', sourceKey: 'ruc_empresa' })
+    RepresentanteEmpresaModel.belongsTo(EmpresaModel, { foreignKey: 'id_empresa', sourceKey: 'ruc_empresa' })
+
+    //--------------------------- Representante_Empresa - Pedido ---------------------------//
+    RepresentanteEmpresaModel.hasMany(PedidoModel, { foreignKey: 'id_representante_empresa', sourceKey: 'id_representante_empresa' })
+    PedidoModel.belongsTo(RepresentanteEmpresaModel, { foreignKey: 'id_representante_empresa', sourceKey: 'id_representante_empresa' })
 
     //--------------------------- Incubadora ---------------------------//
+    // Se añade una clave id_incubadora a la tabla SensorModel
     IncubadoraModel.hasMany(SensorModel, { foreignKey: 'id_incubadora', sourceKey: 'id_incubadora' })
+    // Se añade una clave id_incubadora a la tabla SensorModel
     SensorModel.belongsTo(IncubadoraModel, { foreignKey: 'id_incubadora', sourceKey: 'id_incubadora' })
     
     //--------------------------- Sensores ---------------------------//
@@ -70,15 +84,16 @@ module.exports = async config => {
     await sequelize.authenticate() //Validamos que la base de datos esta bien configurada, para verificar si hay una conexion directa con la base de datos
 
     const Usuario = setupUsuario(UsuarioModel, PersonaModel);
-    const Persona = setupPersona(PersonaModel, UsuarioModel, RepresentanteModel, EmpresaModel);
+    const Persona = setupPersona(PersonaModel, UsuarioModel, RepresentanteModel, EmpresaModel, RepresentanteEmpresaModel);
     const Representante = setupRepresentante(RepresentanteModel, PersonaModel, EmpresaModel, UsuarioModel);
     const Incubadora = setupIncubadora(IncubadoraModel);
     const TipoSensor = setupTipoSensor(TipoSensorModel);
     const Sensor = setupSensor(SensorModel, TipoSensorModel, IncubadoraModel);
-    const Empresa = setupEmpresa(EmpresaModel);
-    const Pedido = setupPedido(PedidoModel, PersonaModel, UsuarioModel);
-    const Incubacion = setupIncubacion(IncubacionModel, PedidoModel, IncubadoraModel);
+    const Empresa = setupEmpresa(EmpresaModel, RepresentanteEmpresaModel);
+    const Pedido = setupPedido(PedidoModel, RepresentanteEmpresaModel, EmpresaModel, RepresentanteModel, PersonaModel);
+    const Incubacion = setupIncubacion(IncubacionModel, PedidoModel, IncubadoraModel, RepresentanteEmpresaModel, RepresentanteModel, PersonaModel, EmpresaModel);
     const DataSensor = setupDataSensor(DataSensorModel);
+    const RepresentanteEmpresa = setupRepresentanteEmpresa(RepresentanteEmpresaModel, EmpresaModel);
 
     return {
         Usuario,
@@ -90,6 +105,7 @@ module.exports = async config => {
         Empresa,
         Pedido,
         Incubacion,
-        DataSensor
+        DataSensor,
+        RepresentanteEmpresa
     }
 }

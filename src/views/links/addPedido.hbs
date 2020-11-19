@@ -45,14 +45,15 @@
             <div class="data-valor1">
                 <p class="description">Representante Legal: </p>
                 <p>
-                    <select id="selectBuscador" name="representante" required>
+                    <select id="selectBuscador" name="representante" onchange="showSelectedRepre()">
                         <option value="">Seleccione...</option>
                         {{#each data.representante}}
-                        <option value="{{'persona.id_persona'}}">{{'persona.nombres'}} {{'persona.apellidos'}}</option>
+                        <option value="{{'persona.representante.id_representante'}}">{{'persona.nombres'}} {{'persona.apellidos'}}</option>
                         {{/each}}
                     </select>
                 </p>
             </div>
+            <div class="data-valor1" id="empresa"></div>
 
             <div class="data-boton">
                 <p class="boton"><button type="submit">Registrar</button></p>

@@ -1,0 +1,54 @@
+<input type="hidden" name="modulo" id="moduloUser" value="{{user.modulo}}">
+
+<section class="registro-data">
+    <div class="state">EDITAR SENSOR</div>
+    <div class="data">
+        <form action="/sensores/update/{{data.sensor.id_sensor}}" method="post">
+            <div class="data-valor1">
+                <p class="description">Nombre de Sensor: </p>
+                <p><input type="text" name="nombre_sensor" value="{{data.sensor.nombre_sensor}}" required pattern="[A-Za-z0-9\s]+"
+                        title="Ingrese solo letras Mayúsculas, minúsculas y números"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Estado:</p>
+                <p>
+                    <select name="estado" required>
+                        <option value="{{data.sensor.estado}}" style="background: #9c9c9c; color: rgb(238, 245, 143)">{{data.sensor.estado}}</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Incubadora: </p>
+                <p>
+                    <select id="selectBuscador" name="incubadora" required>
+                        {{#with data.sensor}}
+                        <option value="{{'incubadora.id_incubadora'}}">{{'incubadora.nombre_incubadora'}}</option>
+                        {{/with}}
+                        {{#each data.dataIncubadora}}
+                        <option value="{{id_incubadora}}">{{nombre_incubadora}}</option>
+                        {{/each}}
+                    </select>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Tipo Sensor: </p>
+                <p>
+                    <select id="selectBuscador2" name="tipo_sensor" required>
+                        {{#with data.sensor}}
+                        <option value="{{'tipo_sensor.id_tipoSensor'}}">{{'tipo_sensor.tipo_sensor'}}</option>
+                        {{/with}}
+                        {{#each data.dataTipoSensor}}
+                        <option value="{{id_tipoSensor}}">{{tipo_sensor}}</option>
+                        {{/each}}
+                    </select>
+                </p>
+            </div>
+
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Modificar</button></p>
+            </div>
+        </form>
+    </div>
+</section>

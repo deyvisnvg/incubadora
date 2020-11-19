@@ -1,26 +1,71 @@
-<section class="registro-perfil">
-    <figure class="foto-perfil">
-        <img src="{{ perfil.foto }}" alt="">
-    </figure>
+<input type="hidden" name="modulo" id="moduloEditUser" value="{{usuario.modulo}}">
+<section class="registro-data">
+    <div class="state">PERFIL</div>
+    {{#if message }}
+    <div class="messageError">{{ message }}</div>
+    {{/if}}
 
-    <div class="name-perfil">
-        <p class="description-perfil">{{ perfil.nombres }} {{ perfil.apellidos }}</p>
-        <p class="boton"><a href="/perfil/edit/{{ perfil.id_persona }}">Editar Perfil</a></p>
-    </div>
+    {{#if success }}
+    <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+    <div class="data">
+        <form action="/perfil/update/{{perfil.dni_persona}}" method="post">
+            {{#with perfil}}
+            {{#if cargo }}
+            <div class="data-valor1">
+                <p class="description">Cargo: </p>
+                <input type="hidden" name="id_representante" value="{{'representante.id_representante'}}" required>
+                <p><input type="text" name="cargo" value="{{'representante.cargo'}}" required pattern="[A-Za-z\s]{3,30}"
+                        title="Ingrese solo letras Mayúsculas y minúsculas"></p>
+            </div>
+            {{/if}}
+            <div class="data-valor1">
+                <p class="description">DNI: </p>
+                <p><input type="text" name="dni" value="{{dni_persona}}" readonly pattern="[0-9]+" maxlength="8"
+                        title="Ingrese solo números sin espacios"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Nombres: </p>
+                <p><input type="text" name="nombres" value="{{nombres}}" required pattern="[A-Za-z\s]{3,30}"
+                        title="Ingrese solo letras Mayúsculas y minúsculas"></p>
+            </div>
+            <div class="data-valor2">
+                <p class="description">Apellidos: </p>
+                <p><input type="text" name="apellidos" value="{{apellidos}}" required pattern="[A-Za-z\s]{3,30}"
+                        title="Ingrese solo letras Mayúsculas y minúsculas"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Fecha Nacimiento: </p>
+                <p><input type="date" name="fecha_nacimiento" value="{{fecha_nacimiento}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Genero: </p>
+                <p>
+                    <select name="genero" required>
+                        <option value="{{genero}}" style="background: #9c9c9c; color: rgb(238, 245, 143)">{{genero}}
+                        </option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Dirección: </p>
+                <p><input type="text" name="direccion" value="{{direccion}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Celular: </p>
+                <p><input type="text" name="celular" value="{{celular}}" required pattern="[0-9]+" maxlength="9"
+                        title="Ingrese solo números sin espacios"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">E-mail: </p>
+                <p><input type="email" name="email" value="{{email}}" required></p>
+            </div>
+            {{/with}}
 
-    <div class="datas">
-        <form action="/perfil" method="post">
-            <div class="data-perfil1">
-                <p class="description-perfil">Edad: </p>
-                <p><input type="text" name="edad" value="{{ perfil.edad }} años" readonly></p>
-            </div>
-            <div class="data-perfil2">
-                <p class="description-perfil">E-mail: </p>
-                <p><input type="text" name="email" value="{{ perfil.email }}" readonly></p>
-            </div>
-            <div class="data-perfil3">
-                <p class="description-perfil">Fecha de nacimiento: </p>
-                <p><input type="date" name="fecha_nacimiento" value="{{ perfil.fecha_nacimiento }}" readonly></p>
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Modificar</button></p>
             </div>
         </form>
     </div>

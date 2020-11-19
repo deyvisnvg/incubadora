@@ -7,13 +7,10 @@ module.exports = function setupEmpresaModel(config) {
     const sequelize = db(config);
 
     return sequelize.define('empresa', {
-        id_empresa: {
-            type: Sequelize.INTEGER,
-            primaryKey: true
-        },
         ruc_empresa: {
             type: Sequelize.TEXT,
-            allowNull: false
+            primaryKey: true
+            // unique: false
         },
         nombre_empresa: {
             type: Sequelize.TEXT,

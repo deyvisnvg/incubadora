@@ -1,0 +1,69 @@
+<input type="hidden" name="modulo" id="moduloUser" value="{{user.modulo}}">
+
+<section class="registro-data">
+    <div class="state">EDITAR INCUBACIÓN</div>
+    <div class="data">
+        <form action="/incubadora/incubacion/update/{{data.incubacion.id_incubacion}}&{{data.incubacion.id_pedido}}" method="post">
+            <div class="data-valor1">
+                <p class="description">Identificador: </p>
+                <p>
+                    <input type="hidden" id="valor" value="incubacion">
+                    <input type="text" name="identificador" value="{{data.incubacion.id_incubacion}}" readonly>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Incubadora:</p>
+                <p>
+                    <select id="selectBuscador" name="incubadora" required>
+                        <option value="{{data.incubacion.incubadora.id_incubadora}}">{{data.incubacion.incubadora.nombre_incubadora}}</option>
+                        {{#each data.dataIncubadora}}
+                        <option value="{{id_incubadora}}">{{nombre_incubadora}}</option>
+                        {{/each}}
+                    </select>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Fecha Ingreso: </p>
+                <p><input type="date" name="fecha_ingreso" value="{{data.incubacion.fecha_ingreso}}" maxlength="2" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Fecha Salida: </p>
+                <p><input type="date" name="fecha_salida" value="{{data.incubacion.fecha_salida}}" maxlength="2" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Hora Ingreso </p>
+                <p><input type="time" name="hora_ingreso" value="{{data.incubacion.hora_ingreso}}" maxlength="3" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Estado:</p>
+                <p>
+                    <select name="estado" required>
+                        <option value="{{data.incubacion.estado}}" style="background: #9c9c9c; color: rgb(238, 245, 143)">{{data.incubacion.estado}}</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Finalizado">Finalizado</option>
+                    </select>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Piso Inicio: </p>
+                <p><input type="text" name="piso_inicio" value="{{data.incubacion.piso_inicio}}" required pattern="[0-9]+"
+                        title="Ingrese solo números"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Piso Fin: </p>
+                <p><input type="text" name="piso_fin" value="{{data.incubacion.piso_fin}}" required pattern="[0-9]+" title="Ingrese solo números">
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Cantidad Ingreso: </p>
+                <p><input type="text" name="cantidad_ingreso" value="{{data.incubacion.cantidad_ingreso}}" required pattern="[0-9]+"
+                        title="Ingrese solo números"></p>
+            </div>
+            {{!-- <input type="text" name="id_pedido" value="{{data.incubacion.id_pedido}}"> --}}
+
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Registrar</button></p>
+            </div>
+        </form>
+    </div>
+</section>

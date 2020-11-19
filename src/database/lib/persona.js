@@ -4,25 +4,31 @@ const Sequelize = require('sequelize');
 
 const Op = Sequelize.Op;
 
-module.exports = (PersonaModel, UsuarioModel, RepresentanteModel, EmpresaModel) => {
+module.exports = (PersonaModel, UsuarioModel, RepresentanteModel, EmpresaModel, RepresentanteEmpresaModel) => {
 
   async function addUserPersona(data) {
 
     const newPersona = {
-      id_persona: data.id_persona,
       dni_persona: data.dni_persona,
+      id_persona: data.id_persona,
       nombres: data.nombres,
       apellidos: data.apellidos,
-      fecha_nacimiento: "2020-01-01",
-      genero: "Actualizar",
-      direccion: "Actualizar",
-      celular: "111111111",
-      email: "Actualizar@gmail.com",
+      fecha_nacimiento: data.fecha_nacimiento,
+      genero: data.genero,
+      direccion: data.direccion,
+      celular: data.celular,
+      email: data.email,
       id_usuario: data.id_usuario
     }
 
     return await PersonaModel.create(newPersona);
 
+  }
+
+  async function findPersonasAll() {
+    return await PersonaModel.findAll({
+      raw: true
+    });
   }
 
   async function findPersonaAll() {
@@ -48,91 +54,91 @@ module.exports = (PersonaModel, UsuarioModel, RepresentanteModel, EmpresaModel) 
     return persona;
   }
 
-  async function findByPersonaId(id_persona) {
+  async function findByPersonaId(dni_persona) {
     const persona = await PersonaModel.findAll({
-      attributes: ['id_persona', 'dni_persona', 'nombres', 'apellidos'],
+      attributes: ['dni_persona', 'nombres', 'apellidos'],
       where: {
-        id_persona
+        dni_persona
       },
       include: [
-        { // Con include hacemos los join o la relación con la tabla
+        {
           attributes: ['id_usuario', 'modulo'],
           model: UsuarioModel, // La tabla o modelo con quien voya a relacionarlo o hacer el join
         },
         {
           attributes: ['id_representante', 'cargo'],
-          model: RepresentanteModel, // La tabla o modelo con quien voya a relacionarlo o hacer el join
-          include: [{
-            attributes: ['nombre_empresa'],
-            model: EmpresaModel
-          }]
+          model: RepresentanteModel // La tabla o modelo con quien voya a relacionarlo o hacer el join
         }
       ],
       raw: true // Que los query sean de tipo row es decir que me devuelvan objetos simples, la información en JSON()
     });
 
-    // for (let i in persona) {
-    //   if (persona[i]['usuario.modulo'] == 'SuperAdministrador') {
-    //     persona[i]['usuario.modulo'] = 'Super Administrador'
-    //   }
-    // }
-
     return persona;
   }
 
-  // async function findByPersonaModulo() {
-  //   return PersonaModel.findAll({
-  //     // attributes: ['id_persona', 'nombres', 'apellidos', 'edad', 'fecha_nacimiento', 'id_usuario', ''], // Para seleccionar ese atributo específico que quiero retornar
-  //     // group: ['type'], // Lo agrupamos por type
-  //     include: [{ // Con include hacemos los join o la relación con la tabla
-  //       attributes: [],
-  //       model: UsuarioModel, // La tabla o modelo con quien voya a relacionarlo o hacer el join
-  //       where: { // Especificamos la uuid
-  //         modulo: {
-  //           [Op.notIn]: ['SuperAdministrador']
-  //         }
-  //       }
-  //     }],
-  //     raw: true // Que los query sean de tipo row es decir que me devuelvan objetos simples, la información en JSON()
-  //   })
-  // }
+  async function findRepresentanteEmpresaMonitoreo(id_usuario) {
+    const result = await PersonaModel.findAll({
+      attributes: ['dni_persona', 'id_usuario'],
+      where: {
+        id_usuario
+      },
+      include: [{
+        attributes: ['id_representante'],
+        model: RepresentanteModel,
+        include: [{
+          attributes: ['id_representante_empresa'],
+          model: RepresentanteEmpresaModel,
+          include: [{
+            attributes: ['ruc_empresa', 'nombre_empresa'],
+            model: EmpresaModel
+          }]
+        }]
+      }],
+      raw: true
+    })
+    return result;
+  }
 
-  // async function findPersonaIdUser(id_usuario) {
-  //   const result = await PersonaModel.findOne({
-  //     attributes: ['id_persona', 'nombres', 'apellidos', 'edad', 'email', 'fecha_nacimiento', 'foto'],
-  //     where: {
-  //       id_usuario
-  //     }
-  //   })
-  //   return result.toJSON();
-  // }
+  async function findPersonaByUserId(id_usuario) {
+    return PersonaModel.findOne({
+      where: {
+        id_usuario
+      },
+      include: [{
+        attributes: ['id_representante', 'cargo'],
+        model: RepresentanteModel,
+      }],
+      raw: true
+    })
+  }
 
-  // async function findPersonaId(id_persona) {
-  //   const result = await PersonaModel.findOne({
-  //     where: {
-  //       id_persona
-  //     }
-  //   })
-  //   return result.toJSON();
-  // }
+  async function findPersonaId(dni_persona) {
+    const result = await PersonaModel.findOne({
+      where: {
+        dni_persona
+      }
+    })
+    return result.toJSON();
+  }
 
-  // async function updatePersonaId(id_persona, persona) {
-  //   const cond = {
-  //     where: {
-  //       id_persona
-  //     }
-  //   }
+  async function updatePersonaId(dni_persona, persona) {
+    const cond = {
+      where: {
+        dni_persona
+      }
+    }
 
-  //   return await PersonaModel.update(persona, cond)
-  // }
+    return await PersonaModel.update(persona, cond)
+  }
 
   return {
     addUserPersona,
     findPersonaAll,
-    findByPersonaId
-    // findByPersonaModulo,
-    // findPersonaIdUser,
-    // findPersonaId,
-    // updatePersonaId
+    findPersonasAll,
+    findByPersonaId,
+    findPersonaId,
+    updatePersonaId,
+    findRepresentanteEmpresaMonitoreo,
+    findPersonaByUserId
   }
 }

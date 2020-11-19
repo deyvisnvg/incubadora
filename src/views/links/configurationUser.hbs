@@ -1,0 +1,29 @@
+<input type="hidden" name="modulo" id="moduloEditUser" value="{{usuario.modulo}}">
+<section class="registro-data">
+    <div class="state">CUENTA</div>
+    {{#if message }}
+    <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+    <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+    <div class="data">
+        <form action="/perfil/configuration/edit/{{data.id_usuario}}" method="post">
+            {{#with data}}
+            <div class="data-valor4">
+                <p class="description">Usuario: </p>
+                <p><input type="text" name="usuario" value="{{usuario}}" required pattern="[A-Za-z0-9]+"
+                        title="Ingrese solo letras Mayúsculas, minúsculas y números sin espacios"></p>
+            </div>
+            <div class="data-valor4">
+                <p class="description">Password: </p>
+                <p><input type="password" name="password" id="casillaPass" value="{{password}}"></p>
+            </div>
+            {{/with}}
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Modificar</button></p>
+            </div>
+        </form>
+    </div>
+</section>

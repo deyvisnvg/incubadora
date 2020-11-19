@@ -4,7 +4,7 @@ const config = require('../config');
 const secret = config.jwt.secret;
 
 function sign(data) {
-    return jwt.sign(data, secret);
+    return jwt.sign(data, secret, { expiresIn: 60*60*24 });
     // jwt.sign(data, secret, { expiresIn: 60*60*24 });
 }
 

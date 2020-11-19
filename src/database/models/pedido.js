@@ -35,7 +35,7 @@ module.exports = function setupPersonaModel(config) {
             type: Sequelize.TEXT,
             allowNull: false
         },
-        id_persona: {
+        id_representante_empresa: {
             type: Sequelize.TEXT
         }
     },

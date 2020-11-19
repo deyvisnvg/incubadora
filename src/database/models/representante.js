@@ -10,17 +10,19 @@ module.exports = function setupIncubadoraModel(config) {
         id_representante: {
             type: Sequelize.INTEGER,
             primaryKey: true
+            // unique: false
         },
         cargo: {
+            type: Sequelize.TEXT,
+            allowNull: false
+        },
+        estado: {
             type: Sequelize.TEXT,
             allowNull: false
         },
         id_persona: {
             type: Sequelize.TEXT,
             allowNull: false
-        },
-        id_empresa: {
-            type: Sequelize.INTEGER
         }
     },
         {

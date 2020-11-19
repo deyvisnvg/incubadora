@@ -2,11 +2,11 @@
 <section class="registro-data">
     <div class="state">EDITAR USUARIO</div>
     <div class="data">
-        <form action="/usuario/update/{{persona.id_persona}} {{usuario.id_usuario}}" method="post" enctype="multipart/form-data">
+        <form action="/usuario/update/{{persona.dni_persona}} {{usuario.id_usuario}}" method="post">
             <div class="data-valor1">
-                <p class="description">Foto: </p>
-                <input type="hidden" name="foto" value="{{persona.foto}}">
-                <p><input type="file" name="image" value="{{persona.foto}}"></p>
+                <p class="description">DNI: </p>
+                <p><input type="text" name="dni" value="{{persona.dni_persona}}" readonly pattern="[0-9]+"
+                        maxlength="8" title="Ingrese solo números sin espacios"></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Nombres: </p>
@@ -16,26 +16,43 @@
                 <p class="description">Apellidos: </p>
                 <p><input type="text" name="apellidos" value="{{persona.apellidos}}" required pattern="[A-Za-z\s]{3,30}" title="Ingrese solo letras Mayúsculas y minúsculas"></p>
             </div>
-            <div class="data-valor3">
-                <p class="description">edad: </p>
-                <p><input type="text" name="edad" value="{{persona.edad}}" required pattern="[0-9]+" maxlength="2" title="Ingrese solo números"></p>
+            <div class="data-valor1">
+                <p class="description">Fecha Nacimiento: </p>
+                <p><input type="date" name="fecha_nacimiento" value="{{persona.fecha_nacimiento}}" required></p>
             </div>
-            <div class="data-valor4">
+            <div class="data-valor1">
+                <p class="description">Genero: </p>
+                <p>
+                    <select name="genero" required>
+                        <option value="{{persona.genero}}" style="background: #9c9c9c; color: rgb(238, 245, 143)">{{persona.genero}}</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Dirección: </p>
+                <p><input type="text" name="direccion" value="{{persona.direccion}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Celular: </p>
+                <p><input type="text" name="celular" value="{{persona.celular}}" required pattern="[0-9]+"
+                        maxlength="9" title="Ingrese solo números sin espacios"></p>
+            </div>
+            <div class="data-valor1">
                 <p class="description">E-mail: </p>
                 <p><input type="email" name="email" value="{{persona.email}}" required></p>
             </div>
-            <div class="data-valor4">
-                <p class="description">Fecha de Nacimiento: </p>
-                <p><input type="date" name="fecha_nacimiento" value="{{persona.fecha_nacimiento}}" required></p>
-            </div>
+
+            <hr>
+          
             <div class="data-valor4">
                 <p class="description">Usuario: </p>
                 <p><input type="text" name="usuario" value="{{usuario.usuario}}" required pattern="[A-Za-z0-9]+" title="Ingrese solo letras Mayúsculas, minúsculas y números sin espacios"></p>
             </div>
             <div class="data-valor4">
                 <p class="description">Password: </p>
-                <p><input type="checkbox" name="" id="check"></p>
-                <p><input type="password" name="password" id="casillaPass" value="sinpassword" disabled></p>
+                <p><input type="password" name="password" id="casillaPass" value="{{usuario.password}}"></p>
             </div>
 
             <div class="data-valor4" id="outputEditUser"></div>

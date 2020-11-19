@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Menú Administrador</title>
-    <link rel="shortcut icon" href="img/icon-incubadora.png">
+    <link rel="shortcut icon" href="/img/icon-incubadora.png">
     <link
         href="https://fonts.googleapis.com/css?family=Bai+Jamjuree:600|Baloo|Bitter:700|Fjalla+One|PT+Sans:700|Patua+One|Source+Sans+Pro&display=swap"
         rel="stylesheet">
@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="/css/menu.css">
     <!-- Login -->
     <link rel="stylesheet" href="/css/login.css">
-    <!-- messages -->
+    <!-- monitoreo -->
     <link rel="stylesheet" href="/css/monitoreo.css">
     <!-- Estilos para todos los Registros -->
     <link rel="stylesheet" href="/css/registro.css">
@@ -55,59 +55,8 @@
     <script src="/_recursos/js/jquery.min.js"></script>
     <script src="/_recursos/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
-        +function ($) {
-            $(function () {
-                // class
-                $(document).on('click', '[data-toggle^="class"]', function (e) {
-                    e && e.preventDefault();
-                    console.log('abc');
-                    var $this = $(e.target), $class, $target, $tmp, $classes, $targets;
-                    !$this.data('toggle') && ($this = $this.closest('[data-toggle^="class"]'));
-                    $class = $this.data()['toggle'];
-                    $target = $this.data('target') || $this.attr('href');
-                    $class && ($tmp = $class.split(':')[1]) && ($classes = $tmp.split(','));
-                    $target && ($targets = $target.split(','));
-                    $classes && $classes.length && $.each($targets, function (index, value) {
-                        if ($classes[index].indexOf('*') !== -1) {
-                            var patt = new RegExp('\\s' +
-                                $classes[index].
-                                    replace(/\*/g, '[A-Za-z0-9-_]+').
-                                    split(' ').
-                                    join('\\s|\\s') +
-                                '\\s', 'g');
-                            $($this).each(function (i, it) {
-                                var cn = ' ' + it.className + ' ';
-                                while (patt.test(cn)) {
-                                    cn = cn.replace(patt, ' ');
-                                }
-                                it.className = $.trim(cn);
-                            });
-                        }
-                        ($targets[index] != '#') && $($targets[index]).toggleClass($classes[index]) || $this.toggleClass($classes[index]);
-                    });
-                    $this.toggleClass('active');
-                });
-
-                // collapse nav
-                $(document).on('click', 'nav a', function (e) {
-                    var $this = $(e.target), $active;
-                    $this.is('a') || ($this = $this.closest('a'));
-
-                    $active = $this.parent().siblings(".active");
-                    $active && $active.toggleClass('active').find('> ul:visible').slideUp(200);
-
-                    ($this.parent().hasClass('active') && $this.next().slideUp(200)) || $this.next().slideDown(200);
-                    $this.parent().toggleClass('active');
-
-                    $this.next().is('ul') && e.preventDefault();
-
-                    setTimeout(function () { $(document).trigger('updateNav'); }, 300);
-                });
-            });
-        }(jQuery);
-    </script>
-
+    <!-- main.js -->
+    <script src="/js/main.js"></script>
     <!-- JQuery -->
     <script src="/js/jquery.min.js"></script>
     <!-- socket.io -->
@@ -116,6 +65,12 @@
     <script src="/js/navigation.js"></script>
     <!-- monitoreo -->
     <script src="/js/monitoreo.js"></script>
+    <!-- monitoreo Representante -->
+    <script src="/js/monitoreoRepresentante.js"></script>
+    <!-- Pedido -->
+    <script src="/js/pedido.js"></script>
+    <!-- Pedido -->
+    <script src="/js/representante.js"></script>
     <!-- editUser -->
     <script src="/js/editUser.js"></script>
     <!-- addUser -->
@@ -128,7 +83,9 @@
     <!-- DataTables Paginación y busqueda Automático -->
     <script>
         $(function () {
-            $('#example1').DataTable()
+            $('#example1').DataTable({
+                "language": traduccion
+            })
         })
     </script>
     <script src="/js/jquery.dataTables.min.js"></script>

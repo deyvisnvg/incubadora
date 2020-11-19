@@ -29,3 +29,12 @@
 .data-representante .space{
     margin-left: 20px;
 }
+
+.data .data-fila {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.data .data-fila .description {
+    color: rgb(6, 6, 53);
+}

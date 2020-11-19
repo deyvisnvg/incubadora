@@ -8,7 +8,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
 
             let data = {};
-            const dataRepresentante = await Representante.findByRepresentante().catch(err => handleError(err));
+            const dataRepresentante = await Representante.findByRepresentante().catch(handleError);
 
             try {
                 data.fecha_pedido = dateFormatYMD();
@@ -36,14 +36,11 @@ module.exports = {
                 hora_pedido: body.hora_pedido,
                 fecha_entrega: body.fecha_entrega,
                 estado: body.estado,
-                id_persona: body.representante
+                id_representante_empresa: body.id_representante_empresa
             }
-
-            // console.log(newPedido);
 
             await Pedido.addPedido(newPedido).catch(err => handleError(err));
             resolve();
-
         })
     },
 
@@ -51,22 +48,34 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             const dataPedido = await Pedido.findPedidoAll().catch(err => handleError(err));
 
-            // console.log(dataPedido);
+            console.log(dataPedido);
             resolve(dataPedido);
         })
     },
 
-    viewPedido: (id_persona, Pedido, Persona) => {
+    editPedido: (id, Pedido, Representante, Empresa) => {
         return new Promise(async (resolve, reject) => {
             let data = {};
-            const persona = await Persona.findByPersonaId(id_persona).catch(err => handleError(err));
-            const pedido = await Pedido.findPedidoByPersonaId(id_persona).catch(err => handleError(err));
+            let ids = id.split("&");
+
+            let dataId = {
+                id_pedido: ids[0],
+                id_representante: ids[1],
+                id_empresa: ids[2]
+            }
 
             try {
-                data.dataPersona = persona;
-                data.dataPedido = pedido;
+                const pedido = await Pedido.findPedidoById(dataId.id_pedido).catch(handleError);
+                const representante = await Representante.findRepresentanteById(dataId.id_representante).catch(handleError);
+                const empresa = await Empresa.findEmpresaId(dataId.id_empresa).catch(handleError);
 
-                // console.log(data);
+                representante.ruc_empresa = empresa.ruc_empresa;
+                representante.nombre_empresa = empresa.nombre_empresa;
+
+                data.pedido = pedido;
+                data.representante = representante;
+
+                console.log(data);
                 resolve(data);
 
             } catch (error) {
@@ -74,24 +83,20 @@ module.exports = {
             }
 
         })
-    }
+    },
 
-    // editUser: function (id_persona, id_usuario, Usuario, Persona) {
+    // editPedido: function (id_pedido, Pedido) {
     //     return new Promise(async (resolve, reject) => {
-    //         if (!id_persona && !id_usuario) {
-    //             reject("Las id no se recibieron");
+
+    //         if (!Pedido) {
+    //             reject("La id no se recibió");
     //             return false;
     //         }
 
     //         try {
-    //             const user = await Usuario.findUsuarioId(id_usuario);
-    //             const persona = await Persona.findPersonaId(id_persona);
-    //             let data = {
-    //                 usuario: user.toJSON(),
-    //                 persona
-    //             }
-    //             resolve(data);
-
+    //             const pedido = await Pedido.findPedidoById(id_pedido);
+    //             // console.log(pedido)
+    //             resolve(pedido);
     //         } catch (err) {
     //             reject('[Error!]:', err);
     //         }
@@ -99,43 +104,27 @@ module.exports = {
     //     })
     // },
 
-    // updateUser: function (ids, user, file, Usuario, Persona) {
-    //     return new Promise(async (resolve, reject) => {
-    //         let nameFoto;
+    updatePedido: function (id_pedido, body, Pedido) {
+        return new Promise(async (resolve, reject) => {
+            const dataPedido = {
+                id_pedido: body.identificador,
+                cantidad: body.cantidad_pedido,
+                comentario: body.comentario,
+                fecha_pedido: body.fecha_pedido,
+                hora_pedido: body.hora_pedido,
+                fecha_entrega: body.fecha_entrega,
+                estado: body.estado
+            }
 
-    //         if (typeof file !== 'undefined') {
-    //             nameFoto = config.filesRoute + '/' + file.originalname;
-    //         } else {
-    //             nameFoto = user.foto;
-    //         }
+            // console.log(dataPedido);
 
-    //         console.log(user);
+            try {
+                await Pedido.updatePedidoById(id_pedido, dataPedido);
+                resolve();
+            } catch (err) {
+                reject("Error! al modificar, Inténtelo nuevamente.");
+            }
+        })
+    }
 
-    //         const dataPersona = {
-    //             nombres: user.nombres,
-    //             apellidos: user.apellidos,
-    //             edad: user.edad,
-    //             email: user.email,
-    //             fecha_nacimiento: user.fecha_nacimiento,
-    //             foto: nameFoto
-    //         }
-
-    //         const dataUser = {
-    //             usuario: user.usuario,
-    //             modulo: user.modulo,
-    //         }
-
-    //         if (typeof user.password !== 'undefined' && user.password) {
-    //             dataUser.password = await helpers.encryptPassword(user.password)
-    //         }
-
-    //         try {
-    //             await Persona.updatePersonaId(ids.id_persona, dataPersona);
-    //             await Usuario.updateUsuarioId(ids.id_usuario, dataUser);
-    //             resolve();
-    //         } catch (err) {
-    //             reject("Error! al modificar, Inténtelo nuevamente.");
-    //         }
-    //     })
-    // }
 }

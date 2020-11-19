@@ -16,30 +16,22 @@ router.use('*', async (req, res, next) => { // (*) cada vez que se haga una peti
         console.log('Connecting to database')
 
         services = await db(configDb).catch(err => handleFatalError(err)); // Aqui obtengo los servicios de mi BD
-        Persona = services.Persona
+        Persona = services.Persona;
+        Representante = services.Representante;
+        Usuario = services.Usuario;
     }
     next() // Yo necesito siempre llamar a la function de next() para que el midleware continúe la ejecución del request y llegue a las demas rutas
 })
 
 router.get('/', secure.checkOwn, (req, res) => {
     const user = req.session.user;
+    req.session.success = "";
+    req.session.message = "";
 
-    Controller.showPerfil(user.id_usuario, Persona)
+    Controller.showPerfil(user, Persona, Representante)
         .then(perfil => {
+            console.log(perfil);
             res.render('links/perfil', { perfil, user });
-        })
-        .catch(err => {
-            console.log(err.message)
-        })
-})
-
-router.get('/edit/:id', secure.checkOwn, (req, res) => {
-    const user = req.session.user;
-    const { id } = req.params;
-
-    Controller.editPersona(id, Persona)
-        .then(perfil => {
-            res.render('links/editPerfil', { perfil, user });
         })
         .catch(err => {
             console.log(err.message)
@@ -49,9 +41,38 @@ router.get('/edit/:id', secure.checkOwn, (req, res) => {
 router.post('/update/:id', (req, res) => {
     const { id } = req.params;
 
-    Controller.updatePersona(id, req.file, req.body, Persona)
+    Controller.updatePerfil(id, req.body, Persona, Representante)
         .then(() => {
+            req.session.success = "Su perfil se ha Modificado con éxito!";
             res.redirect('/perfil');
+        })
+        .catch(err => {
+            req.session.message = err;
+            console.log(err.message)
+        })
+})
+
+router.get('/configuration', secure.checkOwn, (req, res) => {
+    const user = req.session.user;
+    req.session.success = "";
+    req.session.message = "";
+
+    Controller.showConfigurationUser(user, Usuario)
+        .then(data => {
+            res.render('links/configurationUser', { data, user });
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+})
+
+router.post('/configuration/edit/:id', secure.checkOwn, (req, res) => {
+    const { id } = req.params;
+
+    Controller.updateConfiguration(id, req.body, Usuario)
+        .then(() => {
+            req.session.success = "Su Cuenta se ha Modificado con éxito!";
+            res.redirect('/perfil/configuration');
         })
         .catch(err => {
             console.log(err.message)

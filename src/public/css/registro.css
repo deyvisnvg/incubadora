@@ -21,7 +21,7 @@
         border-radius: 5px;
         font-size: 15px;
         font-family: 'Bai Jamjuree', sans-serif;
-        margin: 50px auto;
+        margin: 20px auto 60px;
         /* box-shadow: right bottom opacidad-sombra grosor-sombra; */
         box-shadow: -1px 1px 3px 1px #95afc0;
     }
@@ -96,6 +96,7 @@
     .registro-data .data-valor2 {
         display: flex;
         align-items: center;
+        justify-content: center;
     }
     .registro-data .data-valor3 {
         display: flex;
@@ -266,6 +267,74 @@
         visibility: visible;
         white-space: nowrap;
       } */
+    
+    /* =======================================================
+        Estilos de Tabla Adicional al Agregar un Representante
+    ==========================================================*/
+    .data-table-pagination_Empresa .data-table {
+        width: 38vw;
+        margin: auto;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    .data-table-pagination_Empresa .dataTables_length {
+        position: relative;
+        float: left;
+        margin: 5px auto 10px;
+        font-size: 14px;
+        margin-left: 26px;
+    }
+    
+    .data-table-pagination_Empresa .dataTables_filter {
+        position: relative;
+        float: right;
+        margin: 5px auto 10px;
+        font-size: 14px;
+        margin-right: 30px;
+    }
+
+    .data-table-pagination_Empresa .dataTables_paginate {
+        position: relative;
+        float: right;
+        padding: 20px 0;
+        font-size: 11px;
+        margin-right: 25px;
+    }
+
+    .data-table-pagination_Empresa .dataTables_filter input {
+        border: 1px solid rgb(11, 0, 160);
+        border-radius: 4px;
+        margin-left: 10px;
+        width: 150px;
+        height: 20px;
+        padding: 10px;
+    }
+
+    .data-table-pagination_Empresa .dataTables_info {
+        display: none;
+    }
+
+     .linkAsociar {
+        margin-left: 30px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .linkAsociar a {
+        border: 1px solid transparent;
+        border-radius: 5px;
+        padding: 3px 6px;
+        color: #ffffff;
+        margin: 10px;
+        background: #f05050;
+    }
+
+    .linkAsociar a:hover {
+        color: white;
+        background-color: #f74141;
+    }
 
     
     @media screen and (max-width: 1023px){
@@ -273,12 +342,6 @@
             /* width: 80vw; */
             font-size: 14px;
         }
-    
-        /* .list-data .addBoton {
-            margin-top: 22px;
-            margin-left: 24px;
-        } */
-    
     }
     
     @media screen and (max-width: 767px){

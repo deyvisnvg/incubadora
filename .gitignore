@@ -14,3 +14,6 @@ npm-debug.log
 
 # package-lock
 package-lock.json
+
+# implementación socket io
+# connection_socket.js

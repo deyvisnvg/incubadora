@@ -6,6 +6,8 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const cookieSession =  require('cookie-session');
+const socketIO = require('socket.io');
+
 
 const routerApi = require('./network/routes');
 const socket = require('./socket');
@@ -18,8 +20,13 @@ const app = express();
 const server = http.createServer(app);
 socket.connect(server);
 
+// Configuration para escuchar eventos en el servidor desde el navegador
+const io = socketIO(server);
+require("./connection_socket")(io);
+
 // Settings
 const {config} = require('./config');
+
 
 //Configuramos nuestro motor de plantillas
 app.set('views', path.join(__dirname, 'views')); //Definimos la carpeta views

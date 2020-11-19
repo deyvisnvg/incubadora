@@ -66,6 +66,34 @@ router.post('/add', (req, res) => {
         })
 })
 
+router.get('/edit/:id', (req, res) => {
+    const user = req.session.user;
+    const { id } = req.params;
+
+    Controller.editSensor(id, Sensor, Incubadora, TipoSensor)
+        .then(data => {
+            res.render('links/editSensor', { data, user });
+        })
+        .catch(err => {
+            console.log('[Error!]:', err.message);
+        })
+})
+
+router.post('/update/:id', (req, res) => {
+    const { id } = req.params;
+
+    Controller.updateSensor(id, req.body, Sensor)
+        .then(() => {
+            req.session.success = "Sensor modificado con exito";
+            res.redirect('/sensores');
+        })
+        .catch(err => {
+            console.error('[Error!]:', err);
+            req.session.message = err;
+            res.redirect('/sensores');
+        })
+})
+
 // ==================== Request Tipo Sensor ==================== //
 
 router.get('/tipoSensor', secure.checkOwn, (req, res) => {
@@ -102,65 +130,32 @@ router.post('/tipoSensor/add', (req, res) => {
         })
 })
 
+router.get('/tipoSensor/edit/:id', (req, res) => {
+    const user = req.session.user;
+    const { id } = req.params;
 
-// router.get('/edit/:id', (req, res) => {
-//     const user = req.session.user;
-//     const { id } = req.params;
-//     let dataId = id.split(" ");
+    Controller.editTipoSensor(id, TipoSensor)
+        .then(data => {
+            res.render('links/editTipoSensor', { data, user });
+        })
+        .catch(err => {
+            console.log('[Error!]:', err.message);
+        })
+})
 
-//     Controller.editUser(dataId[0], dataId[1], Usuario, Persona)
-//         .then(data => {
-//             let usuario = data.usuario;
-//             let persona = data.persona;
-//             res.render('links/editUser', { usuario, persona, user });
-//         })
-//         .catch(err => {
-//             console.log('[Error!]:', err.message);
-//         })
-// })
+router.post('/tipoSensor/update/:id', (req, res) => {
+    const { id } = req.params;
 
-// router.post('/update/:id', (req, res) => {
-
-//     const { id } = req.params;
-//     let dataId = id.split(" ");
-
-//     let ids = {
-//         id_persona: dataId[0],
-//         id_usuario: dataId[1]
-//     }
-
-//     Controller.updateUser(ids, req.body, req.file, Usuario, Persona)
-//         .then(() => {
-//             req.session.success = "El usuario se ha modificado con exito";
-//             res.redirect('/usuario');
-//         })
-//         .catch(err => {
-//             console.error('[Error!]:', err);
-//             req.session.message = err;
-//             res.redirect('/usuario');
-//         })
-// })
-
-// router.get('/add', secure.checkOwn, (req, res) => {
-//     const user = req.session.user;
-//     req.session.success = "";
-//     req.session.message = "";
-
-//     res.render('links/addProducto', { user });
-// })
-
-// router.post('/add', (req, res) => {
-//     console.log(req.body)
-//     console.log(req.files)
-//     Controller.addProducto(req.files, req.body, Producto)
-//         .then(() => {
-//             req.session.success = "Producto registrado con éxito!";
-//             res.redirect('/producto/add');
-//         })
-//         .catch(err => {
-//             req.session.message = err;
-//             res.redirect('/producto/add');
-//         })
-// })
+    Controller.updateTipoSensor(id, req.body, TipoSensor)
+        .then(() => {
+            req.session.success = "Tipo de Sensor modificado con exito";
+            res.redirect('/sensores/tipoSensor');
+        })
+        .catch(err => {
+            console.error('[Error!]:', err);
+            req.session.message = err;
+            res.redirect('/sensores/tipoSensor');
+        })
+})
 
 module.exports = router;

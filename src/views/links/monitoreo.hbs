@@ -9,52 +9,136 @@
     {{/if}}
 
 
-    {{#each data}}
-    <div class="message">{{mensaje}}</div>
-    <div class="contenedor-incubacion">
-        <div class="incubacion">
-            <div class="incubacion-name">
-                <figure>
-                    <img src="/img/logo_incubacion.png" alt="" width="60">
-                </figure>
-                <div>
-                    <h3>Incubadora</h3>
-                    <h4>{{'incubadora.nombre_incubadora'}}</h4>
-                </div>
-                <div class="iconzoom"> <i class="icon-podcast"></i></div>
+
+{{!-- 
+    <div class="contenedor-options">
+        <div class="incubacion-opcion">
+            <div class="data-valor1">
+                <p class="description">Empresa:</p>
+                <p>
+                    <select id="selectBuscador" name="estado" onchange="showSelected()">
+                        <option value="" style="background: #9c9c9c; color: rgb(238, 245, 143)">Seleccione...</option>
+                        {{#each data.empresa}}
+                        <option value="{{ id_empresa }}">{{ nombre_empresa }}</option>
+                        {{/each}}
+                    </select>
+                </p>
             </div>
-            <div class="incubacion-body">
-                <div class="incubacion-datos">
-                    <div>
-                        <p>Cantidad de huevos:</p>
-                        <p>Días restantes:</p>
-                        <p>Fecha de Ingreso:</p>
-                        <p>Fecha de Salida:</p>
-                    </div>
-                    <div>
-                        <p>{{cantidad_ingreso}}</p>
-                        <p>{{dia_incubacion}}</p>
-                        <p>{{fecha_ingreso}}</p>
-                        <p>{{fecha_salida}}</p>
-                    </div>
-                </div>
-                <div class="incubacion-dataSensor">
-                    <div class="dataSensor">
-                        <div class="dataSensor-name"><i class="icon-feed"></i> Temperatura: </div>
-                        <div id="proTemperatura"></div>
-                    </div>
-                    <div class="dataSensor">
-                        <div class="dataSensor-name"><i class="icon-feed"></i> Humedad: </div>
-                        <div id="proHumedad"></div>
-                    </div>
-                </div>
+            <div class="data-valor1">
+                <div id="repre"></div>
             </div>
-            <div class="incubacion-grafica">
-                Gráfica
+            <div class="data-valor1">
+                <p class="description">Pedido:</p>
+                <p>
+                    <select name="pedido">
+                        <option value="">Seleccione...</option>
+                        <option value="Activo">Activo</option>
+                    </select>
+                </p>
+            </div>
+        </div>
+    </div> --}}
+
+
+
+
+    <div class="contenedor-options">
+        <form action="/monitoreo" method="post">
+            <div class="incubacion-opcion">
+                <p class="description">Pedido:</p>
+                <p>
+                    <select id="selectBuscador" name="id_pedido" required>
+                        <option value="" style="background: #9c9c9c; color: rgb(238, 245, 143)">Seleccione...</option>
+                        {{#each data.pedido}}
+                        <option value="{{ id_pedido }}">{{ id_pedido }}</option>
+                        {{/each}}
+                    </select>
+                </p>
+                <p class="boton">
+                    <button type="submit">Buscar</button>
+                </p>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    {{#if data.message}}
+    <div class="message">{{data.message}}</div>
+    {{/if}}
+
+    {{#if data.estado }}
+    <div class="contenedor-sensores">
+        <div class="incubacion-dataSensor">
+            <div class="iconzoom">
+                <i class="icon-podcast"></i>
+            </div>
+            <div class="dataSensor">
+                <div class="dataSensor-name"><i class="icon-feed"></i> Temperatura: </div>
+                <div id="proTemperatura"></div>
+            </div>
+            <div class="dataSensor">
+                <div class="dataSensor-name"><i class="icon-feed"></i> Humedad: </div>
+                <div id="proHumedad"></div>
+            </div>
+            <div class="camera">
+                <i class="icon-camera"></i>
             </div>
         </div>
     </div>
-    {{/each}}
+
+    <div class="container-data">
+        <div class="data-valor">
+            <div class="valor1">
+                <div class="name">Representante: </div>
+                <div>{{data.persona.nombres}} {{data.persona.apellidos}}</div>
+            </div>
+            <div class="valor1">
+                <div class="name">Pedido: </div>
+                <div>{{data.persona.pedido}}</div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+
+    <div class="containers">
+        {{#each data.incubacion}}
+        <div class="contenedor-incubacion">
+            <div class="incubacion">
+                <div class="incubacion-name">
+                    <figure>
+                        <img src="/img/logo_incubacion.png" alt="" width="60">
+                    </figure>
+                    <div>
+                        <h3>Incubadora</h3>
+                        <h4>{{'incubadora.nombre_incubadora'}}</h4>
+                    </div>
+                </div>
+                <div class="incubacion-body">
+                    <div class="incubacion-datos">
+                        <div>
+                            <p>Cantidad de huevos:</p>
+                            <p>Días restantes:</p>
+                            <p>Fecha de Ingreso:</p>
+                            <p>Fecha de Salida:</p>
+                        </div>
+                        <div>
+                            <p>{{cantidad_ingreso}}</p>
+                            <p>{{dia_incubacion}}</p>
+                            <p>{{fecha_ingreso}}</p>
+                            <p>{{fecha_salida}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="incubacion-grafica">
+                    Gráfica
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+    </div>
 
 
     <div class="container-sensorRealTime">
@@ -75,10 +159,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 
 

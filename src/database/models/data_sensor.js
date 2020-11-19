@@ -14,10 +14,6 @@ module.exports = function setupEmpresaModel(config) {
         id_sensor: {
             type: Sequelize.INTEGER
         },
-        nombre_sensor: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
         valor: {
             type: Sequelize.DOUBLE,
             allowNull: false

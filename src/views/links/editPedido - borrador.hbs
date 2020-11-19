@@ -1,0 +1,51 @@
+<input type="hidden" name="modulo" id="moduloUser" value="{{user.modulo}}">
+
+<section class="registro-data">
+    <div class="state">EDITAR PEDIDO</div>
+    <div class="data">
+        <form action="/pedido/update/{{data.id_pedido}}&{{data.id_persona}}" method="post">
+            <div class="data-valor1">
+                <p class="description">Identificador: </p>
+                <p>
+                    <input type="hidden" id="valor" value="pedido">
+                    <input type="text" name="identificador" value="{{data.id_pedido}}" readonly>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Cantidad Pedido: </p>
+                <p><input type="text" name="cantidad_pedido" value="{{data.cantidad}}" required pattern="[0-9]+"
+                        title="Ingrese solo números"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Comentario: </p>
+                <p><textarea name="comentario" id="" cols="22" rows="4">{{data.comentario}}</textarea></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Fecha Registrada: </p>
+                <p><input type="date" name="fecha_pedido" value="{{data.fecha_pedido}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Hora Registrada: </p>
+                <p><input type="time" name="hora_pedido" value="{{data.hora_pedido}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Fecha Entrega: </p>
+                <p><input type="date" name="fecha_entrega" value="{{data.fecha_entrega}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Estado:</p>
+                <p>
+                    <select name="estado" required>
+                        <option value="{{data.estado}}" style="background: #9c9c9c; color: rgb(238, 245, 143)">{{data.estado}}</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Finalizado">Finalizado</option>
+                    </select>
+                </p>
+            </div>
+
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Modificar</button></p>
+            </div>
+        </form>
+    </div>
+</section>

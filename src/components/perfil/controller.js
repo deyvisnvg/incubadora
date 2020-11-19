@@ -1,43 +1,87 @@
+const helpers = require('../../lib/helpers');
 const { handleError } = require('../../error');
-const { config } = require('../../config')
 
 module.exports = {
-    showPerfil: (id, Persona) => {
+    showPerfil: (user, Persona) => {
         return new Promise(async (resolve, reject) => {
-            const perfil = await Persona.findPersonaIdUser(id).catch(err => handleError(err));
-            resolve(perfil);
-        })
-    },
+            let persona, representante;
 
-    editPersona: (id, Persona) => {
-        return new Promise(async (resolve, reject) => {
-            const perfilPersona = await Persona.findPersonaId(id).catch(err => handleError(err));
-            resolve(perfilPersona);
-        })
-    },
-
-    updatePersona: (id, file, persona, Persona) => {
-        return new Promise(async (resolve, reject) => {
-            let nameFoto;
-
-            if (typeof file !== 'undefined') {
-                nameFoto = config.filesRoute + '/' + file.originalname;
+            if (user.modulo == 'Representante_Legal') {
+                persona = await Persona.findPersonaByUserId(user.id_usuario).catch(handleError);
+                persona.cargo = persona['representante.cargo'];
+                resolve(persona);
             } else {
-                nameFoto = persona.foto;
+                representante = await Persona.findPersonaByUserId(user.id_usuario).catch(handleError);
+                representante.cargo = representante['representante.cargo'];
+                resolve(representante);
             }
+        })
+    },
+
+    updatePerfil: (dni_persona, data, Persona, Representante) => {
+        return new Promise(async (resolve, reject) => {
+            let result;
 
             const dataPersona = {
-                nombres: persona.nombres,
-                apellidos: persona.apellidos,
-                edad: persona.edad,
-                email: persona.email,
-                fecha_nacimiento: persona.fecha_nacimiento,
-                foto: nameFoto
+                nombres: data.nombres,
+                apellidos: data.apellidos,
+                fecha_nacimiento: data.fecha_nacimiento,
+                genero: data.genero,
+                direccion: data.direccion,
+                celular: data.celular,
+                email: data.email
             }
 
-            const updatePersona = await Persona.updatePersonaId(id, dataPersona).catch(err => handleError(err));
-            resolve(updatePersona);
+            try {
+                if (typeof data.cargo === 'undefined') {
+                    await Persona.updatePersonaId(dni_persona, dataPersona);
+                } else {
+                    result = await Persona.updatePersonaId(dni_persona, dataPersona);
+                    if (result) {
+                        await Representante.updateRepresentanteById(data.id_representante, { cargo: data.cargo });
+                    }
+                }
+                resolve();
+            } catch (error) {
+                reject("[Error]: No es posible Modificar!" + error)
+            }
         })
-    }
+    },
+
+    showConfigurationUser: (user, Usuario) => {
+        return new Promise(async (resolve, reject) => {
+            let usuario;
+
+            try {
+                usuario = await Usuario.findUsuarioId(user.id_usuario).catch(handleError);
+                resolve(usuario);
+            } catch (error) {
+                reject("[Error]!" + error)
+            }
+        })
+    },
+
+    updateConfiguration: (id_usuario, data, Usuario) => {
+        return new Promise(async (resolve, reject) => {
+
+            const usuario = await Usuario.findUsuarioId(id_usuario).catch(err => handleError(err));
+
+            const dataUser = {
+                usuario: data.usuario,
+                modulo: data.modulo,
+            }
+
+            if (usuario.password != data.password) {
+                dataUser.password = await helpers.encryptPassword(data.password)
+            }
+
+            try {
+                await Usuario.updateUsuarioId(id_usuario, dataUser);
+                resolve();
+            } catch (err) {
+                reject("[Error]: No es posible Modificar!" + err)
+            }
+        })
+    },
 
 }

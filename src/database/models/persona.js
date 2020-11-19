@@ -7,13 +7,9 @@ module.exports = function setupPersonaModel(config) {
     const sequelize = db(config);
 
     return sequelize.define('personas', {
-        id_persona: {
-            type: Sequelize.TEXT,
-            primaryKey: true
-        },
         dni_persona: {
             type: Sequelize.TEXT,
-            allowNull: false
+            primaryKey: true
         },
         nombres: {
             type: Sequelize.TEXT,

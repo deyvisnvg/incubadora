@@ -30,13 +30,13 @@
                 <tbody>
                     {{#each data}}
                     <tr>
-                        <td><p class="description">{{'sensores.id_sensor'}}</p></td>
-                        <td><p class="description">{{'sensores.nombre_sensor'}}</p></td>
-                        <td><div class="description stated">{{'sensores.estado'}}<div hidden>{{'sensores.estado'}}</div></div></td>
-                        <td><p class="description">{{nombre_incubadora}}</p></td>
-                        <td><p class="description">{{'sensores.tipo_sensor.tipo_sensor'}}</p></td>
+                        <td><p class="description">{{id_sensor}}</p></td>
+                        <td><p class="description">{{nombre_sensor}}</p></td>
+                        <td><div class="description stated">{{estado}}<div hidden>{{estado}}</div></div></td>
+                        <td><p class="description">{{'incubadora.nombre_incubadora'}}</p></td>
+                        <td><p class="description">{{'tipo_sensor.tipo_sensor'}}</p></td>
                         <td>
-                            <p class="description"><a href="/usuario/edit/{{id_persona}} {{id_usuario}}"><img
+                            <p class="description"><a href="/sensores/edit/{{id_sensor}}"><img
                             src="/img/editar.png" alt="icon de Editar"></a></p>
                         </td>
                     </tr>

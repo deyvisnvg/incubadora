@@ -31,10 +31,46 @@ router.get('/', secure.checkOwn, (req, res) => {
             res.render('links/listEmpresa', { data, user });
         })
         .catch(err => {
-            // console.log('[Error!]: ', err);
+            console.log('[Error!]: ', err);
             req.session.message = err;
             res.redirect('/empresa');
         })
+})
+
+router.get('/edit/:id', (req, res) => {
+    const user = req.session.user;
+    const { id } = req.params;
+
+    Controller.editEmpresa(id, Empresa)
+        .then(data => {
+            res.render('links/editEmpresa', { data, user });
+        })
+        .catch(err => {
+            console.log('[Error!]:', err.message);
+        })
+})
+
+router.post('/update/:id', (req, res) => {
+    const { id } = req.params;
+
+    Controller.updateEmpresa(id, req.body, Empresa)
+        .then(() => {
+            req.session.success = "La Empresa se ha modificado con exito";
+            res.redirect('/empresa');
+        })
+        .catch(err => {
+            console.error('[Error!]:', err);
+            req.session.message = err;
+            res.redirect('/empresa');
+        })
+})
+
+router.get('/add', secure.checkOwn, (req, res) => {
+    const user = req.session.user;
+    req.session.success = "";
+    req.session.message = "";
+
+    res.render('links/addEmpresa', { user });
 })
 
 router.post('/add', (req, res) => {
@@ -49,52 +85,7 @@ router.post('/add', (req, res) => {
         })
 })
 
-router.get('/add', secure.checkOwn, (req, res) => {
-    const user = req.session.user;
-    req.session.success = "";
-    req.session.message = "";
 
-    res.render('links/addEmpresa', { user });
-})
-
-
-// router.get('/edit/:id', (req, res) => {
-//     const user = req.session.user;
-//     const { id } = req.params;
-//     let dataId = id.split(" ");
-
-//     Controller.editUser(dataId[0], dataId[1], Usuario, Persona)
-//         .then(data => {
-//             let usuario = data.usuario;
-//             let persona = data.persona;
-//             res.render('links/editUser', { usuario, persona, user });
-//         })
-//         .catch(err => {
-//             console.log('[Error!]:', err.message);
-//         })
-// })
-
-// router.post('/update/:id', (req, res) => {
-
-//     const { id } = req.params;
-//     let dataId = id.split(" ");
-
-//     let ids = {
-//         id_persona: dataId[0],
-//         id_usuario: dataId[1]
-//     }
-
-//     Controller.updateUser(ids, req.body, req.file, Usuario, Persona)
-//         .then(() => {
-//             req.session.success = "El usuario se ha modificado con exito";
-//             res.redirect('/usuario');
-//         })
-//         .catch(err => {
-//             console.error('[Error!]:', err);
-//             req.session.message = err;
-//             res.redirect('/usuario');
-//         })
-// })
 
 // router.get('/add', secure.checkOwn, (req, res) => {
 //     const user = req.session.user;

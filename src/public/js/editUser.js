@@ -29,7 +29,7 @@ switch (moduloEditUser.value) {
         `
         break;
     
-    case "Empleado":
+    case "Representante_Legal":
         outputEditUser.innerHTML += `
             <p class="description">Modulo: </p>
             <p>

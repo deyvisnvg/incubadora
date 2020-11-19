@@ -19,6 +19,7 @@ router.use('*', async (req, res, next) => { // (*) cada vez que se haga una peti
         Representante = services.Representante;
         Pedido = services.Pedido;
         Persona = services.Persona;
+        Empresa = services.Empresa;
     }
     next() // Yo necesito siempre llamar a la function de next() para que el midleware continúe la ejecución del request y llegue a las demas rutas
 })
@@ -64,17 +65,13 @@ router.post('/add', (req, res) => {
         })
 })
 
-router.get('/view/:id', (req, res) => {
+router.get('/edit/:id', (req, res) => {
     const user = req.session.user;
     const { id } = req.params;
 
-    console.log(id);
-
-    Controller.viewPedido(id, Pedido, Persona)
+    Controller.editPedido(id, Pedido, Representante, Empresa)
         .then(data => {
-            let persona = data.dataPersona;
-            let pedido = data.dataPedido;
-            res.render('links/viewPedido', { persona, pedido, user });
+            res.render('links/editPedido', { data, user });
         })
         .catch(err => {
             console.log('[Error!]:', err.message);
@@ -84,39 +81,29 @@ router.get('/view/:id', (req, res) => {
 // router.get('/edit/:id', (req, res) => {
 //     const user = req.session.user;
 //     const { id } = req.params;
-//     let dataId = id.split(" ");
 
-//     Controller.editUser(dataId[0], dataId[1], Usuario, Persona)
+//     Controller.editPedido(id, Pedido)
 //         .then(data => {
-//             let usuario = data.usuario;
-//             let persona = data.persona;
-//             res.render('links/editUser', { usuario, persona, user });
+//             res.render('links/editPedido', { data, user });
 //         })
 //         .catch(err => {
 //             console.log('[Error!]:', err.message);
 //         })
 // })
 
-// router.post('/update/:id', (req, res) => {
+router.post('/update/:id', (req, res) => {
+    const { id } = req.params;
 
-//     const { id } = req.params;
-//     let dataId = id.split(" ");
-
-//     let ids = {
-//         id_persona: dataId[0],
-//         id_usuario: dataId[1]
-//     }
-
-//     Controller.updateUser(ids, req.body, req.file, Usuario, Persona)
-//         .then(() => {
-//             req.session.success = "El usuario se ha modificado con exito";
-//             res.redirect('/usuario');
-//         })
-//         .catch(err => {
-//             console.error('[Error!]:', err);
-//             req.session.message = err;
-//             res.redirect('/usuario');
-//         })
-// })
+    Controller.updatePedido(id, req.body, Pedido)
+        .then(() => {
+            req.session.success = "El pedido se ha modificado con exito";
+            res.redirect('/pedido');
+        })
+        .catch(err => {
+            console.error('[Error!]:', err);
+            req.session.message = err;
+            res.redirect('/pedido');
+        })
+})
 
 module.exports = router;

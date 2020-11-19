@@ -1,0 +1,39 @@
+<input type="hidden" name="modulo" id="moduloEditUser" value="{{usuario.modulo}}">
+<section class="registro-data">
+    <div class="state">EDITAR EMPRESA</div>
+    <div class="data">
+        <form action="/empresa/update/{{data.ruc_empresa}}" method="post">
+            <div class="data-valor1">
+                <p class="description">Ruc Empresa: </p>
+                <p><input type="text" name="ruc_empresa" value="{{data.ruc_empresa}}" readonly></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Empresa: </p>
+                <p><input type="text" name="nombre_empresa" value="{{data.nombre_empresa}}" required pattern="[A-Za-z\s]+"
+                        title="Ingrese solo letras Mayúsculas y minúsculas"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Dirección: </p>
+                <p><input type="text" name="direccion" value="{{data.direccion}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">E-mail: </p>
+                <p><input type="email" name="email" value="{{data.email}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Celular: </p>
+                <p><input type="text" name="celular" value="{{data.celular}}" required pattern="[0-9]+"
+                        maxlength="9" title="Ingrese solo números sin espacios"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Telefono: </p>
+                <p><input type="text" name="telefono" value="{{data.telefono}}" required pattern="[0-9]+"
+                        maxlength="9" title="Ingrese solo números sin espacios"></p>
+            </div>
+
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Modificar</button></p>
+            </div>
+        </form>
+    </div>
+</section>

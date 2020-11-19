@@ -1,0 +1,27 @@
+<input type="hidden" name="modulo" id="moduloUser" value="{{user.modulo}}">
+
+<section class="registro-data">
+    <div class="state">EDITAR INCUBADORA</div>
+    <div class="data">
+        <form action="/incubadora/update/{{data.id_incubadora}}" method="post">
+            <div class="data-valor1">
+                <p class="description">Nombre Incubadora: </p>
+                <p><input type="text" name="nombre_incubadora" value="{{data.nombre_incubadora}}" required pattern="[A-Za-z0-9\s]+" title="Ingrese solo letras Mayúsculas, minúsculas y números"></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Estado:</p>
+                <p>
+                    <select name="estado" required>
+                        <option value="{{data.estado}}" style="background: #9c9c9c; color: rgb(238, 245, 143)">{{data.estado}}</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </p>
+            </div>
+            
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Modificar</button></p>
+            </div>
+        </form>
+    </div>
+</section>

@@ -4,75 +4,91 @@
     <div class="state">REGISTRO DE REPRESENTANTE LEGAL</div>
     <div class="data">
         <form action="/usuario/representante/add" method="post">
-            <div class="data-valor4">
-                <p class="description">Empresa:</p>
+            <div class="data-valor2">
                 <p>
-                    <select id="selectBuscador" name="id_empresa" required>
-                        <option value="" style="background: #9c9c9c; color: rgb(238, 245, 143)">Seleccione...</option>
-                        {{#each data}}
-                        <option value="{{ id_empresa }}">{{ nombre_empresa }}</option>
-                        {{/each}}
-                    </select>
+                    <input type="hidden" id="valor" value="representante">
+                    <input type="hidden" name="id_representante" id="idRepresentante" value="" readonly>
                 </p>
             </div>
-            <div class="data-valor1">
+            <div class="data-valor2">
                 <p class="description">Cargo: </p>
-                <p><input type="text" name="cargo" value="" required pattern="[A-Z a-z]+"
+                <p><input type="text" name="cargo" value="" required pattern="[A-Za-z\s]+"
                         title="Ingrese solo letras Mayúsculas y minúsculas"></p>
             </div>
-            <div class="data-valor1">
+            <div class="data-valor2">
                 <p class="description">DNI: </p>
                 <p><input type="text" name="dni_persona" value="" required pattern="[0-9]+" maxlength="8"
                         title="Ingrese solo números sin espacios"></p>
             </div>
-            <div class="data-valor1">
+            <div class="data-valor2">
                 <p class="description">Nombres: </p>
-                <p><input type="text" name="nombres" value="" required pattern="[A-Z a-z]+"
+                <p><input type="text" name="nombres" value="" required pattern="[A-Za-z\s]+"
                         title="Ingrese solo letras Mayúsculas y minúsculas"></p>
             </div>
-            <div class="data-valor1">
+            <div class="data-valor2">
                 <p class="description">Apellidos: </p>
-                <p><input type="text" name="apellidos" value="" required pattern="[A-Z a-z]+"
+                <p><input type="text" name="apellidos" value="" required pattern="[A-Za-z\s]+"
                         title="Ingrese solo letras Mayúsculas y minúsculas"></p>
             </div>
-            <div class="data-valor1">
+            <div class="data-valor2">
                 <p class="description">Fecha Nacimiento: </p>
-                <p><input type="date" name="fecha_nacimiento" value="{{data.fecha_ingreso}}" required></p>
+                <p><input type="date" name="fecha_nacimiento" value="" required></p>
             </div>
-            <div class="data-valor1">
+            <div class="data-valor2">
                 <p class="description">Genero: </p>
                 <p>
                     <select name="genero" required>
-                        <option value="">Seleccione...</option>
+                        <option value="" style="background: #9c9c9c; color: rgb(238, 245, 143)">Seleccione...</option>
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
                     </select>
                 </p>
             </div>
-             <div class="data-valor1">
+            <div class="data-valor2">
                 <p class="description">Dirección: </p>
                 <p><input type="text" name="direccion" value="" required></p>
             </div>
-            <div class="data-valor1">
+            <div class="data-valor2">
                 <p class="description">Celular: </p>
                 <p><input type="text" name="celular" value="" required pattern="[0-9]+"
                         maxlength="9" title="Ingrese solo números sin espacios"></p>
             </div>
-            <div class="data-valor1">
+            <div class="data-valor2">
                 <p class="description">E-mail: </p>
                 <p><input type="email" name="email" value="" required></p>
             </div>
-
-
-            <div class="data-valor4">
-                <p class="description">Tipo de usuario:</p>
+            <div class="data-valor2">
                 <p>
-                    <select name="modulo" required>
+                    <select name="modulo" required hidden>
                         <option value="Representante_Legal">Representante Legal</option>
                     </select>
                 </p>
             </div>
-
+            
+            <hr>
+            <br>
+            {{!-- <div class="data-valor4">
+                <p class="title-color">Empresa Asociada:</p>
+            </div> --}}
+            <div class="data-table-pagination_Empresa">
+                <table id="example1" class="data-table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 100px;"><p class="description-name">Asociar</p></th>
+                            <th><p class="description-name">Empresa</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each data}}
+                        <tr>
+                            <td><p class="description"> <input type="checkbox" name="empresas" value="{{ruc_empresa}}"> </p></td>
+                            <td><p class="description-valor">{{nombre_empresa}}</p></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <br><br>
             <div class="data-boton">
                 <p class="boton"><button type="submit">Registrar</button></p>
             </div>

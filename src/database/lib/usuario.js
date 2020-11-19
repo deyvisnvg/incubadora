@@ -14,12 +14,13 @@ module.exports = (UsuarioModel, PersonaModel) => {
     })
   }
 
-  function findUsuarioId(id_usuario) {
-    return UsuarioModel.findOne({
+  async function findUsuarioId(id_usuario) {
+    const result = await UsuarioModel.findOne({
       where: {
         id_usuario
       }
     })
+    return result.toJSON();
   }
 
   async function addUser(data) {

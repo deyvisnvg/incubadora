@@ -12,6 +12,9 @@ if (valor.value == "pedido") {
 } else if (valor.value == "incubacion") {
     const incubacion1 = document.getElementById('idIncubacion');
     incubacion1.value = "Inc_" + id;
+} else if (valor.value == "representante") {
+    const incubacion1 = document.getElementById('idRepresentante');
+    incubacion1.value = "Rep_" + id;
 }
 
 // JavaScript almacena las fechas como número de milisegundos desde 

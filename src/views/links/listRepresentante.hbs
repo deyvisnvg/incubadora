@@ -22,8 +22,8 @@
                         <th><p class="description">Dni</p></th>
                         <th><p class="description-name">Nombres y Apellidos</p></th>
                         <th><p class="description">Cargo</p></th>
-                        <th><p class="description">Empresa</p></th>
                         <th><p class="description">Contacto</p></th>
+                        <th><p class="description">Estado</p></th>
                         <th><p class="description">Editar </p></th>
                     </tr>
                 </thead>
@@ -32,11 +32,11 @@
                     <tr>
                         <td><p class="description">{{'persona.dni_persona'}}</p></td>
                         <td><p class="description-valor">{{'persona.nombres'}} {{'persona.apellidos'}}</p></td>
-                        <td><p class="description">{{'persona.representante.cargo'}}</p></td>
-                        <td><p class="description">{{'persona.representante.empresa.nombre_empresa'}}</p></td>
+                        <td><p class="description">{{cargo}}</p></td>
                         <td><p class="description">{{'persona.celular'}}</p></td>
+                        <td><div class="description stated">{{estado}}<div hidden>{{ estado }}</div></div></td>
                         <td>
-                            <p class="description"><a href="/usuario/edit/{{id_persona}} {{id_usuario}}"><img
+                            <p class="description"><a href="/usuario/representante/edit/{{'persona.dni_persona'}}&{{id_representante}}"><img
                             src="/img/editar.png" alt="icon de Editar"></a></p>
                         </td>
                     </tr>

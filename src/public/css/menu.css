@@ -134,6 +134,11 @@ body {
     width: 100%;
 }
 
+.oculto {
+    position: relative;
+    top: 13px;
+}
+
 /* Desktop First que empieze desde el MQ mas grande */
 
 @media screen and (max-width: 1024px){

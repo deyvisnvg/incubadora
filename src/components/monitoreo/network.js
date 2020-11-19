@@ -8,47 +8,83 @@ const secure = require('../../auth');
 const Controller = require('./controller');
 const { configDb } = require('../../config')
 const db = require('../../database');
-const { handleFatalError } = require('../../error')
+const { handleFatalError } = require('../../error');
 
-const { socket } = require('../../socket');
-
-let services, Sensor, Incubacion, DataSensor;
+let services, Sensor, Incubacion, DataSensor, Pedido;
 
 router.use('*', async (req, res, next) => { // (*) cada vez que se haga una petición a todas las rutas // OJO: Actualmente express no soporta midlewares o rutas async await y esto lo solucionamos con express-asyncify me permite darle soporte async await a mi midlewares y rutas de express
-    if (!services) { // Si los servicios no han sido obtenidos
+    if (!services) {
         console.log('Connecting to database')
 
-        services = await db(configDb).catch(err => handleFatalError(err)); // Aqui obtengo los servicios de mi BD
+        services = await db(configDb).catch(err => handleFatalError(err));
         Sensor = services.Sensor;
         Incubacion = services.Incubacion;
         DataSensor = services.DataSensor;
+        Pedido = services.Pedido;
+        Persona = services.Persona;
     }
-
-    next() // Yo necesito siempre llamar a la function de next() para que el midleware continúe la ejecución del request y llegue a las demas rutas
-})
-
-router.use('*/:data', (req, res, next) => {
-
-    const { data } = req.params;
-
-    Controller.recivedDataSensor(data, Sensor, DataSensor, req.session.contador)
 
     next()
 })
 
+router.use('*/:data', (req, res, next) => {
+    const { data } = req.params;
+    Controller.recivedDataSensor(data, Sensor, DataSensor, req.session.contador)
+    next()
+})
+
+//------------------------------ Usuario: Super Administrador ------------------------------//
 router.get('/', secure.checkOwn, (req, res) => {
-    const user = req.session.user; // Obtengo el user(que es un objeto de datos del usuario logeado) guardado en la cookies para definir el menú del usuario según su módulo
+    const user = req.session.user;
     req.session.success = "";
     req.session.message = "";
 
-
-    Controller.dataMonitoreo(Incubacion)
+    Controller.filtroMonitoreo(user, Pedido)
         .then(data => {
-            res.render('links/monitoreo', { data, user });
+            if (user.modulo == 'Representante_Legal') {
+                res.render('links/monitoreoRepresentante', { data, user });
+            } else {
+                res.render('links/monitoreo', { data, user });
+            }
+        })
+        .catch(err => {
+            console.log('[Error!]: ', err);
+        })
+
+})
+
+router.post('/', secure.checkOwn, (req, res) => {
+    const user = req.session.user;
+    req.session.success = "";
+    req.session.message = "";
+
+    Controller.dataMonitoreo(req.body, user, Incubacion, Pedido)
+        .then(data => {
+            if (user.modulo == 'Representante_Legal') {
+                res.render('links/monitoreoRepresentante', { data, user });
+            } else {
+                res.render('links/monitoreo', { data, user });
+            }
         })
         .catch(err => {
             console.log('[Error!]: ', err);
         })
 })
+
+//------------------------------ Usuario: Representante Legal ------------------------------//
+// router.get('/representante', secure.checkOwn, (req, res) => {
+//     const user = req.session.user;
+//     console.log(user);
+//     req.session.success = "";
+//     req.session.message = "";
+
+//     Controller.filtroMonitoreoRepresentante(Persona, user.id_usuario)
+//         .then(data => {
+//             res.render('links/monitoreoRepresentante', { data, user });
+//         })
+//         .catch(err => {
+//             console.log('[Error!]: ', err);
+//         })
+// })
 
 module.exports = router;
