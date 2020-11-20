@@ -43,7 +43,7 @@ module.exports = (PedidoModel, RepresentanteEmpresaModel, EmpresaModel, Represen
                         model: EmpresaModel
                     },
                     {
-                        attributes: ['cargo'],
+                        attributes: ['id_representante'],
                         model: RepresentanteModel,
                         include: [{
                             attributes: ['dni_persona', 'nombres', 'apellidos'],

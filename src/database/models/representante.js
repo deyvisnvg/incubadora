@@ -12,10 +12,6 @@ module.exports = function setupIncubadoraModel(config) {
             primaryKey: true
             // unique: false
         },
-        cargo: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
         estado: {
             type: Sequelize.TEXT,
             allowNull: false

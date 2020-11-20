@@ -693,7 +693,7 @@ body {
 }
 
 .app-header-fixed {
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .app-header-fixed .app-header {
@@ -959,6 +959,7 @@ body {
   .app-aside-folded .app-content,
   .app-aside-folded .app-footer {
     margin-left: 60px;
+    padding-bottom: 10px;
   }
   .app-aside-folded .app-header .navbar-brand {
     display: block;
@@ -2921,7 +2922,8 @@ fieldset[disabled] .i-checks input + i:before {
 .bg-dark {
   color: #a6a8b1;
   background-color: #3a3f51;
-  position: relative;
+  /* position: relative; */
+  position: fixed;
   z-index: 2;
 }
 
@@ -4186,7 +4188,7 @@ a.text-#000000:hover {
 .b-t {
   border-top: 1px solid #dee5e7;
   position: fixed;
-  margin: 0;
+  /* margin: 0; */
 }
 
 .b-r {

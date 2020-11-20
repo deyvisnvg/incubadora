@@ -255,7 +255,6 @@ module.exports = {
                 result = await Persona.updatePersonaId(dataId.dni_persona, dataPersona);
                 if (result) {
                     let dataRepresentante = {
-                        cargo: data.cargo,
                         estado: data.estado
                     }
                     await Representante.updateRepresentanteById(dataId.id_representante, dataRepresentante);

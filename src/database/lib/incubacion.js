@@ -16,7 +16,7 @@ module.exports = (IncubacionModel, PedidoModel, IncubadoraModel, RepresentanteEm
     async function findIncubacionAll() {
 
         return await IncubacionModel.findAll({
-            attributes: ['id_pedido', [sequelize.fn('count', sequelize.col('id_incubacion')), 'n_incubacion']],
+            attributes: ['id_pedido', [sequelize.fn('count', sequelize.col('id_incubacion')), 'n_incubacion'], 'estado'],
             where: {
                 estado: 'Activo'
             },
@@ -75,7 +75,7 @@ module.exports = (IncubacionModel, PedidoModel, IncubadoraModel, RepresentanteEm
                         model: RepresentanteEmpresaModel,
                         include: [
                             {
-                                attributes: ['id_representante', 'cargo'],
+                                attributes: ['id_representante'],
                                 model: RepresentanteModel,
                                 include: [{
                                     attributes: ['dni_persona', 'nombres', 'apellidos'],

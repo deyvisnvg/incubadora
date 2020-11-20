@@ -66,7 +66,7 @@ module.exports = (PersonaModel, UsuarioModel, RepresentanteModel, EmpresaModel, 
           model: UsuarioModel, // La tabla o modelo con quien voya a relacionarlo o hacer el join
         },
         {
-          attributes: ['id_representante', 'cargo'],
+          attributes: ['id_representante'],
           model: RepresentanteModel // La tabla o modelo con quien voya a relacionarlo o hacer el join
         }
       ],
@@ -105,7 +105,7 @@ module.exports = (PersonaModel, UsuarioModel, RepresentanteModel, EmpresaModel, 
         id_usuario
       },
       include: [{
-        attributes: ['id_representante', 'cargo'],
+        attributes: ['id_representante'],
         model: RepresentanteModel,
       }],
       raw: true

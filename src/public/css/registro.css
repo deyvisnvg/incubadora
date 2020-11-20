@@ -21,7 +21,7 @@
         border-radius: 5px;
         font-size: 15px;
         font-family: 'Bai Jamjuree', sans-serif;
-        margin: 20px auto 60px;
+        margin: 45px auto 60px;
         /* box-shadow: right bottom opacidad-sombra grosor-sombra; */
         box-shadow: -1px 1px 3px 1px #95afc0;
     }
@@ -122,7 +122,7 @@
         border-radius: 5px;
         font-size: 15px;
         font-family: 'Bai Jamjuree', sans-serif;
-        margin: 15px auto;
+        margin: 45px auto;
         box-shadow: -1px 1px 5px 2px #95afc0;
     }
     

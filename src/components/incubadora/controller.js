@@ -128,7 +128,7 @@ module.exports = {
             try {
                 data.dataIncubacion = incubacion;
 
-                // console.log(data);
+                console.log(data);
                 resolve(data);
 
             } catch (error) {

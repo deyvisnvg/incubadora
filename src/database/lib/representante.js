@@ -18,7 +18,6 @@ module.exports = (RepresentanteModel, PersonaModel, EmpresaModel, UsuarioModel) 
 
     const newRepresentante = {
       id_representante: data.id_representante,
-      cargo: data.cargo,
       estado: 'Activo',
       id_persona: data.dni_persona
     }
@@ -43,7 +42,7 @@ module.exports = (RepresentanteModel, PersonaModel, EmpresaModel, UsuarioModel) 
 
   async function findRepresentanteAll() {
     return RepresentanteModel.findAll({
-      attributes: ['id_representante', 'cargo', 'estado'],
+      attributes: ['id_representante', 'estado'],
       include: [
         { // Con include hacemos los join o la relación con la tabla
           attributes: ['dni_persona', 'nombres', 'apellidos', 'celular'],
@@ -73,7 +72,7 @@ module.exports = (RepresentanteModel, PersonaModel, EmpresaModel, UsuarioModel) 
         attributes: ['dni_persona', 'nombres', 'apellidos'],
         model: PersonaModel, // La tabla o modelo con quien voya a relacionarlo o hacer el join
         include: [{
-          attributes: ['id_representante', 'cargo'],
+          attributes: ['id_representante'],
           model: RepresentanteModel,
         }]
       }],

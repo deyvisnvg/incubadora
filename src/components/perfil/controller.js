@@ -4,17 +4,11 @@ const { handleError } = require('../../error');
 module.exports = {
     showPerfil: (user, Persona) => {
         return new Promise(async (resolve, reject) => {
-            let persona, representante;
+            let persona;
 
-            if (user.modulo == 'Representante_Legal') {
-                persona = await Persona.findPersonaByUserId(user.id_usuario).catch(handleError);
-                persona.cargo = persona['representante.cargo'];
-                resolve(persona);
-            } else {
-                representante = await Persona.findPersonaByUserId(user.id_usuario).catch(handleError);
-                representante.cargo = representante['representante.cargo'];
-                resolve(representante);
-            }
+            persona = await Persona.findPersonaByUserId(user.id_usuario).catch(handleError);
+            console.log(persona);
+            resolve(persona);
         })
     },
 
@@ -33,14 +27,7 @@ module.exports = {
             }
 
             try {
-                if (typeof data.cargo === 'undefined') {
-                    await Persona.updatePersonaId(dni_persona, dataPersona);
-                } else {
-                    result = await Persona.updatePersonaId(dni_persona, dataPersona);
-                    if (result) {
-                        await Representante.updateRepresentanteById(data.id_representante, { cargo: data.cargo });
-                    }
-                }
+                await Persona.updatePersonaId(dni_persona, dataPersona);
                 resolve();
             } catch (error) {
                 reject("[Error]: No es posible Modificar!" + error)

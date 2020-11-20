@@ -4,10 +4,6 @@
     <div class="data">
         <form action="/usuario/representante/update/{{data.representante.id_persona}}&{{data.representante.id_representante}}" method="post">
             {{#with data.representante}}
-            <div class="data-valor2">
-                <p class="description">Cargo: </p>
-                <p><input type="text" name="cargo" value="{{cargo}}" required pattern="[A-Za-z\s]{3,30}" title="Ingrese solo letras Mayúsculas y minúsculas"></p>
-            </div>
             {{#with persona}}
             <div class="data-valor2">
                 <p class="description">DNI: </p>
