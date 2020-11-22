@@ -119,6 +119,19 @@ switch (modulo.value) {
                                         <li>
                                             <a href class="auto">
                                                 <i class="icon-bookmarks"></i>
+                                                <span class="font-bold" translate="aside.nav.Mantenimiento">Cámara</span>
+                                            </a>
+                                            <ul class="nav nav-sub dk" style="display: none;">
+                                                <li ui-sref-active="active">
+                                                    <a href="/camara"><span class="margen"> Nueva Cámara</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <ul class="nav nav-sub dk">
+                                        <li>
+                                            <a href class="auto">
+                                                <i class="icon-bookmarks"></i>
                                                 <span class="font-bold" translate="aside.nav.Mantenimiento">Pedidos</span>
                                             </a>
                                             <ul class="nav nav-sub dk" style="display: none;">
@@ -309,6 +322,19 @@ switch (modulo.value) {
                                             <ul class="nav nav-sub dk" style="display: none;">
                                                 <li ui-sref-active="active">
                                                     <a href="/empresa"><span class="margen"> Nueva Empresa</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <ul class="nav nav-sub dk">
+                                        <li>
+                                            <a href class="auto">
+                                                <i class="icon-bookmarks"></i>
+                                                <span class="font-bold" translate="aside.nav.Mantenimiento">Cámara</span>
+                                            </a>
+                                            <ul class="nav nav-sub dk" style="display: none;">
+                                                <li ui-sref-active="active">
+                                                    <a href="/camara"><span class="margen"> Nueva Cámara</span></a>
                                                 </li>
                                             </ul>
                                         </li>

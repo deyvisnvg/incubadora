@@ -23,9 +23,9 @@
                         <th><p class="description-name">Cantidad</p></th>
                         <th><p class="description">Fecha Pedido</p></th>
                         <th><p class="description">Fecha Entrega</p></th>
-                        {{!-- <th><p class="description">Estado</p></th> --}}
                         <th><p class="description">Representante</p></th>
                         <th><p class="description">Empresa</p></th>
+                        <th><p class="description">Estado</p></th>
                         <th><p class="description">Visualizar </p></th>
                     </tr>
                 </thead>
@@ -36,9 +36,9 @@
                         <td><p class="description-valor">{{cantidad}}</p></td>
                         <td><p class="description">{{fecha_pedido}}</p></td>
                         <td><p class="description">{{fecha_entrega}}</p></td>
-                        {{!-- <td><p class="description">{{estado}}</p></td> --}}
                         <td><p class="description">{{'representante_empresa.representante.persona.nombres'}} {{'representante_empresa.representante.persona.apellidos'}}</p></td>
                         <td><p class="description">{{'representante_empresa.empresa.nombre_empresa'}}</p></td>
+                        <td><div class="description stated">{{estado}}<div hidden>{{ estado }}</div></div></td>
                         <td>
                             <p class="description">
                                 <a href="/pedido/edit/{{id_pedido}}&{{'representante_empresa.id_representante'}}&{{'representante_empresa.id_empresa'}}"> 

@@ -84,7 +84,21 @@
     <script>
         $(function () {
             $('#example1').DataTable({
-                "language": traduccion
+                "language": traduccion,
+                rowReorder: true,
+                columnDefs: [
+                    { orderable: true, className: 'reorder', targets: 2 },
+                    { orderable: false, targets: '_all' }
+                ],
+                searchBuilder: {
+                    preDefined: {
+                        criteria: [
+                            {
+                                condition: 'DESC'
+                            }
+                        ]
+                    }
+                }
             })
         })
     </script>

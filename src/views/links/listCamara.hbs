@@ -1,0 +1,44 @@
+<section class="list-data">
+    <div class="state">REGISTRO DE CAMARAS</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+    <div class="list-cuerpo">
+        <div class="addBoton">
+            <p class="boton">
+                <a href="/camara/add">
+                    <strong> <i class="icon-plus"></i> Cámara</strong>
+                </a>
+            </p>
+        </div>
+        <div class="data-table-pagination">
+            <table id="example1" class="data-table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th><p class="description">IP Cámara</p></th>
+                        <th><p class="description">Incubadora</p></th>
+                        <th><p class="description">Estado</p></th>
+                        <th><p class="description">Editar</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                    <tr>
+                        <td><p class="description">{{ip_camara}}</p></td>
+                        <td><p class="description">{{nombre_incubadora}}</p></td>
+                        <td><div class="description stated">{{estado}}<div hidden>{{ estado }}</div></div></td>
+                        <td>
+                            <p class="description"><a href="/camara/edit/{{id_camara}}"><img
+                            src="/img/editar.png" alt="icon de Editar"></a></p>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

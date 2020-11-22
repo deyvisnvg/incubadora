@@ -14,7 +14,6 @@ module.exports = IncubadoraModel => {
     async function findIncubadoraAllOn() {
         return await IncubadoraModel.findAll({
             attributes: ['id_incubadora', 'nombre_incubadora'], // Para seleccionar ese atributo específico que quiero retornar
-            // group: ['type'], // Lo agrupamos por type
             where: {
                 estado: "Activo"
             },

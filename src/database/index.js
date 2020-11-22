@@ -12,6 +12,7 @@ const setupPedidoModel = require('./models/pedido')
 const setupIncubacionModel = require('./models/incubacion')
 const setupDataSensorModel = require('./models/data_sensor')
 const setupRepresentanteEmpresaModel = require('./models/representante_empresa')
+const setupCamaraModel = require('./models/camara')
 
 const setupUsuario = require('./lib/usuario');
 const setupPersona = require('./lib/persona');
@@ -24,6 +25,7 @@ const setupPedido = require('./lib/pedido');
 const setupIncubacion = require('./lib/incubacion');
 const setupDataSensor = require('./lib/data_sensor');
 const setupRepresentanteEmpresa = require('./lib/representante_empresa');
+const setupCamara = require('./lib/camara');
 
 module.exports = async config => {
 
@@ -39,6 +41,7 @@ module.exports = async config => {
     const IncubacionModel = setupIncubacionModel(config);
     const DataSensorModel = setupDataSensorModel(config);
     const RepresentanteEmpresaModel = setupRepresentanteEmpresaModel(config);
+    const CamaraModel = setupCamaraModel(config);
     
     //--------------------------- Persona ---------------------------//
     UsuarioModel.hasOne(PersonaModel, { foreignKey: 'id_usuario', sourceKey: 'id_usuario' }) // Un "Usuario" "Tiene un" "Persona"
@@ -68,6 +71,9 @@ module.exports = async config => {
     IncubadoraModel.hasMany(SensorModel, { foreignKey: 'id_incubadora', sourceKey: 'id_incubadora' })
     // Se añade una clave id_incubadora a la tabla SensorModel
     SensorModel.belongsTo(IncubadoraModel, { foreignKey: 'id_incubadora', sourceKey: 'id_incubadora' })
+
+    IncubadoraModel.hasMany(CamaraModel, { foreignKey: 'id_incubadora', sourceKey: 'id_incubadora' })
+    CamaraModel.belongsTo(IncubadoraModel, { foreignKey: 'id_incubadora', sourceKey: 'id_incubadora' })
     
     //--------------------------- Sensores ---------------------------//
     TipoSensorModel.hasMany(SensorModel, { foreignKey: 'id_tipoSensor', sourceKey: 'id_tipoSensor' }) //Un "Tipo de Sensor" "tiene muchos" "Sensores" definidos
@@ -94,6 +100,7 @@ module.exports = async config => {
     const Incubacion = setupIncubacion(IncubacionModel, PedidoModel, IncubadoraModel, RepresentanteEmpresaModel, RepresentanteModel, PersonaModel, EmpresaModel);
     const DataSensor = setupDataSensor(DataSensorModel);
     const RepresentanteEmpresa = setupRepresentanteEmpresa(RepresentanteEmpresaModel, EmpresaModel);
+    const Camara = setupCamara(CamaraModel, IncubadoraModel);
 
     return {
         Usuario,
@@ -106,6 +113,7 @@ module.exports = async config => {
         Pedido,
         Incubacion,
         DataSensor,
-        RepresentanteEmpresa
+        RepresentanteEmpresa,
+        Camara
     }
 }

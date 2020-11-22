@@ -8,6 +8,7 @@ const incubadora = require('../components/incubadora/network');
 const sensores = require('../components/sensores/network');
 const empresa = require('../components/empresa/network');
 const pedido = require('../components/pedido/network');
+const camara = require('../components/camara/network');
 
 module.exports = app => {
     app.use('/login', authentication);
@@ -18,4 +19,5 @@ module.exports = app => {
     app.use('/sensores', sensores);
     app.use('/empresa', empresa);
     app.use('/pedido', pedido);
+    app.use('/camara', camara);
 }

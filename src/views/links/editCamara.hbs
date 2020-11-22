@@ -1,0 +1,38 @@
+<input type="hidden" name="modulo" id="moduloUser" value="{{user.modulo}}">
+
+<section class="registro-data">
+    <div class="state">EDITAR CAMARA</div>
+    <div class="data">
+        <form action="/camara/update/{{data.id_camara}}" method="post">
+            <div class="data-valor1">
+                <p class="description">IP Cámara: </p>
+                <p><input type="text" name="ip_camara" value="{{data.ip_camara}}" required></p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Incubadora:</p>
+                <p>
+                    <select id="selectBuscador" name="incubadora" required>
+                        <option value="{{data.id_incubadora}}">{{data.incubadora.nombre_incubadora}}</option>
+                        {{#each data.incubadoras}}
+                        <option value="{{id_incubadora}}">{{nombre_incubadora}}</option>
+                        {{/each}}
+                    </select>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Estado:</p>
+                <p>
+                    <select name="estado" required>
+                        <option value="{{data.estado}}" style="background: #9c9c9c; color: rgb(150, 150, 150)">{{data.estado}}</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </p>
+            </div>
+            
+            <div class="data-boton">
+                <p class="boton"><button type="submit">Modificar</button></p>
+            </div>
+        </form>
+    </div>
+</section>

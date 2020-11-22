@@ -33,6 +33,8 @@ module.exports = (PedidoModel, RepresentanteEmpresaModel, EmpresaModel, Represen
 
     async function findPedidoAll() {
         const pedidoGroup = await PedidoModel.findAll({
+            attributes: ['id_pedido', 'cantidad', 'comentario', 'fecha_pedido', 'hora_pedido', 'fecha_entrega', 'estado'],
+            order: [['fecha_pedido', 'DESC']],
             include: [{
                 attributes: ['id_representante_empresa', 'id_representante', 'id_empresa'],
                 model: RepresentanteEmpresaModel,
