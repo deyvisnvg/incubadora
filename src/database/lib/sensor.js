@@ -31,7 +31,7 @@ module.exports = (SensorModel, TipoSensorModel, IncubadoraModel) => {
 
     async function findSensorTemperatura() {
         return SensorModel.findAll({
-            attributes: ['id_sensor'], // Para seleccionar ese atributo específico que quiero retornar
+            attributes: ['id_sensor', 'nombre_sensor'], // Para seleccionar ese atributo específico que quiero retornar
             where: { // Especificamos la condición
                 estado: 'Activo'
             },
@@ -48,7 +48,7 @@ module.exports = (SensorModel, TipoSensorModel, IncubadoraModel) => {
 
     async function findSensorHumedad() {
         return SensorModel.findAll({
-            attributes: ['id_sensor'], // group: ['type'], // Lo agrupamos por type
+            attributes: ['id_sensor', 'nombre_sensor'], // group: ['type'], // Lo agrupamos por type
             where: { // Especificamos la condición
                 estado: 'Activo'
             },
