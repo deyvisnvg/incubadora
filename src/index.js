@@ -18,15 +18,15 @@ const app = express();
 
 //Configuration de socket.io
 const server = http.createServer(app);
-socket.connect(server);
 
 // Configuration para escuchar eventos en el servidor desde el navegador
 const io = socketIO(server);
 require("./connection_socket")(io);
 
+socket.connect(server);
+
 // Settings
 const {config} = require('./config');
-
 
 //Configuramos nuestro motor de plantillas
 app.set('views', path.join(__dirname, 'views')); //Definimos la carpeta views
