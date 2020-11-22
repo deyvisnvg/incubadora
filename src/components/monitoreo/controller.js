@@ -69,7 +69,7 @@ module.exports = {
                 promedios
             }
 
-            console.log(datos)
+            // console.log(datos)
 
             if (datos) {
                 socket.io.emit("sensores", datos);

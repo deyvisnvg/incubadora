@@ -11,7 +11,7 @@ var estado_data = 0;
 
 //============= Evento que Muestra la Data de Sensores =============//
 socketio.on("sensores", datos => {
-    console.log(datos);
+    // console.log(datos);
     estado_data = estado_data + 1;
 
     sensorTemp = datos.sensorTemp
