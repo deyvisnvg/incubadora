@@ -20,7 +20,7 @@ module.exports = {
                 resolve(data);
 
             } catch (error) {
-                reject('[Error!]: No se pudo obtener los datos para el registro');
+                reject('Error! No se pudo obtener los datos para el registro');
             }
         })
     },
@@ -79,7 +79,7 @@ module.exports = {
                 resolve(data);
 
             } catch (error) {
-                reject('[Error!]: No se pudo obtener los datos para el registro');
+                reject('Error! No se pudo obtener los datos para el registro');
             }
 
         })

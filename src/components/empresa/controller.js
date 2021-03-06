@@ -30,8 +30,12 @@ module.exports = {
                 fecha_registro: dateFormatYMD()
             }
 
-            await Empresa.addEmpresa(dataEmpresa).catch(handleError);
-            resolve();
+            try {
+                await Empresa.addEmpresa(dataEmpresa).catch(handleError);
+                resolve();
+            } catch (err) {
+                reject('Error! al Agregar, intentelo nuevamente');
+            }
         })
     },
 

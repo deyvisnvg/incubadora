@@ -36,8 +36,12 @@ module.exports = {
                 id_incubadora: body.incubadora,
             }
 
-            await Camara.addCamara(camara).catch(err => handleError(err));
-            resolve();
+            try {
+                await Camara.addCamara(camara).catch(err => handleError(err));
+                resolve();
+            } catch (err) {
+                reject('Error al Agregar, intentelo nuevamente');
+            }
 
         })
     },

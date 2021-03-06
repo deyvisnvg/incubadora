@@ -29,8 +29,12 @@ module.exports = {
                 estado: body.estado,
             }
 
-            await Incubadora.addIncubadora(incubadora).catch(err => handleError(err));
-            resolve();
+            try {
+                await Incubadora.addIncubadora(incubadora).catch(err => handleError(err));
+                resolve();
+            } catch (error) {
+                reject('Error! al Agregar, intentelo nuevamente');
+            }
 
         })
     },
@@ -112,10 +116,12 @@ module.exports = {
                 id_incubadora: body.incubadora
             }
 
-            // console.log(newIncubacion);
-
-            await Incubacion.addIncubacion(newIncubacion).catch(err => handleError(err));
-            resolve();
+            try {
+                await Incubacion.addIncubacion(newIncubacion).catch(err => handleError(err));
+                resolve();
+            } catch (error) {
+                reject('Error! al Agregar, intentelo nuevamente');
+            }
 
         })
     },
@@ -249,8 +255,12 @@ module.exports = {
                 id_incubacion: body.id_incubacion
             }
 
-            await Incidencia.addIncidencia(dataIncidencia).catch(err => handleError(err));
-            resolve();
+            try {
+                await Incidencia.addIncidencia(dataIncidencia).catch(err => handleError(err));
+                resolve();
+            } catch (error) {
+                reject("Error! al Agregar, Inténtelo nuevamente.");
+            }
 
         })
     },
@@ -291,8 +301,12 @@ module.exports = {
                 cantidad_defectuosos: body.cantidad_defectuosos
             }
 
-            await Incidencia.updateIncidencia(body.identificador, dataIncidencia).catch(err => handleError(err));
-            resolve();
+            try {
+                await Incidencia.updateIncidencia(body.identificador, dataIncidencia).catch(err => handleError(err));
+                resolve();
+            } catch (error) {
+                reject("Error! al modificar, Inténtelo nuevamente.");
+            }
 
         })
     },

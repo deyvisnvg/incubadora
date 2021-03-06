@@ -85,26 +85,4 @@ router.post('/add', (req, res) => {
         })
 })
 
-
-
-// router.get('/add', secure.checkOwn, (req, res) => {
-//     const user = req.session.user;
-//     req.session.success = "";
-//     req.session.message = "";
-
-//     res.render('links/addUser', { user });
-// })
-
-// router.post('/add', (req, res) => {
-//     Controller.registroUser(req.body, Usuario)
-//         .then(() => {
-//             req.session.success = "Usuario registrado con éxito!";
-//             res.redirect('/usuario/add');
-//         })
-//         .catch(err => {
-//             req.session.message = err;
-//             res.redirect('/usuario/add');
-//         })
-// })
-
 module.exports = router;
