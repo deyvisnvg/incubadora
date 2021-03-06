@@ -199,7 +199,7 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/replegal"><span><b>Reporte Rep Legal</b></span></a>
+                                            <a href="/reporte/replegal"><span><b>Reporte Representante Legal</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
                                             <a href="/reporte/pedido"><span><b>Reporte pedidos</b></span></a>
@@ -430,7 +430,7 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/replegal"><span><b>Reporte Rep Legal</b></span></a>
+                                            <a href="/reporte/replegal"><span><b>Reporte Representante Legal</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
                                             <a href="/reporte/pedido"><span><b>Reporte pedidos</b></span></a>
@@ -552,7 +552,7 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/replegal"><span><b>Reporte Rep Legal</b></span></a>
+                                            <a href="/reporte/replegal"><span><b>Reporte Representante Legal</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
                                             <a href="/reporte/pedido"><span><b>Reporte pedidos</b></span></a>
