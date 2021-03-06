@@ -4,21 +4,21 @@
 
 module.exports = {
     config: {
-        port: process.env.PORT || 5000,
+        port: process.env.PORT || 7000,
         host: process.env.PORT || 'http://localhost',
         filesRoute: process.env.FILES_ROUTE || '/photos',
         filesRouteImg: process.env.FILES_ROUTEIMG || '/img'
     },
 
     configDb: {
-        /*database: process.env.DB_NAME || 'admin_incubadora', // Vamos a pasar valores como si fueran variables de entorno por defecto
+        database: process.env.DB_NAME || 'admin_incubadora', // Vamos a pasar valores como si fueran variables de entorno por defecto
         username: process.env.DB_USER || 'admin_incubadora',
         password: process.env.DB_PASS || 'nethack',
-        host: process.env.DB_HOST || 'valvinogpsmqtt.tk',*/
-        database: process.env.DB_NAME || 'incub4xh_monitoreo', // Vamos a pasar valores como si fueran variables de entorno por defecto
+        host: process.env.DB_HOST || 'valvinogpsmqtt.tk',
+        /*database: process.env.DB_NAME || 'incub4xh_monitoreo', // Vamos a pasar valores como si fueran variables de entorno por defecto
         username: process.env.DB_USER || 'incub4xh',
         password: process.env.DB_PASS || 'L6uJ5dLx0u0$1$9_',
-        host: process.env.DB_HOST || 'incubadoraac.com',
+        host: process.env.DB_HOST || 'incubadoraac.com',*/
         pool: {
             max: 5,
             min: 0,

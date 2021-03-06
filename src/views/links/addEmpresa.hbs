@@ -2,6 +2,13 @@
 
 <section class="registro-data">
     <div class="state">REGISTRO DE EMPRESA</div>
+    {{#if message }}
+    <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+    <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
     <div class="data">
         <form action="/empresa/add" method="post">
             <div class="data-valor1">
@@ -24,13 +31,13 @@
             </div>
             <div class="data-valor1">
                 <p class="description">Celular: </p>
-                <p><input type="text" name="celular" value="" required pattern="[0-9]+"
-                        maxlength="9" title="Ingrese solo números sin espacios"></p>
+                <p><input type="text" name="celular" value="" required pattern="[0-9]+" maxlength="9"
+                        title="Ingrese solo números sin espacios"></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Telefono: </p>
-                <p><input type="text" name="telefono" value="" required pattern="[0-9]+"
-                        maxlength="9" title="Ingrese solo números sin espacios"></p>
+                <p><input type="text" name="telefono" value="" required pattern="[0-9]+" maxlength="9"
+                        title="Ingrese solo números sin espacios"></p>
             </div>
 
             {{!-- Registrar tambien Fecha de Registro --}}
@@ -39,13 +46,6 @@
                 <p class="boton"><button type="submit">Registrar</button></p>
             </div>
 
-            {{#if message }}
-            <div class="messageError">{{ message }}</div>
-            {{/if}}
-
-            {{#if success }}
-            <div class="messageSuccess">{{ success }}</div>
-            {{/if}}
         </form>
     </div>
 </section>

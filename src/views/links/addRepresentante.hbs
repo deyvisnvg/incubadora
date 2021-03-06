@@ -2,6 +2,13 @@
 
 <section class="registro-data">
     <div class="state">REGISTRO DE REPRESENTANTE LEGAL</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
     <div class="data">
         <form action="/usuario/representante/add" method="post">
             <div class="data-valor2">
@@ -87,14 +94,7 @@
             <div class="data-boton">
                 <p class="boton"><button type="submit">Registrar</button></p>
             </div>
-
-            {{#if message }}
-            <div class="messageError">{{ message }}</div>
-            {{/if}}
-
-            {{#if success }}
-            <div class="messageSuccess">{{ success }}</div>
-            {{/if}}
+            
         </form>
     </div>
 </section>

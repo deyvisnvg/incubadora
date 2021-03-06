@@ -80,7 +80,7 @@ module.exports = {
                 console.log(data)
                 resolve(data);
             } catch (err) {
-                reject('[Error!]:', err);
+                reject('Error! al editar, Inténtelo nuevamente.');
             }
 
         })
@@ -99,7 +99,7 @@ module.exports = {
                 await Sensor.updateSensorById(id_sensor, dataSensor);
                 resolve();
             } catch (err) {
-                reject("Error! al modificar, Inténtelo nuevamente." + err);
+                reject("Error! al modificar, Inténtelo nuevamente.");
             }
         })
     },

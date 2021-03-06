@@ -2,6 +2,13 @@
 
 <section class="registro-data">
     <div class="state">REGISTRO DE PEDIDOS</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
     <div class="data">
         <form action="/pedido/add" method="post">
             <div class="data-valor1">
@@ -59,13 +66,6 @@
                 <p class="boton"><button type="submit">Registrar</button></p>
             </div>
 
-            {{#if message }}
-            <div class="messageError">{{ message }}</div>
-            {{/if}}
-
-            {{#if success }}
-            <div class="messageSuccess">{{ success }}</div>
-            {{/if}}
         </form>
     </div>
 </section>

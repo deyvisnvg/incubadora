@@ -2,11 +2,19 @@
 
 <section class="registro-data">
     <div class="state">REGISTRO DE INCUBADORAS</div>
+    {{#if message }}
+    <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+    <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
     <div class="data">
         <form action="/incubadora/add" method="post">
             <div class="data-valor1">
                 <p class="description">Nombre Incubadora: </p>
-                <p><input type="text" name="nombre_incubadora" value="" required pattern="[A-Za-z0-9\s]+" title="Ingrese solo letras Mayúsculas, minúsculas y números"></p>
+                <p><input type="text" name="nombre_incubadora" value="" required pattern="[A-Za-z0-9\s]+"
+                        title="Ingrese solo letras Mayúsculas, minúsculas y números"></p>
             </div>
             <div class="data-valor1">
                 <p class="description">Estado:</p>
@@ -18,18 +26,11 @@
                     </select>
                 </p>
             </div>
-            
+
             <div class="data-boton">
                 <p class="boton"><button type="submit">Registrar</button></p>
             </div>
 
-            {{#if message }}
-            <div class="messageError">{{ message }}</div>
-            {{/if}}
-
-            {{#if success }}
-            <div class="messageSuccess">{{ success }}</div>
-            {{/if}}
         </form>
     </div>
 </section>

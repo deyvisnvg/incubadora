@@ -2,6 +2,13 @@
 
 <section class="registro-data">
     <div class="state"><a href="/incubadora/incidencia/list/{{ids.id_incubacion}}&{{ids.id_pedido}}"><i class="icon-arrow-left2 positionIcon"></i></a>REGISTRO DE INCIDENCIAS</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
     <div class="data">
         <form action="/incubadora/incidencia/add" method="post">
             <input type="hidden" name="id_incubacion" value="{{ids.id_incubacion}}">
@@ -31,13 +38,6 @@
                 <p class="boton"><button type="submit">Registrar</button></p>
             </div>
 
-            {{#if message }}
-            <div class="messageError">{{ message }}</div>
-            {{/if}}
-
-            {{#if success }}
-            <div class="messageSuccess">{{ success }}</div>
-            {{/if}}
         </form>
     </div>
 </section>
