@@ -428,7 +428,7 @@ module.exports = {
             //const filePath = './reporte_' + reporte + '.xlsx';
 
             if (filtro.reporte == 'representante') {
-                workSheetColumnNames = ["empresa", "nombre", "apellido", "telefono", "email", "direccion rep legal", "direccion empresa"]
+                workSheetColumnNames = ["EMPRESA", "NOMBRE", "APELLIDO", "TELEFONO", "EMAIL", "DIRECCION REP. LEGAL", "DIRECCION EMPRESA"]
 
                 if (Object.keys(filtro).length > 1) {
                     dataFinal = await Persona.findRepresentanteEmpresaByEstado(filtro.estado);
@@ -442,7 +442,7 @@ module.exports = {
                 });
             }
             if (filtro.reporte == 'pedido') {
-                workSheetColumnNames = ["empresa", "representante legal", "cantidad solicitada", "fecha de pedido", "fecha de entrega", "pedido CODIGO", "estado"]
+                workSheetColumnNames = ["EMPRESA", "REPRESENTANTE LEGAL", "CANTIDAD SOLICITADA", "FECHA DE PEDIDO", "FECHA DE ENTREGA", "CODIGO DE PEDIDO", "ESTADO"]
 
                 if (Object.keys(filtro).length > 1) {
                     dataFinal = await Pedido.findPedidoByFiltroReport(filtro.empresa, filtro.estado);
@@ -456,7 +456,7 @@ module.exports = {
                 });
             }
             if (filtro.reporte == 'incubacion') {
-                workSheetColumnNames = ["fecha entrega de pedido", "empresa", "nº de pedido", "incubadora", "cantidad", "piso inicial", "piso final", "fecha inicio", "fecha salida"]
+                workSheetColumnNames = ["FECHA ENTREGA DE PEDIDO", "EMPRESA", "Nº DE PEDIDO", "INCUBADORA", "CANTIDAD", "PISO INICIAL", "PISO FINAL", "FECHA INICIO", "FECHA SALIDA"]
 
                 if (Object.keys(filtro).length > 1) {
                     dataFinal = await Incubacion.findIncubacionByFiltroReport(filtro.pedido, filtro.empresa, filtro.incubadora);
@@ -470,7 +470,7 @@ module.exports = {
                 });
             }
             if (filtro.reporte == 'incidencia') {
-                workSheetColumnNames = ["incubadora", "cantidad ingreso", "CANT PERDIDA", "INCIDENCIA", "ESTADO", "FECHA REG INCIDENCIA", "USUARIO Q REPORTA"]
+                workSheetColumnNames = ["INCUBADORA", "CANTIDAD INGRESO", "CANT PERDIDA", "INCIDENCIA", "ESTADO", "FECHA REGISTRO INCIDENCIA", "USUARIO QUE REPORTA"]
 
                 if (Object.keys(filtro).length > 1) {
                     dataFinal = await Incidencia.findIncidenciaByFiltroReport(filtro.incubadora, filtro.fechaInicio, filtro.fechaFin);
@@ -498,7 +498,7 @@ module.exports = {
                 });
             }
             if (filtro.reporte == 'temperatura_Humedad_por_modulo') {
-                workSheetColumnNames = ["incubadora", "día", "promedio temperatura sensor", "promedio humedad", "FECHA INICIO X INCUBACION", "FECHA FIN X INCUBACION"]
+                workSheetColumnNames = ["INCUBADORA", "DIA", "PROMEDIO TEMPERATURA", "PROMEDIO HUMEDAD", "FECHA INICIO DE INCUBACION", "FECHA FIN DE INCUBACION"]
 
                 if (Object.keys(filtro).length > 1) {
                     dataFinal = await Incubacion.findTempHumedadByFiltroReport(filtro.incubadora, filtro.fechaInicio, filtro.fechaFin);

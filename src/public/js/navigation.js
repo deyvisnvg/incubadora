@@ -185,7 +185,7 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/monitoreo"><span>Incubación</span></a>
+                                            <a href="/monitoreo"><span><b>Incubación</b></span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -199,22 +199,22 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/replegal"><span>Reporte Rep Legal</span></a>
+                                            <a href="/reporte/replegal"><span><b>Reporte Rep Legal</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/pedido"><span>Reporte pedidos</span></a>
+                                            <a href="/reporte/pedido"><span><b>Reporte pedidos</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/incubacion"><span>Reporte incubación</span></a>
+                                            <a href="/reporte/incubacion"><span><b>Reporte incubación</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/temphumedad"><span>Reporte temperatura y humedad por módulo</span></a>
+                                            <a href="/reporte/temphumedad"><span><b>Reporte temperatura y humedad por módulo</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/sensores"><span>Reporte Sensores</span></a>
+                                            <a href="/reporte/sensores"><span><b>Reporte Sensores</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/incidencia"><span>Reporte incidencias</span></a>
+                                            <a href="/reporte/incidencia"><span><b>Reporte incidencias</b></span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -416,7 +416,7 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/monitoreo"><span>Incubación</span></a>
+                                            <a href="/monitoreo"><span><b>Incubación</b></span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -430,22 +430,22 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/replegal"><span>Reporte Rep Legal</span></a>
+                                            <a href="/reporte/replegal"><span><b>Reporte Rep Legal</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/pedido"><span>Reporte pedidos</span></a>
+                                            <a href="/reporte/pedido"><span><b>Reporte pedidos</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/incubacion"><span>Reporte incubación</span></a>
+                                            <a href="/reporte/incubacion"><span><b>Reporte incubación</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/temphumedad"><span>Reporte temperatura y humedad por módulo</span></a>
+                                            <a href="/reporte/temphumedad"><span><b>Reporte temperatura y humedad por módulo</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/sensores"><span>Reporte Sensores</span></a>
+                                            <a href="/reporte/sensores"><span><b>Reporte Sensores</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/incidencia"><span>Reporte incidencias</span></a>
+                                            <a href="/reporte/incidencia"><span><b>Reporte incidencias</b></span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -538,7 +538,7 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/monitoreo"><span>Incubación</span></a>
+                                            <a href="/monitoreo"><span><b>Incubación</b></span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -552,22 +552,22 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/replegal"><span>Reporte Rep Legal</span></a>
+                                            <a href="/reporte/replegal"><span><b>Reporte Rep Legal</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/pedido"><span>Reporte pedidos</span></a>
+                                            <a href="/reporte/pedido"><span><b>Reporte pedidos</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/incubacion"><span>Reporte incubación</span></a>
+                                            <a href="/reporte/incubacion"><span><b>Reporte incubación</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/temphumedad"><span>Reporte temperatura y humedad por módulo</span></a>
+                                            <a href="/reporte/temphumedad"><span><b>Reporte temperatura y humedad por módulo</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/sensores"><span>Reporte Sensores</span></a>
+                                            <a href="/reporte/sensores"><span><b>Reporte Sensores</b></span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a href="/reporte/incidencia"><span>Reporte incidencias</span></a>
+                                            <a href="/reporte/incidencia"><span><b>Reporte incidencias</b></span></a>
                                         </li>
                                     </ul>
                                 </li>
