@@ -1,6 +1,6 @@
 const { handleError } = require('../../error');
 const { config } = require('../../config');
-const { dateFormatYMD, dateFormatHms, dateFormatYMD_add2 } = require('../../dateFormatUtc');
+const { dateFormatYMD, dateFormatHms, dateFormatYMD_add } = require('../../dateFormatUtc');
 
 module.exports = {
 
@@ -12,7 +12,7 @@ module.exports = {
 
             try {
                 data.fecha_pedido = dateFormatYMD();
-                data.fecha_entrega = dateFormatYMD_add2();
+                data.fecha_entrega = dateFormatYMD_add(25);
                 data.hora_pedido = dateFormatHms();
                 data.representante = dataRepresentante;
 

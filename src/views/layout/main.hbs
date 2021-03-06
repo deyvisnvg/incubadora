@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="/css/menu.css">
     <!-- Login -->
     <link rel="stylesheet" href="/css/login.css">
+    <!-- General -->
+    <link rel="stylesheet" href="/css/general.css">
     <!-- monitoreo -->
     <link rel="stylesheet" href="/css/monitoreo.css">
     <!-- Estilos para todos los Registros -->
@@ -45,6 +47,8 @@
     <link rel="stylesheet" href="/css/message.css">
     <!-- pagination -->
     <link rel="stylesheet" href="/css/pagination.css">
+    <!-- reporte -->
+    <link rel="stylesheet" href="/css/reporte.css">
 </head>
 
 
@@ -54,6 +58,9 @@
     <script src="/_recursos/js/sweetalert.min.js"></script>
     <script src="/_recursos/js/jquery.min.js"></script>
     <script src="/_recursos/js/bootstrap.min.js"></script>
+
+    <script lang="javascript" src="/js/FileSaver.min.js"></script>
+    <!--<script lang="javascript" src="/dist/xlsx.full.min.js"></script>-->
 
     <!-- main.js -->
     <script src="/js/main.js"></script>
@@ -65,11 +72,15 @@
     <script src="/js/navigation.js"></script>
     <!-- monitoreo -->
     <script src="/js/monitoreo.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="/js/grafica_monitoreo.js"></script>
     <!-- monitoreo Representante -->
     <script src="/js/monitoreoRepresentante.js"></script>
     <!-- Pedido -->
     <script src="/js/pedido.js"></script>
-    <!-- Pedido -->
+    <!-- Incidencia -->
+    <script src="/js/incidencia.js"></script>
+    <!-- Representante -->
     <script src="/js/representante.js"></script>
     <!-- editUser -->
     <script src="/js/editUser.js"></script>
@@ -79,6 +90,8 @@
     <script src="/js/generateCodigo.js"></script>
     <!-- eventos de Incubadora -->
     <script src="/js/listIncubadora.js"></script>
+    <!-- descarga -->
+    <script src="/js/descarga.js"></script>
 
     <!-- DataTables Paginación y busqueda Automático -->
     <script>
@@ -110,10 +123,8 @@
     <script>
         $(function () {
             $('#selectBuscador').select2();
-        })
-
-        $(function () {
             $('#selectBuscador2').select2();
+            $('#selectBuscador3').select2();
         })
     </script>
 

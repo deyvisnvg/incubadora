@@ -10,6 +10,13 @@ module.exports = TipoSensorModel => {
         return await TipoSensorModel.findAll();
     }
 
+    async function findtipoSensorAllReport() {
+      return await TipoSensorModel.findAll({
+        attributes: ['id_tipoSensor', 'tipo_sensor'],
+        raw: true
+      });
+  }
+
     async function findTipoSensorById(id_tipoSensor) {
         const result = await TipoSensorModel.findOne({
           where: {
@@ -34,6 +41,7 @@ module.exports = TipoSensorModel => {
     return {
         addtipoSensor,
         findtipoSensorAll,
+        findtipoSensorAllReport,
         findTipoSensorById,
         updateTipoSensorById
     }

@@ -1,0 +1,71 @@
+<section class="list-data">
+    <div class="state">REPORTE DE PEDIDOS</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+
+    <form action="/reporte/pedido" method="POST">
+        <div class="list-cuerpo">
+            <div class="filtros">
+                <div class="filtro">
+                    <p>Empresa:</p>
+                    <p>
+                        <select id="selectBuscador" name="empresa">
+                            <option value="">Seleccione...</option>
+                            {{#each data.dataEmpresa}}
+                            <option value="{{ruc_empresa}}">{{nombre_empresa}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                </div>
+                <div class="filtro">
+                    <p>Estado: </p> 
+                    <p>
+                        <select id="selectBuscador2" name="estado">
+                            <option value="">Seleccione...</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Finalizado">Inactivo</option>
+                            <option value="">Todos</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+            <div class="botonFiltro">
+                <button type="submit"><strong> Buscar</strong></button>
+                <a href="/reporte/exportar"> Generar Reporte</a>
+            </div>
+            <div class="data-table-pagination">
+                <table id="example1" class="data-table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th><p class="description-name">empresa</p></th>
+                            <th><p class="description">representante legal</p></th>
+                            <th><p class="description">cantidad solicitada</p></th>
+                            <th><p class="description">fecha de pedido</p></th>
+                            <th><p class="description">fecha de entrega</p></th>
+                            <th><p class="description">pedido CODIGO</p></th>
+                            <th><p class="description">estado</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each data.dataFinal}}
+                        <tr>
+                            <td><p class="description-valor">{{nombre_empresa}}</p></td>
+                            <td><p class="description-valor">{{nombres}} {{apellidos}}</p></td>
+                            <td><p class="description-valor">{{cantidad}}</p></td>
+                            <td><p class="description">{{fecha_pedido}}</p></td>
+                            <td><p class="description">{{fecha_entrega}}</p></td>
+                            <td><p class="description-valor">{{id_pedido}}</p></td>
+                            <td><div class="description stated">{{estado}}<div hidden>{{ estado }}</div></div></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</section>

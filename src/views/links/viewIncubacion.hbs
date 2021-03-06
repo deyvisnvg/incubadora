@@ -1,5 +1,5 @@
 <section class="list-data">
-    <div class="state">DETALLE DEL PEDIDO</div>
+    <div class="state"><a href="/incubadora/incubacion"><i class="icon-arrow-left2 positionIcon"></i></a>DETALLE DEL PEDIDO</div>
     {{#if message }}
         <div class="messageError">{{ message }}</div>
     {{/if}}
@@ -11,7 +11,7 @@
         <div>DETALLE DEL PEDIDO</div>
         <hr>
         <div class="data-representante">
-            {{#each pedido}}
+            {{#each data.dataPedido}}
             <div class="n1">
                 <div class="n1-title">
                     <p class="description">Pedido </p>
@@ -56,10 +56,11 @@
                         <th><p class="description">Estado</p></th>
                         <th><p class="description">Incubadora</p></th>
                         <th><p class="description">Editar</p></th>
+                        <th><p class="description">Incidencia</p></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each incubaciones}}
+                    {{#each data.dataIncubacion}}
                     <tr>
                         <td><p class="description">{{id_incubacion}}</p></td>
                         <td><p class="description">{{fecha_ingreso}}</p></td>
@@ -71,7 +72,14 @@
                         <td><p class="description">{{'incubadora.nombre_incubadora'}}</p></td>
                         <td>
                             <p class="description"><a href="/incubadora/incubacion/edit/{{id_incubacion}}"><img
-                            src="/img/editar.png" alt="icon de Editar"></a></p>
+                            src="/img/editar.png" alt="icon de Editar" title="Editar Incubación"></a></p>
+                        </td>
+                        <td>
+                            <p class="description">
+                                <a href="/incubadora/incidencia/list/{{id_incubacion}}&{{id_pedido}}"> 
+                                    <i class="icon-file-text icono" title="Registrar Incidencia"></i> 
+                                </a>
+                            </p>
                         </td>
                     </tr>
                     {{/each}}

@@ -1,0 +1,47 @@
+.list-data .list-cuerpo .filtros {
+    display: flex;
+    margin: 20px 30px 25px;
+}
+
+.filtros .filtro {
+    padding-right: 120px;
+}
+
+.filtros .filtro select{
+    width: 200px;
+}
+
+.list-data .list-cuerpo .botonFiltro {
+    margin: 20px 30px 35px;
+}
+
+.botonFiltro button {
+    background: rgb(2, 131, 2);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+.botonFiltro a {
+    background: rgb(2, 131, 2);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+.botonFiltro a{
+    text-decoration: none;
+    color: white
+}
+
+.botonFiltro a:hover {
+    background: rgb(2, 148, 2);
+}
+
+.botonFiltro button:hover {
+    background: rgb(2, 148, 2);
+}

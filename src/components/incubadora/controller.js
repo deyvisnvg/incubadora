@@ -80,7 +80,7 @@ module.exports = {
 
             try {
                 data.fecha_ingreso = dateFormatYMD();
-                data.fecha_salida = dateFormatYMD_add();
+                data.fecha_salida = dateFormatYMD_add(22);
                 data.hora_ingreso = dateFormatHms();
 
                 data.dataIncubadora = incubadora;
@@ -147,7 +147,7 @@ module.exports = {
                 data.dataIncubacion = incubacion;
                 data.dataPedido = pedido;
 
-                // console.log(data);
+                // console.log("Holaaa", data);
                 resolve(data);
 
             } catch (error) {
@@ -206,5 +206,95 @@ module.exports = {
                 reject("Error! al modificar, Inténtelo nuevamente.");
             }
         })
-    }
+    },
+
+    //------------------------------ incidencia ------------------------------//
+    listIncidencia: (id, Incidencia) => {
+        return new Promise(async (resolve, reject) => {
+            let data = {};
+            let dataId = id.split("&");
+
+            let ids = {
+                id_incubacion: dataId[0],
+                id_pedido: dataId[1]
+            }
+
+            try {
+                const incidencia = await Incidencia.findIncidenciaByIncubacionId(ids.id_incubacion).catch(err => handleError(err));
+
+                for (const i in incidencia) {
+                    incidencia[i].id_pedido = ids.id_pedido;
+                }
+
+                data.dataIncidencia = incidencia;
+                data.ids = ids;
+
+                console.log(incidencia);
+
+                resolve(data);
+            } catch (error) {
+                reject("Error! al listar, Inténtelo nuevamente.");
+            }
+        })
+    },
+
+    addIncidencia: (body, Incidencia) => {
+        return new Promise(async (resolve, reject) => {
+            const dataIncidencia = {
+                id_incidencias: body.identificador,
+                descripcion: body.detalle_incidencia,
+                cantidad_nacidos: body.cantidad_nacidos,
+                cantidad_defectuosos: body.cantidad_defectuosos,
+                fecha_registrada: dateFormatYMD(),
+                id_incubacion: body.id_incubacion
+            }
+
+            await Incidencia.addIncidencia(dataIncidencia).catch(err => handleError(err));
+            resolve();
+
+        })
+    },
+
+    editIncidencia: (id, Incidencia) => {
+        return new Promise(async (resolve, reject) => {
+            let data = {};
+
+            let dataId = id.split("&");
+
+            let ids = {
+                id_incidencias: dataId[0],
+                id_incubacion: dataId[1],
+                id_pedido: dataId[2]
+            }
+
+            try {
+                const incidencia = await Incidencia.findIncidenciaById(ids.id_incidencias).catch(err => handleError(err));
+
+                data.dataIncidencia = incidencia;
+                data.ids = ids;
+
+                console.log(data);
+                resolve(data);
+
+            } catch (error) {
+                reject("Error! al modificar, Inténtelo nuevamente.");
+            }
+        })
+    },
+
+    updateIncidencia: (body, Incidencia) => {
+        return new Promise(async (resolve, reject) => {
+
+            const dataIncidencia = {
+                descripcion: body.detalle_incidencia,
+                cantidad_nacidos: body.cantidad_nacidos,
+                cantidad_defectuosos: body.cantidad_defectuosos
+            }
+
+            await Incidencia.updateIncidencia(body.identificador, dataIncidencia).catch(err => handleError(err));
+            resolve();
+
+        })
+    },
+
 }

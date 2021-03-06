@@ -11,10 +11,13 @@ if (valor.value == "pedido") {
     pedido1.value = "Ped_" + id;
 } else if (valor.value == "incubacion") {
     const incubacion1 = document.getElementById('idIncubacion');
-    incubacion1.value = "Inc_" + id;
+    incubacion1.value = "Incub_" + id;
 } else if (valor.value == "representante") {
     const incubacion1 = document.getElementById('idRepresentante');
     incubacion1.value = "Rep_" + id;
+} else if (valor.value == "incidencia") {
+    const incubacion1 = document.getElementById('idIncidencia');
+    incubacion1.value = "Incid_" + id;
 }
 
 // JavaScript almacena las fechas como número de milisegundos desde 

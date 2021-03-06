@@ -1,0 +1,68 @@
+<section class="list-data">
+    <div class="state">REPORTE SENSORES</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+
+    <form action="/reporte/sensores" method="POST">
+        <div class="list-cuerpo">
+            <div class="filtros">
+                <div class="filtro">
+                    <p>Tipo Sensor:</p>
+                    <p>
+                        <select id="selectBuscador3" name="tipoSensor">
+                            <option value="">Seleccione...</option>
+                            {{#each data.dataTipoSensor}}
+                            <option value="{{id_tipoSensor}}">{{tipo_sensor}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                </div>
+                <div class="filtro">
+                    <p>Desde:</p>
+                    <p>
+                        <input type="date" name="fechaInicio" id="fechaInicio" value="">
+                    </p>
+                </div>
+                <div class="filtro">
+                    <p>Hasta:</p>
+                    <p>
+                        <div id="result"></div>
+                    </p>
+                </div>
+            </div>
+            <div class="botonFiltro">
+                <button type="submit"><strong> Buscar</strong></button>
+                <a href="/reporte/exportar"> Generar Reporte</a>
+            </div>
+            <div class="data-table-pagination">
+                <table id="example1" class="data-table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th><p class="description-name">NOM SENSOR</p></th>
+                            <th><p class="description">TIPO SENSOR</p></th>
+                            <th><p class="description">VALOR</p></th>
+                            <th><p class="description">FECHA</p></th>
+                            <th><p class="description">TIME</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each data.dataFinal}}
+                        <tr>
+                            <td><p class="description-valor">{{nombre_sensor}}</p></td>
+                            <td><p class="description-valor">{{tipo_sensor}}</p></td>
+                            <td><p class="description-valor">{{valor}}</p></td>
+                            <td><p class="description">{{fecha}}</p></td>
+                            <td><p class="description">{{hora}}</p></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</section>

@@ -23,7 +23,8 @@ const server = http.createServer(app);
 const io = socketIO(server);
 require("./connection_socket")(io);
 
-socket.connect(server);
+// socket.connect(server);
+socket.connect(io);
 
 // Settings
 const {config} = require('./config');

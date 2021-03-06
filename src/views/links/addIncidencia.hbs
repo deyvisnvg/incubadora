@@ -1,9 +1,22 @@
 <input type="hidden" name="modulo" id="moduloUser" value="{{user.modulo}}">
 
 <section class="registro-data">
-    <div class="state">REGISTRO DE INCIDENCIAS</div>
+    <div class="state"><a href="/incubadora/incidencia/list/{{ids.id_incubacion}}&{{ids.id_pedido}}"><i class="icon-arrow-left2 positionIcon"></i></a>REGISTRO DE INCIDENCIAS</div>
     <div class="data">
-        <form action="/usuario/add" method="post">
+        <form action="/incubadora/incidencia/add" method="post">
+            <input type="hidden" name="id_incubacion" value="{{ids.id_incubacion}}">
+            <input type="hidden" name="id_pedido" value="{{ids.id_pedido}}">
+            <div class="data-valor1">
+                <p class="description">Identificador: </p>
+                <p>
+                    <input type="hidden" id="valor" value="incidencia">
+                    <input type="text" name="identificador" id="idIncidencia" value="" readonly>
+                </p>
+            </div>
+            <div class="data-valor1">
+                <p class="description">Detalle Incidencia: </p>
+                <p><textarea name="detalle_incidencia" id="" cols="22" rows="4"></textarea></p>
+            </div>
             <div class="data-valor1">
                 <p class="description">Cantidad de Nacidos: </p>
                 <p><input type="text" name="cantidad_nacidos" value="" required pattern="[0-9]+" title="Ingrese solo números"></p>
@@ -11,18 +24,7 @@
 
             <div class="data-valor1">
                 <p class="description">Cantidad de Defectuosos: </p>
-                <p><input type="text" name="usuario" value="" required pattern="[0-9]+" title="Ingrese solo números"></p>
-            </div>
-
-            <div class="data-valor1">
-                <div class="data-valor1">
-                <p class="description">Incubación:</p>
-                <p>
-                    <select name="estado" required>
-                        <option value="">Seleccione identificador...</option>
-                    </select>
-                </p>
-            </div>
+                <p><input type="text" name="cantidad_defectuosos" value="" required pattern="[0-9]+" title="Ingrese solo números"></p>
             </div>
             
             <div class="data-boton">

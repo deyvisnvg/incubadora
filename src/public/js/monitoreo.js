@@ -4,10 +4,10 @@ var humedad = document.getElementById('humedad');
 var proTemperatura = document.getElementById('proTemperatura');
 var proHumedad = document.getElementById('proHumedad');
 
-// const socketio = io();
 let socketio = io();
 var estado = 0;
 var estado_data = 0;
+let sensorTemp, sensorHumed, promedios, proTemp, proHum
 
 //============= Evento que Muestra la Data de Sensores =============//
 socketio.on("sensores", datos => {

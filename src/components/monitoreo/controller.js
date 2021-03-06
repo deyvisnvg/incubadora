@@ -35,7 +35,8 @@ module.exports = {
             let promedio = {
                 proTemp: proTempHumed[0],
                 proHum: proTempHumed[1],
-                contador: proTempHumed[2]
+                contador: proTempHumed[2],
+                fecha: dateFormatYMD()
             }
 
             // =====================================================================================

@@ -1,7 +1,6 @@
 'use strict'
 
 const Sequelize = require('sequelize');
-
 const Op = Sequelize.Op;
 
 module.exports = (PersonaModel, UsuarioModel, RepresentanteModel, EmpresaModel, RepresentanteEmpresaModel) => {
@@ -99,6 +98,106 @@ module.exports = (PersonaModel, UsuarioModel, RepresentanteModel, EmpresaModel, 
     return result;
   }
 
+  /* #Usado en el Componente: reporte */
+  async function findRepresentanteEmpresaAll() {
+    let result = await RepresentanteModel.findAll({
+      include: EmpresaModel,
+      raw: true
+    });
+
+    const personas = await PersonaModel.findAll();
+
+    let resultado = result.map(m => {
+      for (const i in personas) {
+        if (m.id_persona == personas[i].dni_persona) {
+          m.nombres = personas[i].nombres;
+          m.apellidos = personas[i].apellidos;
+          m.direccion = personas[i].direccion;
+          m.celular = personas[i].celular;
+          m.email = personas[i].email;
+          break;
+        }
+      }
+      return m;
+    })
+
+    let data = resultado.map(m => {
+      let datos = {
+        id_representante: m.id_representante,
+        estado: m.estado,
+        id_persona: m.id_persona,
+        nombre_empresa: m['empresas.nombre_empresa'],
+        direccion_empresa: m['empresas.direccion'],
+        nombres: m.nombres,
+        apellidos: m.apellidos,
+        direccion: m.direccion,
+        celular: m.celular,
+        email: m.email
+      }
+      return datos;
+    })
+
+    // console.log(resultado);
+    return data;
+  }
+
+  /* #Usado en el Componente: reporte */
+  async function findRepresentanteEmpresaByEstado(estado) {
+
+    let condicion = {};
+
+    if (estado != "") {
+      condicion = { estado };
+    } else {
+      condicion = {
+        estado: {
+          [Op.not]: null,
+        }
+      };
+    }
+
+    let result = await RepresentanteModel.findAll({
+      where: condicion,
+      include: EmpresaModel,
+      raw: true
+    });
+
+    const personas = await PersonaModel.findAll();
+
+    let resultado = result.map(m => {
+      for (const i in personas) {
+        if (m.id_persona == personas[i].dni_persona) {
+          m.nombres = personas[i].nombres;
+          m.apellidos = personas[i].apellidos;
+          m.direccion = personas[i].direccion;
+          m.celular = personas[i].celular;
+          m.email = personas[i].email;
+          break;
+        }
+      }
+      return m;
+    })
+
+    let data = resultado.map(m => {
+      let datos = {
+        id_representante: m.id_representante,
+        estado: m.estado,
+        id_persona: m.id_persona,
+        nombre_empresa: m['empresas.nombre_empresa'],
+        direccion_empresa: m['empresas.direccion'],
+        nombres: m.nombres,
+        apellidos: m.apellidos,
+        direccion: m.direccion,
+        celular: m.celular,
+        email: m.email
+      }
+      return datos;
+    })
+
+    // console.log(resultado);
+    return data;
+  }
+
   async function findPersonaByUserId(id_usuario) {
     return PersonaModel.findOne({
       where: {
@@ -136,9 +235,11 @@ module.exports = (PersonaModel, UsuarioModel, RepresentanteModel, EmpresaModel, 
     findPersonaAll,
     findPersonasAll,
     findByPersonaId,
-    findPersonaId,
-    updatePersonaId,
     findRepresentanteEmpresaMonitoreo,
-    findPersonaByUserId
+    findRepresentanteEmpresaAll,
+    findRepresentanteEmpresaByEstado,
+    findPersonaByUserId,
+    findPersonaId,
+    updatePersonaId
   }
 }

@@ -199,12 +199,32 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/incubadora/incidencia"><span> Incidencias</span></a>
+                                            <a href="/reporte/replegal"><span>Reporte Rep Legal</span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a><span>Cantidad de Sensores</span></a>
+                                            <a href="/reporte/pedido"><span>Reporte pedidos</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/incubacion"><span>Reporte incubación</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/temphumedad"><span>Reporte temperatura y humedad por módulo</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/sensores"><span>Reporte Sensores</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/incidencia"><span>Reporte incidencias</span></a>
                                         </li>
                                     </ul>
+                                </li>
+                            </ul>
+
+                            <ul class="nav">
+                                <li>
+                                    <a href="#" class="auto">
+                                        <span class="font-bold" translate="aside.nav.Mantenimiento"></span>
+                                    </a>
                                 </li>
                             </ul>
 
@@ -410,10 +430,22 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/incubadora/incidencia"><span> Incidencias</span></a>
+                                            <a href="/reporte/replegal"><span>Reporte Rep Legal</span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a><span>Cantidad de Sensores</span></a>
+                                            <a href="/reporte/pedido"><span>Reporte pedidos</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/incubacion"><span>Reporte incubación</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/temphumedad"><span>Reporte temperatura y humedad por módulo</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/sensores"><span>Reporte Sensores</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/incidencia"><span>Reporte incidencias</span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -520,10 +552,22 @@ switch (modulo.value) {
                                     </a>
                                     <ul class="nav nav-sub dk">
                                         <li ui-sref-active="active">
-                                            <a href="/incubadora/incidencia"><span> Incidencias</span></a>
+                                            <a href="/reporte/replegal"><span>Reporte Rep Legal</span></a>
                                         </li>
                                         <li ui-sref-active="active">
-                                            <a><span>Cantidad de Sensores</span></a>
+                                            <a href="/reporte/pedido"><span>Reporte pedidos</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/incubacion"><span>Reporte incubación</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/temphumedad"><span>Reporte temperatura y humedad por módulo</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/sensores"><span>Reporte Sensores</span></a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a href="/reporte/incidencia"><span>Reporte incidencias</span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -539,8 +583,6 @@ switch (modulo.value) {
     default:
         var control = document.querySelector('.control');
         var btn = document.querySelector('.navbar-btn');
-        console.log(control);
-        console.log(btn);
 
         if (!control.classList.contains('app-aside-folded')) {
             control.classList.add('app-aside-folded');

@@ -30,6 +30,7 @@ module.exports = async (io) => {
 
         socket.on("op:representante", async id_representante => {
             try {
+                console.log(id_representante);
                 result = await RepresentanteEmpresa.findRepresentanteEmpresaById(id_representante);
                 if (result) {
                     io.sockets.emit("data:empresa", result);

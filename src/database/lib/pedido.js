@@ -1,6 +1,7 @@
 'use strict'
 
 const sequelize = require('sequelize');
+const Op = sequelize.Op;
 
 module.exports = (PedidoModel, RepresentanteEmpresaModel, EmpresaModel, RepresentanteModel, PersonaModel) => {
 
@@ -79,6 +80,122 @@ module.exports = (PedidoModel, RepresentanteEmpresaModel, EmpresaModel, Represen
         // return pedidoGroup;
     }
 
+    function formatoResultado(resultado) {
+        let data = resultado.map(m => {
+            let datos = {
+                id_pedido: m.id_pedido,
+                cantidad: m.cantidad,
+                fecha_pedido: m.fecha_pedido,
+                fecha_entrega: m.fecha_entrega,
+                estado: m.estado,
+                nombre_empresa: m['representante_empresa.empresa.nombre_empresa'],
+                nombres: m['representante_empresa.representante.persona.nombres'],
+                apellidos: m['representante_empresa.representante.persona.apellidos']
+            }
+            return datos;
+        })
+
+        return data;
+    }
+
+    /* #Usado en el Componente: reporte */
+    async function findPedidoAllReport() {
+        const resultado = await PedidoModel.findAll({
+            attributes: ['id_pedido', 'cantidad', 'comentario', 'fecha_pedido', 'hora_pedido', 'fecha_entrega', 'estado'],
+            order: [['fecha_pedido', 'DESC']],
+            include: [{
+                attributes: ['id_representante_empresa', 'id_representante', 'id_empresa'],
+                model: RepresentanteEmpresaModel,
+                required: true,
+                include: [
+                    {
+                        attributes: ['nombre_empresa'],
+                        model: EmpresaModel
+                    },
+                    {
+                        attributes: ['id_representante'],
+                        model: RepresentanteModel,
+                        include: [{
+                            attributes: ['dni_persona', 'nombres', 'apellidos'],
+                            model: PersonaModel
+                        }]
+                    }
+                ]
+            }],
+            raw: true
+        })
+
+        let data = formatoResultado(resultado);
+        return data;
+    }
+
+    /* #Usado en el Componente: reporte */
+    async function findPedidoByFiltroReport(id_empresa, estado) {
+        let condicion = {};
+        let condicion_emp = {};
+
+        if (id_empresa != "" && estado != "") {
+            condicion = { estado };
+            condicion_emp = { id_empresa };
+            // console.log(condicion);
+            // console.log(condicion_emp);
+        } else if (id_empresa != "") {
+            condicion = {
+                estado: {
+                    [Op.not]: null,
+                }
+            };
+            condicion_emp = { id_empresa };
+        } else if (estado != "") {
+            condicion = { estado };
+            condicion_emp = {
+                id_empresa: {
+                    [Op.not]: null,
+                }
+            };
+        } else {
+            condicion = {
+                estado: {
+                    [Op.not]: null,
+                }
+            };
+            condicion_emp = {
+                id_empresa: {
+                    [Op.not]: null,
+                }
+            };
+        }
+        const resultado = await PedidoModel.findAll({
+            attributes: ['id_pedido', 'cantidad', 'comentario', 'fecha_pedido', 'hora_pedido', 'fecha_entrega', 'estado'],
+            order: [['fecha_pedido', 'DESC']],
+            where: condicion,
+            include: [{
+                attributes: ['id_representante_empresa', 'id_representante', 'id_empresa'],
+                model: RepresentanteEmpresaModel,
+                where: condicion_emp,
+                required: true,
+                include: [
+                    {
+                        attributes: ['nombre_empresa'],
+                        model: EmpresaModel
+                    },
+                    {
+                        attributes: ['id_representante'],
+                        model: RepresentanteModel,
+                        include: [{
+                            attributes: ['dni_persona', 'nombres', 'apellidos'],
+                            model: PersonaModel
+                        }]
+                    }
+                ]
+            }],
+            raw: true
+        })
+
+        let data = formatoResultado(resultado);
+        return data;
+    }
+
     /* #Usado en el Componente: incubadora, monitoreo */
     async function findPedidoAllOn() {
         return await PedidoModel.findAll({
@@ -86,6 +203,14 @@ module.exports = (PedidoModel, RepresentanteEmpresaModel, EmpresaModel, Represen
             where: {
                 estado: 'Activo'
             },
+            raw: true
+        });
+    }
+
+    /* #Usado en el Componente: reporte */
+    async function findPedidoIdAllReport() {
+        return await PedidoModel.findAll({
+            attributes: ['id_pedido'],
             raw: true
         });
     }
@@ -137,10 +262,13 @@ module.exports = (PedidoModel, RepresentanteEmpresaModel, EmpresaModel, Represen
     return {
         addPedido,
         findPedidoAll,
+        findPedidoAllReport,
         findPedidoAllOn,
+        findPedidoIdAllReport,
         findPedidoByPersonaIdAll,
         findPedidoByIdAll,
         findPedidoById,
-        updatePedidoById
+        updatePedidoById,
+        findPedidoByFiltroReport
     }
 }

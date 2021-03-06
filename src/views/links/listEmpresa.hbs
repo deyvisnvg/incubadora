@@ -7,6 +7,51 @@
     {{#if success }}
         <div class="messageSuccess">{{ success }}</div>
     {{/if}}
+
+
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="modal_motivo_eli"
+        class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 class="modal-title"><i class="icon-pencil"></i>&nbsp;Eliminar Referido</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="msgcontactofiltro">
+                    </div>
+
+                    <form class="form-inline" role="form" id="FormReferido">
+
+                        <div class="row">
+
+                            <div class="col-sm-2">
+                                <label style="font-weight:normal">Motivo</label>
+                            </div>
+                            <div class="col-sm-10">
+                                <input id="hdnIdReferido" name="hdnIdReferido" type="text">
+                                <textarea id="comentarioEliminar" name="textarea"
+                                    class="form-control rounded-0"></textarea>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="btnGrabarSolicitud" data-dismiss="modal"
+                        class="btn btn-info">Guardar</button>
+                    <button type="button" id="btnCancelarSolicitud" data-dismiss="modal"
+                        class="btn btn-info">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="list-cuerpo">
         <div class="addBoton">
             <p class="boton">
@@ -25,6 +70,7 @@
                         <th><p class="description">Contacto - Telef.</p></th>
                         <th><p class="description">E-mail</p></th>
                         <th><p class="description">Editar </p></th>
+                        <th><p class="description">Eliminar </p></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +84,10 @@
                         <td>
                             <p class="description"><a href="/empresa/edit/{{ruc_empresa}}"><img
                             src="/img/editar.png" alt="icon de Editar"></a></p>
+                        </td>
+                        <td>
+                            <a class="fa fa-trash-o hand eliminar" data-id="{{ruc_empresa}}" title="Eliminar"
+                            id="gridEliminarModalReferidoBandeja">eliminar</a>
                         </td>
                     </tr>
                     {{/each}}

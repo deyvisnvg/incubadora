@@ -677,7 +677,8 @@ body {
 }
 
 .navi {
-  height: 780px;
+  height: 610px;
+  overflow-y: scroll;
 }
 
 .app:before {

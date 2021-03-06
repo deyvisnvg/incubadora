@@ -1,0 +1,86 @@
+<section class="list-data">
+    <div class="state">REPORTE INCUBACIÓN</div>
+    {{#if message }}
+        <div class="messageError">{{ message }}</div>
+    {{/if}}
+
+    {{#if success }}
+        <div class="messageSuccess">{{ success }}</div>
+    {{/if}}
+
+    <form action="/reporte/incubacion" method="POST">
+        <div class="list-cuerpo">
+            <div class="filtros">
+                <div class="filtro">
+                    <p>Pedido:</p>
+                    <p>
+                        <select id="selectBuscador" name="pedido">
+                            <option value="">Seleccione...</option>
+                            {{#each data.dataPedido}}
+                            <option value="{{id_pedido}}">{{id_pedido}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                </div>
+                <div class="filtro">
+                    <p>Empresa:</p>
+                    <p>
+                        <select id="selectBuscador2" name="empresa">
+                            <option value="">Seleccione...</option>
+                            {{#each data.dataEmpresa}}
+                            <option value="{{ruc_empresa}}">{{nombre_empresa}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                </div>
+                <div class="filtro">
+                    <p>Incubadora:</p>
+                    <p>
+                        <select id="selectBuscador3" name="incubadora">
+                            <option value="">Seleccione...</option>
+                            {{#each data.dataIncubadora}}
+                            <option value="{{id_incubadora}}">{{nombre_incubadora}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                </div>
+            </div>
+            <div class="botonFiltro">
+                <button type="submit"><strong> Buscar</strong></button>
+                <a href="/reporte/exportar"> Generar Reporte</a>
+            </div>
+            <div class="data-table-pagination">
+                <table id="example1" class="data-table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th><p class="description-name">fecha entrega de pedido</p></th>
+                            <th><p class="description">empresa</p></th>
+                            <th><p class="description">nº de pedido</p></th>
+                            <th><p class="description">incubadora</p></th>
+                            <th><p class="description">cantidad</p></th>
+                            <th><p class="description">piso inicial</p></th>
+                            <th><p class="description">piso final</p></th>
+                            <th><p class="description">fecha inicio</p></th>
+                            <th><p class="description">fecha salida</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each data.dataFinal}}
+                        <tr>
+                            <td><p class="description-valor">{{fecha_entrega}}</p></td>
+                            <td><p class="description-valor">{{nombre_empresa}}</p></td>
+                            <td><p class="description-valor">{{id_pedido}}</p></td>
+                            <td><p class="description">{{nombre_incubadora}}</p></td>
+                            <td><p class="description">{{cantidad_ingreso}}</p></td>
+                            <td><p class="description-valor">{{piso_inicio}}</p></td>
+                            <td><p class="description-valor">{{piso_fin}}</p></td>
+                            <td><p class="description-valor">{{fecha_ingreso}}</p></td>
+                            <td><p class="description-valor">{{fecha_salida}}</p></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</section>

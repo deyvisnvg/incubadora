@@ -22,23 +22,23 @@ formatDate.dateFormatHms = () => {
     return hora;
 }
 
-formatDate.dateFormatYMD_add = () => {
+formatDate.dateFormatYMD_add = dias => {
     // var dateFormat = 'YYYY-MM-DD HH:mm:ss';
     var dateFormat = 'YYYY-MM-DD';
     var dateUtc = moment().utcOffset("-05:00");
 
-    let fecha = dateUtc.add(22, 'days');
+    let fecha = dateUtc.add(dias, 'days');
     fecha = fecha.format(dateFormat);
 
     return fecha;
 }
 
-formatDate.dateFormatYMD_add2 = () => {
+formatDate.dateFormatYMD_addPersonalizado = (fechas, dias) => {
     // var dateFormat = 'YYYY-MM-DD HH:mm:ss';
     var dateFormat = 'YYYY-MM-DD';
-    var dateUtc = moment().utcOffset("-05:00");
+    var dateUtc = moment(fechas);
 
-    let fecha = dateUtc.add(25, 'days');
+    let fecha = dateUtc.add(dias, 'days');
     fecha = fecha.format(dateFormat);
 
     return fecha;
