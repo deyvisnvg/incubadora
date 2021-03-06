@@ -33,14 +33,14 @@ google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawCurveTypes);
 
 function drawCurveTypes() {
-      var data = new google.visualization.DataTable();
+      let data = new google.visualization.DataTable();
       data.addColumn('date', 'X');
       data.addColumn('number', 'Temperatura');
       data.addColumn('number', 'Humedad');
 
       data.addRows(datas);
 
-      var options = {
+      let options = {
         hAxis: {
           title: 'Time'
         },
@@ -52,6 +52,19 @@ function drawCurveTypes() {
         }
       };
 
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
+      //let chart = new google.visualization.LineChart(document.getElementsByClassName('chart_div'));
+      let chart;
+
+      $(function () {
+        $('.chart_div').each(function (indice, valor) { // Recorro cada clase '.iconzoom' de mi tabla de datos
+            const cod = $(`.chart_div:eq(${indice}) div`).text();
+            console.log(cod);
+            //var detalle = document.querySelector(`.chart_div${cod}`);
+            chart = new google.visualization.LineChart(document.querySelector(`.show${cod}`));
+            chart.draw(data, options);
+        });
+    })
+
+
+      
     }
