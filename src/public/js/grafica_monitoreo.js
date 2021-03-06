@@ -48,7 +48,14 @@ function drawCurveTypes() {
           title: 'Promedio %'
         },
         series: {
-          1: {curveType: 'function'}
+          0: {
+            curveType: 'function',
+            color: '#008a21' 
+          },
+          1: {
+            curveType: 'function',
+            color: '#0202f9'
+          }
         }
       };
 
