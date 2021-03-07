@@ -3,7 +3,7 @@
 const { Sequelize, Op, QueryTypes } = require('sequelize');
 // const Op = sequelize.Op;
 // const { QueryTypes } = require('sequelize');
-const { dateFormatYMD, dateFormatYMD_addPersonalizado } = require('../../dateFormatUtc');
+const { dateFormatYMD, dateFormatYMD_addPersonalizado, dateFormatDMY } = require('../../dateFormatUtc');
 
 module.exports = (IncubacionModel, PedidoModel, IncubadoraModel, RepresentanteEmpresaModel, RepresentanteModel, PersonaModel, EmpresaModel, sequelize) => {
 
@@ -357,12 +357,12 @@ module.exports = (IncubacionModel, PedidoModel, IncubadoraModel, RepresentanteEm
                     for (const p of promedios) {
                         var datos = {
                             id_incubacion: m.id_incubacion,
-                            fecha_ingreso: m.fecha_ingreso,
-                            fecha_salida: m.fecha_salida,
+                            fecha_ingreso: dateFormatDMY(m.fecha_ingreso),
+                            fecha_salida: dateFormatDMY(m.fecha_salida),
                             nombre_incubadora: m.nombre_incubadora,
                             prom_humedad: p.prom_humedad.toFixed(2),
                             prom_temperatura: p.prom_temperatura.toFixed(2),
-                            dia: p.fecha,
+                            dia: dateFormatDMY(p.fecha),
                             estado: m.estado,
                             pedido: m.pedido,
                         }
