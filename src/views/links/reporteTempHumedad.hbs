@@ -49,6 +49,8 @@
                             <th><p class="description">PROMEDIO HUMEDAD</p></th>
                             <th><p class="description">FECHA INICIO DE INCUBACION</p></th>
                             <th><p class="description">FECHA FIN DE INCUBACION</p></th>
+                            <th><p class="description">ESTADO</p></th>
+                            <th><p class="description">PEDIDO</p></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +62,8 @@
                             <td><p class="description">{{prom_humedad}}</p></td>
                             <td><p class="description">{{fecha_ingreso}}</p></td>
                             <td><p class="description-valor">{{fecha_salida}}</p></td>
+                            <td><div class="description stated">{{estado}}<div hidden>{{estado}}</div></div></td>
+                            <td><p class="description-valor">{{pedido}}</p></td>
                         </tr>
                         {{/each}}
                     </tbody>

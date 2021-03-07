@@ -320,6 +320,8 @@ module.exports = (IncubacionModel, PedidoModel, IncubadoraModel, RepresentanteEm
                     fecha_ingreso: m.fecha_ingreso,
                     fecha_salida: m.fecha_salida,
                     nombre_incubadora: m['incubadora.nombre_incubadora'],
+                    estado: m.estado,
+                    pedido: m['pedido.id_pedido'],
                 }
 
                 let fecha_actual = new Date(dateFormatYMD()).getTime();
@@ -339,7 +341,7 @@ module.exports = (IncubacionModel, PedidoModel, IncubadoraModel, RepresentanteEm
                 return datos;
             })
 
-            // console.log(data);
+            //console.log(data);
 
             for (const m of data) {
                 let promedios = await sequelize.query(`SELECT SUM(CASE WHEN T.tipo_sensor = 'HUMEDAD' THEN D.valor END) / COUNT(CASE WHEN T.tipo_sensor = 'HUMEDAD' THEN D.valor END) AS prom_humedad, 
@@ -358,14 +360,18 @@ module.exports = (IncubacionModel, PedidoModel, IncubadoraModel, RepresentanteEm
                             fecha_ingreso: m.fecha_ingreso,
                             fecha_salida: m.fecha_salida,
                             nombre_incubadora: m.nombre_incubadora,
-                            prom_humedad: p.prom_humedad,
-                            prom_temperatura: p.prom_temperatura,
-                            dia: p.fecha
+                            prom_humedad: p.prom_humedad.toFixed(2),
+                            prom_temperatura: p.prom_temperatura.toFixed(2),
+                            dia: p.fecha,
+                            estado: m.estado,
+                            pedido: m.pedido,
                         }
                         resultadoFinal.push(datos);
                     }
+                    //console.log("Biennnnn");
                 }
             }
+            //console.log(resultadoFinal);
 
             resolve(resultadoFinal);
         })
@@ -373,13 +379,20 @@ module.exports = (IncubacionModel, PedidoModel, IncubadoraModel, RepresentanteEm
 
     async function findTempHumedadAllReport() {
         const resultado = await IncubacionModel.findAll({
-            attributes: ['id_incubacion', 'fecha_ingreso', 'fecha_salida'],
-            include: [{
-                attributes: ['nombre_incubadora'],
-                model: IncubadoraModel,
-            }],
+            attributes: ['id_incubacion', 'fecha_ingreso', 'fecha_salida', 'estado'],
+            include: [
+                {
+                    attributes: ['nombre_incubadora'],
+                    model: IncubadoraModel
+                },
+                {
+                    attributes: ['id_pedido'],
+                    model: PedidoModel,
+                }
+        ],
             raw: true // Que los query sean de tipo row es decir que me devuelvan objetos simples, la información en JSON()
         });
+        //console.log(resultado);
 
         return formatoResultadoTwo(resultado)
 
