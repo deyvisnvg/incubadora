@@ -158,7 +158,7 @@ switch (modulo.value) {
                                                     <li>
                                                         <a href class="auto">
                                                             <i class="icon-radio-unchecked"></i>
-                                                            <span class="font-bold" translate="aside.nav.Mantenimiento">Sesores</span>
+                                                            <span class="font-bold" translate="aside.nav.Mantenimiento">Sensores</span>
                                                         </a>
                                                         <ul class="nav nav-sub dk" style="display: none;">
                                                             <li ui-sref-active="active">
@@ -389,7 +389,7 @@ switch (modulo.value) {
                                                     <li>
                                                         <a href class="auto">
                                                             <i class="icon-radio-unchecked"></i>
-                                                            <span class="font-bold" translate="aside.nav.Mantenimiento">Sesores</span>
+                                                            <span class="font-bold" translate="aside.nav.Mantenimiento">Sensores</span>
                                                         </a>
                                                         <ul class="nav nav-sub dk" style="display: none;">
                                                             <li ui-sref-active="active">
