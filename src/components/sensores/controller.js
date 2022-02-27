@@ -113,7 +113,7 @@ module.exports = {
                 tipo_sensor: body.tipo_sensor,
                 simbolo: body.simbolo,
                 limite: body.limite,
-                ambiente: body.ambiente,
+                ambiente: body.ambiente
             }
 
             // console.log(newTipoSensor);

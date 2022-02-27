@@ -29,7 +29,7 @@ module.exports = function setupIncubadoraModel(config) {
         },
         estado: {
             type: Sequelize.TEXT,
-            allowNull: false
+            allowNull: true
         }
     },
         {

@@ -18,7 +18,7 @@ module.exports = {
 
         // database: process.env.DB_NAME || 'eanegoci_proytesis', // Vamos a pasar valores como si fueran variables de entorno por defecto
         // username: process.env.DB_USER || 'eanegoci_proytesis',
-        // password: process.env.DB_PASS || '72l2obPU2p',
+        // password: process.env.DB_PASS || 'L6uJ5dLx0u0$1$9_',
         // host: process.env.DB_HOST || 'eanegocios.com',
 
         // database: process.env.DB_NAME || 'incubadora', // Vamos a pasar valores como si fueran variables de entorno por defecto
