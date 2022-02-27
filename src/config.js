@@ -11,14 +11,22 @@ module.exports = {
     },
 
     configDb: {
+        database: process.env.DB_NAME || 'admin_incubadora', // Vamos a pasar valores como si fueran variables de entorno por defecto
+        username: process.env.DB_USER || 'admin_incubadora',
+        password: process.env.DB_PASS || 'incubadora2022',
+        host: process.env.DB_HOST || 'incubadora.ga',
+
+        // database: process.env.DB_NAME || 'eanegoci_proytesis', // Vamos a pasar valores como si fueran variables de entorno por defecto
+        // username: process.env.DB_USER || 'eanegoci_proytesis',
+        // password: process.env.DB_PASS || '72l2obPU2p',
+        // host: process.env.DB_HOST || 'eanegocios.com',
+
         // database: process.env.DB_NAME || 'incubadora', // Vamos a pasar valores como si fueran variables de entorno por defecto
         // username: process.env.DB_USER || 'root',
         // password: process.env.DB_PASS || 'nethack',
         // host: process.env.DB_HOST || 'localhost',
-        database: process.env.DB_NAME || 'eanegoci_proytesis', // Vamos a pasar valores como si fueran variables de entorno por defecto
-        username: process.env.DB_USER || 'eanegoci_proytesis',
-        password: process.env.DB_PASS || 'L6uJ5dLx0u0$1$9_',
-        host: process.env.DB_HOST || 'eanegocios.com',
+        
+        
         // database: process.env.DB_NAME || 'incub4xh_monitoreo', // Vamos a pasar valores como si fueran variables de entorno por defecto
         // username: process.env.DB_USER || 'incub4xh',
         // password: process.env.DB_PASS || 'L6uJ5dLx0u0$1$9_',
