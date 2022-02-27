@@ -677,7 +677,7 @@ body {
 }
 
 .navi {
-  height: 610px;
+  height: 100vh;
   overflow-y: scroll;
 }
 
